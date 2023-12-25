@@ -30,21 +30,11 @@ Manage multiple accounts in one place. Track balances, transactions, and overall
 - **Database:** MongoDB
 - **Deployment:** Heroku
 
-## Getting Started
+### Team Members
 
-### Prerequisites
-
-- Node.js and npm installed on your machine
-- MongoDB Atlas account for database (or your local MongoDB instance)
-- 
-
-### Installation
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/Natanim-Kemal/tbn-finance-tracker.git
-   cd tbn-finance-tracker
-
-
-   ...
+- Abdulmmejjid Kelil
+- Bereket Kelay
+- Hanim Abdurezak
+- Natanim Kemal
+- Roman Kebede
+- Yohannes Solomon 

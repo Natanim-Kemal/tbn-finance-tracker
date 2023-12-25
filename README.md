@@ -30,9 +30,13 @@ Manage multiple accounts in one place. Track balances, transactions, and overall
 - **Database:** MongoDB
 - **Deployment:** Heroku
 
-### Team Members
 
-- Abdulmmejjid Kelil
+
+
+
+## Team Members
+
+- Abdulmejid Kelil
 - Bereket Kelay
 - Hanim Abdurezak
 - Natanim Kemal

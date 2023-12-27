@@ -28,7 +28,7 @@ Manage multiple accounts in one place. Track balances, transactions, and overall
 - **Frontend:** React.js
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
-- **Deployment:** Heroku
+- **Deployment:** Netlify
 
 
 

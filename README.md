@@ -36,9 +36,9 @@ Manage multiple accounts in one place. Track balances, transactions, and overall
 
 ## Team Members
 
-- Abdulmejid Kelil
-- Bereket Kelay
-- Hanim Abdurezak
-- Natanim Kemal
-- Roman Kebede
-- Yohannes Solomon 
+- [Abdulmejid Kelil]("#")
+- [Bereket Kelay]("#")
+- [Hanim Abdurezak]("#")
+- [Natanim Kemal]("#")
+- [Roman Kebede]("#")
+- [Yohannes Solomon]("#") 

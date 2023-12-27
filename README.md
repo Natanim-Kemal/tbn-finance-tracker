@@ -37,8 +37,8 @@ Manage multiple accounts in one place. Track balances, transactions, and overall
 ## Team Members
 
 - [Abdulmejid Kelil]("#")
-- [Bereket Kelay]("#")
-- [Hanim Abdurezak]("#")
-- [Natanim Kemal]("#")
-- [Roman Kebede]("#")
-- [Yohannes Solomon]("#") 
+- [Bereket Kelay]("https://github.com/beki-kel")
+- [Hanim Abdurezak]("https://github.com/Hanim07")
+- [Natanim Kemal]("https://github.com/Natanim-Kemal")
+- [Roman Kebede]("https://github.com/Roman0290")
+- [Yohannes Solomon]("https://github.com/Johna210") 

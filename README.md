@@ -36,7 +36,7 @@ Manage multiple accounts in one place. Track balances, transactions, and overall
 
 ## Team Members
 
-- [Abdulmejid Kelil](#)
+- [Abdulmejid Kelil](https://github.com/techkelster)
 - [Bereket Kelay](https://github.com/beki-kel)
 - [Hanim Abdurezak](https://github.com/Hanim07)
 - [Natanim Kemal](https://github.com/Natanim-Kemal)

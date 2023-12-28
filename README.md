@@ -1,9 +1,14 @@
-# tbn-finance-tracker
-A MERN stack application for tracking, budgeting and notifying (hence the name: "TBN") our incomes, expenses and overall finance.
+# TBN finance tracker
+
+A MERN stack application for tracking, budgeting and notifying (hence the name: "TBN") our incomes, expenses and overall finance. It is your financial companion on the journey towards financial well-being. Take charge of your finances, make informed decisions, and pave the way to a more secure and prosperous future.
+
+---
+
 
 ## Overview
 
 Welcome to TBN Finance Tracker App, a web application built with the MERN (MongoDB, Express.js, React.js, Node.js) stack. This app is designed to help you manage your finances, track budgets, categorize expenses, monitor investments, and manage accounts.
+
 
 ## Features
 
@@ -23,13 +28,18 @@ Keep an eye on your investments with tools for tracking performance, viewing por
 
 Manage multiple accounts in one place. Track balances, transactions, and overall financial health.
 
+
 ## Tech Stack
 
-- **Frontend:** React.js
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB
-- **Deployment:** Netlify
-
++ **Frontend:**
+    - React.js
++ **Backend:**
+    - Node.js
+    - Express.js
++ **Database:**
+    - MongoDB
++ **Deployment:**
+    - Netlify
 
 
 

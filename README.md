@@ -1,4 +1,4 @@
-# TBN finance tracker
+# TBN Finance Tracker
 
 A MERN stack application for tracking, budgeting and notifying (hence the name: "TBN") our incomes, expenses and overall finance. It is your financial companion on the journey towards financial well-being. Take charge of your finances, make informed decisions, and pave the way to a more secure and prosperous future.
 

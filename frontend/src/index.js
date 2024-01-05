@@ -1,10 +1,12 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
+import App from "./App";
 
-// Render your React component instead
 const root = createRoot(document.getElementById("root"));
 root.render(
   <>
-    <h1>Front End Started</h1>
+    <App></App>
   </>
 );

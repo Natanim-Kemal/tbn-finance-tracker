@@ -1,0 +1,67 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  background-color: #181818;
+  min-height: 100vh;
+}
+
+.top-logo {
+  padding-top: 10%;
+  color: #26c834;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 30%;
+}
+.menu h3 {
+  color: white;
+}
+.menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  color: white;
+  text-align: left;
+}
+
+.menu .nav-des {
+  width: 50%;
+}
+
+.icon-label {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.icon-label img {
+  width: 1rem;
+}
+
+.info {
+  display: flex;
+  padding-top: 25%;
+  justify-content: space-between;
+}
+.info .info-img {
+  width: 50px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+.info .name-email {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.info-name {
+  font-size: medium;
+}
+.info-email {
+  font-size: small;
+}

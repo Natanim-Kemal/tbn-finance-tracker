@@ -1,0 +1,28 @@
+.button-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container button{
+    padding: 15px 30px;
+    margin: 8px;
+    border: none;
+    border-radius: 25px;
+    background-color:#26C834 ;
+    color: white;
+    font-weight: bold;
+    
+    
+}
+
+.button-container button:hover{
+    background-color:white ;
+    color: #26C834;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.button-container button:active{
+    opacity: 0.7;
+}

@@ -1,0 +1,193 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to bottom right, #181818 50%, #b5b7b3b5 50%);
+    
+    background-size: cover;
+}
+
+body::after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+body::before, body::after {
+    content: "";
+    display: table;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    padding-bottom: 20px;
+}
+
+.space{
+    background: transparent;
+    margin-top: 5%;
+}
+
+.logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    background-color: aliceblue;
+    overflow: hidden;
+}
+
+.logo-container img{
+    width: 50%;
+    height: 50%;
+
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.text{
+    color: #26C834;
+    font-size: 70px;
+    font-weight: 700;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 400px;
+    height: 30px;
+    line-height: 40px;
+    padding: 5px;
+    margin-bottom: 15px;
+    background: #eaeaea;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.input input{
+    height: 30px;
+    width: 400px;
+    line-height: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    padding: 5px;
+}
+
+.input ::placeholder{
+    text-align: center;
+    font-size: 15px;
+    font-weight: 50;
+}
+
+.signup-text-cotainer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.underline{
+    width: 150px;
+    height: 2px;
+    background-color: white;
+    margin-top: 7%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.signUp-text{
+    font-weight: lighter;
+    font-size: larger;
+}
+
+.google-logo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 75px;
+    background:transparent;
+    overflow: hidden;
+}
+
+.google-logo-container img{
+    width: 50%;
+    height: 50%;
+}
+
+.google-signup{
+    display: flex;
+    color: gray;
+    text-align: center;
+}
+
+.create-account-container{
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.question-to-create{
+    color: rgb(99, 99, 99);
+}
+
+.create-text{
+    color: #26C834 ;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.return-to-login{
+    color: #1b8024 ;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.recover{
+    color: black ;
+    cursor: pointer;
+    text-decoration: underline;
+    text-align: center;
+}
+
+

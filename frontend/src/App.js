@@ -8,6 +8,7 @@ import dashboardIcon from "./icons/dashboard.png";
 import expenseIcon from "./icons/expense.png";
 import logo from "./icons/logo.png";
 import walletIcon from "./icons/wallet.png";
+import LoginSignup from "./components/LoginSignup.jsx";
 
 export default function App() {
   const menus = [
@@ -24,9 +25,6 @@ export default function App() {
   ];
   const [activeElement, setAE] = useState("");
   return (
-    <div className="row">
-      <Menu activeElement={activeElement} menus={menus}></Menu>
-      <Expenses></Expenses>
-    </div>
+    <LoginSignup/>
   );
 }

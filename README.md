@@ -33,7 +33,8 @@ Set financial goals, receive reminders, and easily track your progress. 🎯📆
 - **Frontend:** React.js
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
-- **Deployment:** Netlify
+- **Deployment:** Netlify || Vercel
+
 
 ## 👥 Meet the Team
 

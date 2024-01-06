@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./css/LoginSignup.css"
 import google_icon from './assest/google-icon.png'
 import Logo from './assest/Logo.png'
 import Buttons from "./buttons";
+import "./css/LoginSignup.css"
 
 const LoginSignup = () => {
     const [action, setAction] = useState("Sign in");

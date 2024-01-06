@@ -5,6 +5,7 @@
   row-gap: 20px;
   background-color: #181818;
   min-height: 100vh;
+  max-width: 15%;
 }
 
 .top-logo {

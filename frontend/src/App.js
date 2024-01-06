@@ -26,6 +26,6 @@ export default function App() {
   ];
   const [activeElement, setAE] = useState("");
   return (
-    <DashBoard/>
+    <LoginSignup/>
   );
 }

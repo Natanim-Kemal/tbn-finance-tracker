@@ -58,6 +58,7 @@ const LoginSignup = () => {
             <div className="logo-container">
                 <img src={Logo} alt="" />
             </div>
+            <div className="blur-component">
             <div className="header">
                 <div className="text">TBN</div>
             </div>
@@ -125,6 +126,7 @@ const LoginSignup = () => {
                 <div className="return-to-login" onClick={() => { setAction("Sign in") }}>
                     Already have account
                 </div>}
+        </div>
         </div>
     );
 }

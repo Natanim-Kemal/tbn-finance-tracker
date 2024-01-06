@@ -10,6 +10,8 @@ import Expense from './assest/coins.png'
 import  Saving from './assest/banknotes.png'
 import "./css/DashBoard.css"
 import Notify from './assest/notification_bell.png'
+import  RenderLineChart  from "./Graph";
+import {Circle} from 'react-awesome-shapes'
 
 export default function DashBoard() {
     const menus = [
@@ -61,8 +63,8 @@ export default function DashBoard() {
                         <div className="overview-title">
                             Overview
                         </div>
-                        <div>
-                            
+                        <div className="Graph-Container">
+                            <RenderLineChart/>
                         </div>
                     </div>
                 </div>
@@ -72,18 +74,23 @@ export default function DashBoard() {
                     </div>
 
                     <div className="graphical-budget">
-
+                        <div className="circle-container">
+                            <div className="circle first-circle">First</div>
+                            <div className="circle second-circle">Second</div>
+                            <div className="circle third-circle">Third</div>
+                        </div>
                     </div>
-
                     <div className="monthly-comparison">
                         <div>
                             <div>
-                                <p>comparison (month) </p>
+                                <p>Comparison (Month) </p>
                             </div>
                             <div></div>
                         </div>
                     </div>
                 </div>
+
+                
 
                 <div className="report">
                     <div className="report-title">

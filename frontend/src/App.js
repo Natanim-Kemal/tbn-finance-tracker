@@ -9,7 +9,8 @@ import expenseIcon from "./icons/expense.png";
 import logo from "./icons/logo.png";
 import walletIcon from "./icons/wallet.png";
 import LoginSignup from "./components/LoginSignup.jsx";
-import DashBoard from "./components/DashBoard.jsx"
+import DashBoard from "./components/DashBoard.jsx";
+
 
 export default function App() {
   const menus = [
@@ -26,6 +27,6 @@ export default function App() {
   ];
   const [activeElement, setAE] = useState("");
   return (
-    <LoginSignup/>
+    <DashBoard/>
   );
 }

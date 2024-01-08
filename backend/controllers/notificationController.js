@@ -1,53 +1,39 @@
-
-const { Reminder } = require('../models/reminder');
+const notificationService = require('../services/notificationService');
 
 const notificationController = {
-    sendNotification: async (userID) => {
+    sendNotification: async (req, res) => {
+        const { userID } = req.params;
+
         try {
-            const reminders = await Reminder.find({ userID });
-            reminders.forEach(async (reminder) => {
-                const notification = new Reminder({
-                    reminderID: reminder._id,
-                    userID,
-                    message: 'Reminder: ' + reminder.description,
-                });
-                await notification.save();
-                console.log(`Notification sent for Reminder: ${reminder._id}`);
-            });
-            return true;
+            const result = await notificationService.sendNotification(userID);
+            res.status(200).json({ success: result });
         } catch (error) {
-            console.error(error);
-            return false;
+            console.error('Error sending notifications:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
     },
 
-    scheduleNotification: async (userID) => {
+    scheduleNotification: async (req, res) => {
+        const { userID } = req.params;
+
         try {
-            const upcomingReminders = await Reminder.find({ userID, dueDate: { $gte: new Date() } });
-            upcomingReminders.forEach(async (reminder) => {
-                const notification = new Notification({
-                    reminderID: reminder._id,
-                    userID,
-                    message: 'Scheduled Notification: ' + reminder.description,
-                });
-                await notification.save();
-                console.log(`Notification scheduled for Reminder: ${reminder._id}`);
-            });
-            return true;
+            const result = await notificationService.scheduleNotification(userID);
+            res.status(200).json({ success: result });
         } catch (error) {
-            console.error(error);
-            return false;
+            console.error('Error scheduling notifications:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
     },
 
-    clearNotification: async (userID) => {
+    clearNotification: async (req, res) => {
+        const { userID } = req.params;
+
         try {
-            await Notification.deleteMany({ userID });
-            console.log('Notifications cleared for User: ' + userID);
-            return true;
+            const result = await notificationService.clearNotification(userID);
+            res.status(200).json({ success: result });
         } catch (error) {
-            console.error(error);
-            return false;
+            console.error('Error clearing notifications:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
     },
 };

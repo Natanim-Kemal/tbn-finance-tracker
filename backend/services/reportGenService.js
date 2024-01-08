@@ -1,18 +1,17 @@
+// services/reportGeneratorService.js
 const { User } = require('../models/user');
 
-const reportGeneratorController = {
+const reportGeneratorService = {
     generateExpenseReport: async (userID) => {
         try {
             const user = await User.findById(userID);
             const expenseTransactions = user.financialAccounts.filter((account) => !account.isIncome);
 
-            const expenseReport = expenseTransactions.map((transaction) => ({
+            return expenseTransactions.map((transaction) => ({
                 name: transaction.name,
                 amount: transaction.amount,
                 date: transaction.createdAt,
             }));
-
-            return expenseReport;
         } catch (error) {
             console.error('Error generating expense report:', error);
             throw error;
@@ -24,13 +23,11 @@ const reportGeneratorController = {
             const user = await User.findById(userID);
             const incomeTransactions = user.financialAccounts.filter((account) => account.isIncome);
 
-            const incomeReport = incomeTransactions.map((transaction) => ({
+            return incomeTransactions.map((transaction) => ({
                 name: transaction.name,
                 amount: transaction.amount,
                 date: transaction.createdAt,
             }));
-
-            return incomeReport;
         } catch (error) {
             console.error('Error generating income report:', error);
             throw error;
@@ -41,7 +38,7 @@ const reportGeneratorController = {
         try {
             const user = await User.findById(userID);
 
-            const categoryReport = user.financialAccounts.reduce((report, transaction) => {
+            return user.financialAccounts.reduce((report, transaction) => {
                 const category = transaction.category || 'Uncategorized';
 
                 if (!report[category]) {
@@ -56,8 +53,6 @@ const reportGeneratorController = {
 
                 return report;
             }, {});
-
-            return categoryReport;
         } catch (error) {
             console.error('Error generating category report:', error);
             throw error;
@@ -65,4 +60,4 @@ const reportGeneratorController = {
     },
 };
 
-module.exports = reportGeneratorController;
+module.exports = reportGeneratorService;

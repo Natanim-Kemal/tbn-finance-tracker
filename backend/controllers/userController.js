@@ -1,95 +1,99 @@
-const { User } = require('../models/user');
-const { Account } = require('../models/account');
+const userService = require('../services/userService');
 
 const userController = {
     createAccount: async (req, res) => {
-        const userExists = await User.findone({email});
-            if (userExists) {
-                res.join('User Exists.');
-            }
-        try {
-            const newUser = new User({firstName, lastName, email, password, username, financialAccounts});
+        const { firstName, lastName, email, password, username, financialAccounts } = req.body;
 
-            await newUser.save();
-            return true;
+        try {
+            const result = await userService.createAccount(firstName, lastName, email, password, username, financialAccounts);
+            res.status(result.success ? 200 : 400).json({ message: result.message });
         } catch (error) {
-            console.error(error, "registration error!");
-            return false;
+            console.error('Error creating account:', error);
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    getUserId: async () => {
-        const userId = getCurrentUserId();
-        return userId;
-    },
-
-    getAccountDetails: async (userID) => {
+    getUserId: async (req, res) => {
         try {
-            const user = await User.findById(userID);
-            if (!user) {
-                return null;
-            }
-
-            const accountDetails = await Account.find({ userID });
-            return accountDetails;
+            const userId = await userService.getUserId();
+            res.status(userId ? 200 : 400).json({ userId });
         } catch (error) {
-            console.error(error);
-            return null;
+            console.error('Error getting user ID:', error);
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    deleteAccount: async (userID) => {
+    getAccountDetails: async (req, res) => {
+        const { userID } = req.params;
+
         try {
-            await User.findByIdAndDelete(userID);
-            await Account.deleteMany({ userID });
-            return true;
+            const accountDetails = await userService.getAccountDetails(userID);
+            res.status(accountDetails ? 200 : 404).json(accountDetails || { message: 'User not found' });
         } catch (error) {
-            console.error(error);
-            return false;
+            console.error('Error getting account details:', error);
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    updateProfile: async (userID, updatedData) => {
+    deleteAccount: async (req, res) => {
+        const { userID } = req.params;
+
         try {
-            await User.findByIdAndUpdate(userID, { $set: updatedData });
-            return true;
+            const result = await userService.deleteAccount(userID);
+            res.status(result.success ? 200 : 500).json({ message: result.message });
         } catch (error) {
-            console.error(error);
-            return false;
+            console.error('Error deleting account:', error);
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    changePassword: async (userID, newPassword) => {
+    updateProfile: async (req, res) => {
+        const { userID } = req.params;
+        const updatedData = req.body;
+
         try {
-            // Hash the new password !!!
-            await User.findByIdAndUpdate(userID, { $set: { password: newPassword } });
-            return true;
+            const result = await userService.updateProfile(userID, updatedData);
+            res.status(result.success ? 200 : 500).json({ message: result.message });
         } catch (error) {
-            console.error(error);
-            return false;
+            console.error('Error updating profile:', error);
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    linkFinancialAccount: async (userID, financeInstituteId, accountId) => {
+    changePassword: async (req, res) => {
+        const { userID } = req.params;
+        const { newPassword } = req.body;
+
         try {
-            // logic to link a financial account goes here ... later
-            const newLink = new Link({ userID, financeInstituteId, accountId });
-            await newLink.save();
-            return true;
+            const result = await userService.changePassword(userID, newPassword);
+            res.status(result.success ? 200 : 500).json({ message: result.message });
         } catch (error) {
-            console.error(error);
-            return false;
+            console.error('Error changing password:', error);
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    getFinancialReport: async (userID) => {
+    linkFinancialAccount: async (req, res) => {
+        const { userID, financeInstituteId, accountId } = req.body;
+
         try {
-            // logic to generate and retrieve financial reports goes here later
-            const financialReport = generateFinancialReport(userID);
-            return financialReport;
+            const result = await userService.linkFinancialAccount(userID, financeInstituteId, accountId);
+            res.status(result.success ? 200 : 500).json({ message: result.message });
         } catch (error) {
-            console.error(error);
-            return null;
+            console.error('Error linking financial account:', error);
+            res.status(500).json({ message: 'Server Error' });
+        }
+    },
+
+    getFinancialReport: async (req, res) => {
+        const { userID } = req.params;
+
+        try {
+            const financialReport = await userService.getFinancialReport(userID);
+            res.status(financialReport ? 200 : 500).json(financialReport || { message: 'Server Error' });
+        } catch (error) {
+            console.error('Error getting financial report:', error);
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 };

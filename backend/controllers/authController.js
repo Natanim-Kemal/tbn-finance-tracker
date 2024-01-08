@@ -1,74 +1,57 @@
-
-const express = require('express');
-const app = express();
+const authService = require('../services/authService');
 const { User } = require('../models/user');
-const bcrypt = require('bcrypt');
-const session = require('express-session');
-
-app.use(session({
-    secret: 'your-secret-key',
-    resave: true,
-    saveUninitialized: true,
-}));
 
 const authController = {
-    authenticateUser: async (email, password) => {
+    login: async (req, res) => {
+        const { email, password } = req.body;
+
         try {
-            const user = await User.findOne({ email });
-
-            if (!user) {
-                throw new Error('User not found');
-            }
-
-            const isPasswordValid = await user.comparePassword(password);
-
-            if (!isPasswordValid) {
-                throw new Error('Invalid password');
-            }
-
-            const token = user.generateAuthToken();
-            return { token };
+            const result = await authService.authenticateUser(email, password);
+            res.status(200).json(result);
         } catch (error) {
-            console.error('Error authenticating user:', error);
-            throw error;
+            console.error('Authentication error:', error);
+            res.status(401).json({ error: 'Authentication failed' });
         }
     },
 
-    authorizeUser: async (userID) => {
-        try {
-            const user = await User.findById(userID);
+    authorizeUser: async (req, res) => {
+        const { userID } = req.params;
 
-            if (!user) {
-                throw new Error('User not found');
+        try {
+            const isAuthorized = await authService.authorizeUser(userID);
+
+            if (isAuthorized) {
+                res.status(200).json({ message: 'User is authorized' });
+            } else {
+                res.status(403).json({ error: 'User is not authorized' });
             }
-
-            // role checks goes in here. !!!
-
-            return true;
         } catch (error) {
-            console.error('Error authorizing user:', error);
-            throw error;
+            console.error('Authorization error:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
     },
 
-    encryptPassword: async (password) => {
+    encryptPassword: async (req, res) => {
+        const { password } = req.body;
+
         try {
-            const saltRounds = 10;
-            const hashedPassword = await bcrypt.hash(password, saltRounds);
-            return hashedPassword;
+            const hashedPassword = await authService.encryptPassword(password);
+            res.status(200).json({ hashedPassword });
         } catch (error) {
-            console.error('Error encrypting password:', error);
-            throw error;
+            console.error('Encryption error:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
     },
 
-    validatePassword: async (password, hashedPassword) => {
+    validatePassword: async (req, res) => {
+        const { password, hashedPassword } = req.body;
+
         try {
-            const isPasswordValid = await bcrypt.compare(password, hashedPassword);
-            return isPasswordValid;
+            const isValid = await authService.validatePassword(password, hashedPassword);
+            res.status(200).json({ isValid });
         } catch (error) {
-            console.error('Error validating password:', error);
-            throw error;
+            console.error('Validation error:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
     },
 
@@ -76,22 +59,12 @@ const authController = {
         req.session.destroy((err) => {
             if (err) {
                 console.error('Error logging out:', err);
-                throw err;
+                res.status(500).json({ error: 'Server Error' });
+            } else {
+                res.redirect('/login');
             }
-            res.redirect('/login');
         });
     },
-    login: async (req, res) => {
-        const { email, password } = req.body;
-
-        try {
-            const result = await authController.authenticateUser(email, password);
-            res.status(200).json(result);
-        } catch (error) {
-            console.error('Authentication error:', error);
-            res.status(401).json({ error: 'Authentication failed' });
-        }
-    }
 };
 
 module.exports = authController;

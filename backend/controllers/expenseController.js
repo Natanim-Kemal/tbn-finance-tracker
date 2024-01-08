@@ -1,77 +1,62 @@
-const ExpenseSchema = require("../models/expense")
+const expenseService = require('../services/expenseService');
 
+const expenseController = {
+    addExpense: async (req, res) => {
+        const { name, amount, category, description, date } = req.body;
 
-exports.addExpense = async (req, res) => {
-    const {name, amount, category, description, date}  = req.body
-
-    const expense = ExpenseSchema({
-        name,
-        amount,
-        category,
-        description,
-        date
-    })
-
-    try {
-        if(!title || !category || !description || !date){
-            return res.status(400).json({message: 'All fields are required!'})
+        try {
+            const result = await expenseService.addExpense({
+                name,
+                amount,
+                category,
+                description,
+                date,
+            });
+            res.status(200).json(result);
+        } catch (error) {
+            console.error('Error adding expense:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
-        if(amount <= 0 || !amount === 'number'){
-            return res.status(400).json({message: 'Amount must be a positive number!'})
+    },
+
+    getExpenses: async (req, res) => {
+        try {
+            const expenses = await expenseService.getExpenses();
+            res.status(200).json(expenses);
+        } catch (error) {
+            console.error('Error getting expenses:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
-        await expense.save()
-        res.status(200).json({message: 'Expense Added'})
-    } catch (error) {
-        res.status(500).json({message: 'Server Error'})
-    }
+    },
 
-    console.log(income)
-}
+    deleteExpense: async (req, res) => {
+        const { id } = req.params;
 
-exports.getExpense = async (req, res) =>{
-    try {
-        const incomes = await ExpenseSchema.find().sort({createdAt: -1})
-        res.status(200).json(incomes)
-    } catch (error) {
-        res.status(500).json({message: 'Server Error'})
-    }
-}
-
-exports.deleteExpense = async (req, res) =>{
-    const {id} = req.params;
-    ExpenseSchema.findByIdAndDelete(id)
-        .then((income) =>{
-            res.status(200).json({message: 'Expense Deleted'})
-        })
-        .catch((err) =>{
-            res.status(500).json({message: 'Server Error'})
-        })
-}
-
-exports.updateExpense = async (req, res) => {
-    const { id } = req.params;
-    const { updatedName, updatedAmount, updatedCategory } = req.body;
-
-    try {
-        const updatedExpense = await ExpenseSchema.findByIdAndUpdate(
-            id,
-            { 
-                $set: {
-                    name: updatedName,
-                    amount: updatedAmount,
-                    category: updatedCategory
-                },
-            },
-            { new: true } 
-        );
-
-        if (!updatedExpense) {
-            return res.status(404).json({ message: 'Expense not found' });
+        try {
+            const result = await expenseService.deleteExpense(id);
+            res.status(200).json(result);
+        } catch (error) {
+            console.error('Error deleting expense:', error);
+            res.status(500).json({ error: 'Server Error' });
         }
+    },
 
-        res.status(200).json({ message: 'Expense Updated', expense: updatedExpense });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Server Error' });
-    }
+    updateExpense: async (req, res) => {
+        const { id } = req.params;
+        const { updatedName, updatedAmount, updatedCategory } = req.body;
+
+        try {
+            const result = await expenseService.updateExpense(id, {
+                updatedName,
+                updatedAmount,
+                updatedCategory,
+            });
+            res.status(200).json(result);
+        } catch (error) {
+            console.error('Error updating expense:', error);
+            res.status(500).json({ error: 'Server Error' });
+        }
+    },
 };
+
+module.exports = expenseController;

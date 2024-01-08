@@ -1,107 +1,66 @@
-const { User } = require('../models/user'); 
-const { Transaction } = require('../models/transaction');
+// controllers/accountController.js
+const accountService = require('../services/accountService');
 
 const accountController = {
-    updateBalance: async (userID) => {
+    updateBalance: async (req, res) => {
         try {
-            const user = await User.findById(userID);
-
-            const totalIncome = user.financialAccounts.reduce(
-                (sum, account) => (account.isIncome ? sum + account.amount : sum),
-                0
-            );
-
-            const totalExpenses = user.financialAccounts.reduce(
-                (sum, account) => (!account.isIncome ? sum + account.amount : sum),
-                0
-            );
-
-            user.balance = totalIncome - totalExpenses;
-
-            await user.save();
+            const { userID } = req.params;
+            await accountService.updateBalance(userID);
+            res.status(200).json({ message: 'Balance Updated' });
         } catch (error) {
-            console.error('Error updating balance:', error);
-            throw error;
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    addIncome: async (userID, amount, name, stateOfStay) => {
+    addIncome: async (req, res) => {
         try {
-            const user = await User.findById(userID);
-
-            user.financialAccounts.push({
-                amount,
-                name,
-                stateOfStay,
-                isIncome: true,
-            });
-
-            await user.save();
-
-            await accountController.updateBalance(userID);
+            const { userID } = req.params;
+            const { amount, name, stateOfStay } = req.body;
+            await accountService.addIncome(userID, amount, name, stateOfStay);
+            res.status(200).json({ message: 'Income Added' });
         } catch (error) {
-            console.error('Error adding income:', error);
-            throw error;
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    getIncome: async (userID) => {
+    getIncome: async (req, res) => {
         try {
-            const user = await User.findById(userID);
-
-            const incomeTransactions = user.financialAccounts.filter(
-                (account) => account.isIncome
-            );
-
-            return incomeTransactions;
+            const { userID } = req.params;
+            const incomeTransactions = await accountService.getIncome(userID);
+            res.status(200).json(incomeTransactions);
         } catch (error) {
-            console.error('Error getting income transactions:', error);
-            throw error;
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    getTransactions: async (userID) => {
+    getTransactions: async (req, res) => {
         try {
-            const user = await User.findById(userID);
-
-            return user.financialAccounts;
+            const { userID } = req.params;
+            const allTransactions = await accountService.getTransactions(userID);
+            res.status(200).json(allTransactions);
         } catch (error) {
-            console.error('Error getting all transactions:', error);
-            throw error;
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    addExpense: async (userID, amount, name) => {
+    addExpense: async (req, res) => {
         try {
-            const user = await User.findById(userID);
-
-            user.financialAccounts.push({
-                amount,
-                name,
-                isIncome: false,
-            });
-
-            await user.save();
-
-            await accountController.updateBalance(userID);
+            const { userID } = req.params;
+            const { amount, name } = req.body;
+            await accountService.addExpense(userID, amount, name);
+            res.status(200).json({ message: 'Expense Added' });
         } catch (error) {
-            console.error('Error adding expense:', error);
-            throw error;
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 
-    getExpense: async (userID) => {
+    getExpense: async (req, res) => {
         try {
-            const user = await User.findById(userID);
-
-            const expenseTransactions = user.financialAccounts.filter(
-                (account) => !account.isIncome
-            );
-
-            return expenseTransactions;
+            const { userID } = req.params;
+            const expenseTransactions = await accountService.getExpense(userID);
+            res.status(200).json(expenseTransactions);
         } catch (error) {
-            console.error('Error getting expense transactions:', error);
-            throw error;
+            res.status(500).json({ message: 'Server Error' });
         }
     },
 };

@@ -2,21 +2,18 @@ const { User } = require('../models/user');
 const { Account } = require('../models/account');
 
 const userController = {
-    createAccount: async (firstName, lastName, email, password, username, financialAccounts) => {
+    createAccount: async (req, res) => {
+        const userExists = await User.findone({email});
+            if (userExists) {
+                res.join('User Exists.');
+            }
         try {
-            const newUser = new User({
-                firstName,
-                lastName,
-                email,
-                password,
-                username,
-                financialAccounts,
-            });
+            const newUser = new User({firstName, lastName, email, password, username, financialAccounts});
 
             await newUser.save();
             return true;
         } catch (error) {
-            console.error(error);
+            console.error(error, "registration error!");
             return false;
         }
     },

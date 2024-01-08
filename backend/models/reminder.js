@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 const reminderSchema = new mongoose.Schema({
-    reminderID: {
-        type: Number,
-        required: true,
-        unique: true,
-    },
     description: {
         type: String,
         required: true,

@@ -24,4 +24,5 @@ const requireAuth = async (req, res, next) => {
     }
 };
 
-module.exports = { requireAuth };
+
+module.exports = { requireAuth, };

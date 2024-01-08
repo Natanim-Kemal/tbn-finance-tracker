@@ -6,7 +6,7 @@ const notificationController = {
         try {
             const reminders = await Reminder.find({ userID });
             reminders.forEach(async (reminder) => {
-                const notification = new Notification({
+                const notification = new Reminder({
                     reminderID: reminder._id,
                     userID,
                     message: 'Reminder: ' + reminder.description,

@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 //routes 
 readdirSync('./routes').map((route) => {
   const currentRoute = require(`./routes/${route}`);
-  app.use('/api/v1', currentRoute);
+  app.use('/tbn', currentRoute);
 });
 
 module.exports = app;

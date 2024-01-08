@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    jwtSecret: {
+        type: String,
+        required: true
+    },
     financialAccounts: {
         type: Array,
         default: [],
@@ -44,6 +48,11 @@ userSchema.pre('save', async function (next) {
         next(error);
     }
 });
+
+userSchema.methods.generateAuthToken = function () {
+    const token = jwt.sign({ _id: this._id }, this.jwtSecret);
+    return token;
+}
 
 userSchema.methods.comparePassword = async function (candidatePassword) {
     try {

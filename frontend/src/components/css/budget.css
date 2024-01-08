@@ -1,0 +1,110 @@
+.budget{
+    display: flex;
+    min-height: 100vh;
+    height: auto;
+    min-width: 100vw;
+    background-color: #daf3f0;
+    margin: 0;
+    padding-bottom: 30%;
+}
+
+.budget-accordion{
+    display: flex;
+    flex-direction: column;
+    gap: 50px ;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+.budget-contets{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 80%;
+    position: relative;
+    left: 15%;
+}
+
+:root {
+    --custom-accordion-bg: #ffffff;
+  }
+  
+  .accordion {
+    --bs-accordion-bg: var(--custom-accordion-bg); 
+  }
+.budget-name{
+    margin-right: 5%;
+    font-weight: bolder;
+    color: rgb(6, 103, 20);
+}
+
+
+.red-amount{
+    display: flex;
+}
+
+.red-amount button{
+    border: 2px solid red;
+    background: transparent;
+    height: 40px;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.red-amount button:hover{
+    border: none;
+    background: rgb(216, 96, 96);
+}
+
+.green-amount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.green-amount button{
+    border: 2px solid rgb(24, 146, 20);
+    background: transparent;
+    height: 40px;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.green-amount button:hover{
+    border: none;
+    background: rgba(77, 188, 73, 0.8);
+}
+
+
+.content-container{
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.container_1{
+    width: 50%;
+    margin: 5%;
+}
+
+.green-amount.active {
+    transform: translateY(-5px) scale(1.05) translateZ(0);
+    box-shadow: 0 24px 36px rgba(108, 255, 45, 0.2);
+    background: rgba(108, 166, 83, 0.6);
+    backdrop-filter: blur(20px);
+    color: white;
+}
+
+.red-amount.active {
+    transform: translateY(-5px) scale(1.05) translateZ(0);
+    box-shadow: 0 24px 36px rgba(255, 45, 45, 0.2);
+    background: rgba(255, 77, 77, 0.6);
+    backdrop-filter: blur(20px);
+    color: white;
+}
+

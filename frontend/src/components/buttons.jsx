@@ -1,11 +1,12 @@
 import React from "react";
-import "./css/buttons.css"
-const Buttons= ({content}) => {
-    return(
+import "./css/buttons.css";
+
+const Buttons = ({ content, onClick }) => {
+    return (
         <div className="button-container">
-            <button>{content}</button>
+            <button onClick={onClick}>{content}</button>
         </div>
-    )
+    );
 }
 
 export default Buttons;

@@ -3,10 +3,8 @@ import google_icon from './assest/google-icon.png'
 import Logo from './assest/Logo.png'
 import Buttons from "./buttons";
 import "./css/LoginSignup.css"
-
 const LoginSignup = () => {
     const [action, setAction] = useState("Sign in");
-
     const redirectToGoogleLogin = () => {
         const googleChooserURL = "https://accounts.google.com/AccountChooser";
         window.location.href = googleChooserURL;

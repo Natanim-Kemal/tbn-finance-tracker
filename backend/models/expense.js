@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const ExpenseSchema = new mongoose.Schema({
-    title: {
+    name: {
         type: String,
         required: true,
         trim: true,

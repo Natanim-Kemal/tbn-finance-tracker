@@ -8,7 +8,7 @@ const userController = {
                 firstName,
                 lastName,
                 email,
-                password, // Make sure to hash the password before saving
+                password,
                 username,
                 financialAccounts,
             });
@@ -22,8 +22,7 @@ const userController = {
     },
 
     getUserId: async () => {
-        // You might implement logic to retrieve the user ID based on the current user's session or authentication
-        // Example: const userId = getCurrentUserId();
+        const userId = getCurrentUserId();
         return userId;
     },
 
@@ -65,7 +64,7 @@ const userController = {
 
     changePassword: async (userID, newPassword) => {
         try {
-            // Update user password (make sure to hash the new password before saving)
+            // Hash the new password !!!
             await User.findByIdAndUpdate(userID, { $set: { password: newPassword } });
             return true;
         } catch (error) {
@@ -76,9 +75,9 @@ const userController = {
 
     linkFinancialAccount: async (userID, financeInstituteId, accountId) => {
         try {
-            // Implement logic to link a financial account to the user
-            // Example: const newLink = new Link({ userID, financeInstituteId, accountId });
-            // await newLink.save();
+            // logic to link a financial account goes here ... later
+            const newLink = new Link({ userID, financeInstituteId, accountId });
+            await newLink.save();
             return true;
         } catch (error) {
             console.error(error);
@@ -88,10 +87,9 @@ const userController = {
 
     getFinancialReport: async (userID) => {
         try {
-            // Implement logic to generate and retrieve financial reports for the user
-            // Example: const financialReport = generateFinancialReport(userID);
-            // return financialReport;
-            return null; 
+            // logic to generate and retrieve financial reports goes here later
+            const financialReport = generateFinancialReport(userID);
+            return financialReport;
         } catch (error) {
             console.error(error);
             return null;

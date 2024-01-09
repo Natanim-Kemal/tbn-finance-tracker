@@ -1,0 +1,46 @@
+import React from "react";
+import Menu from "./Menu";
+import budgetIcon from "../icons/budge.png";
+import courseIcon from "../icons/courses.png";
+import dashboardIcon from "../icons/dashboard.png";
+import expenseIcon from "../icons/expense.png";
+import walletIcon from "../icons/wallet.png";
+import"./css/investment.css"
+import Buttons from "./buttons";
+import MyForm from "./Form";
+import { useState } from "react";
+import InvestmentTable from "./InvestmentTable";
+
+export default function Investment(){
+    const menus = [
+        {id: 1,name: "Dashboard",active: false, iconSrc: dashboardIcon,},
+        { id: 3, name: "Budget", active: false, iconSrc: budgetIcon },
+        { id: 4, name: "Expense", active: false, iconSrc: expenseIcon },
+        { id: 5, name: "Courses", active: false, iconSrc: courseIcon },
+        { id: 6, name: "Wallet", active: false, iconSrc: walletIcon },];
+
+
+        return(
+            <div className="wallet">
+                <Menu menus={menus}/>
+                <div className="wallet-contents">
+                    <div className="total">
+                        Total Investment
+                    </div>
+                    <div className="form-container">
+                        <MyForm
+                            fields={[
+                                { label: "Company", name: "Company", type: "text", placeholder: "Company"},
+                                { label: "Share", name: "Share", type: "number", placeholder: "Share"},
+                                { label: "Price", name: "Price", type: "number", placeholder: "Price"},
+                                { label: "Yield", name: "Yield", type: "text", placeholder: "Yield %"},
+                                { label: "Annual income", name: "Annualincome", type: "number", placeholder: "Annual income"},
+                        ]}/>
+                    </div>
+                    <div className="Table-container">
+                        <InvestmentTable/>
+                    </div>
+                </div>
+            </div>
+        )
+}

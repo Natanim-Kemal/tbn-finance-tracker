@@ -1,0 +1,61 @@
+.wallet{
+    display: flex;
+    min-height: 100vh;
+    height: auto;
+    min-width: 100vw;
+    background-color: #daf3f0;
+    margin: 0;
+    padding-bottom: 30%;
+}
+
+.wallet-contents{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 80%;
+    position: relative;
+    left: 15%;
+}
+
+.total{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100% ;
+    background-color: rgb(255, 255, 255,0.5);
+    margin: 20px;
+    height: 50px;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.form-container{
+    width: 30%;
+    height: 534px;
+    background: transparent;
+    backdrop-filter: blur(9px);
+    border: 2px solid white;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.Table-container{
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    background: rgba(255, 255, 255,0.5);
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.Table-container th{
+    padding: 10px;
+}
+
+.Table-container td{
+    padding: 10px;
+    text-align: center;
+}

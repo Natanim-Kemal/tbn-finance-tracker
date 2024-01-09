@@ -1,4 +1,3 @@
-// services/reportGeneratorService.js
 const { User } = require('../models/user');
 
 const reportGeneratorService = {

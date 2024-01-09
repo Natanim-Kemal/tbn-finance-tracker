@@ -13,7 +13,16 @@ const authController = {
             res.status(401).json({ error: 'Authentication failed' });
         }
     },
-
+    logout: async (req, res) => {
+        req.session.destroy((err) => {
+            if (err) {
+                console.error('Error logging out:', err);
+                res.status(500).json({ error: 'Server Error' });
+            } else {
+                res.redirect('/login');
+            }
+        });
+    },
     authorizeUser: async (req, res) => {
         const { userID } = req.params;
 
@@ -53,18 +62,7 @@ const authController = {
             console.error('Validation error:', error);
             res.status(500).json({ error: 'Server Error' });
         }
-    },
-
-    logout: async (req, res) => {
-        req.session.destroy((err) => {
-            if (err) {
-                console.error('Error logging out:', err);
-                res.status(500).json({ error: 'Server Error' });
-            } else {
-                res.redirect('/login');
-            }
-        });
-    },
+    }
 };
 
 module.exports = authController;

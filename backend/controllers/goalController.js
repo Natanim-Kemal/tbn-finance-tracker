@@ -1,5 +1,5 @@
 const { User } = require('../models/user');
-const goalsService = require('../services/goalsService');
+const goalsService = require('../services/goalService');
 
 const goalsController = {
     createGoal: async (req, res) => {

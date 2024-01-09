@@ -1,7 +1,7 @@
+const router = require('express').Router();
 const { addExpense, getExpenses, deleteExpense } = require('../controllers/expenseController');
 const { addIncome, getIncomes, deleteIncome } = require('../controllers/incomeController');
 
-const router = require('express').Router();
 
 
 router.post('/addIncome', addIncome)

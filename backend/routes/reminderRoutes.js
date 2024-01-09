@@ -1,8 +1,8 @@
 const express = require('express');
+const router = express.Router();
 const reminderController = require('../controllers/reminderController');
 const { authenticateAndAuthorize } = require('../middlewares/authMiddleware');
 
-const router = express.Router();
 
 router.post('/create-reminder', authenticateAndAuthorize, reminderController.createReminder)
     .put('/update-reminder/:id', authenticateAndAuthorize, reminderController.updateReminder)

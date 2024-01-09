@@ -1,10 +1,11 @@
-    const express = require('express');
-    const { requireAuth } = require('/authMiddleware');
+const express = require('express');
+const router = express.Router();
+const { authenticateAndAuthorize } = require('../middlewares/authMiddleware');
 
-    const router = express.Router();
+router.use(authenticateAndAuthorize);
 
-    router.get('/protected-resource', requireAuth, (req, res) => {
-        res.json({ message: 'Protected resource accessed', user: req.user });
-    });
+router.get('/protected-resource', (req, res) => {
+    res.json({ message: 'Protected resource accessed', user: req.user });
+});
 
-    module.exports = router;
+module.exports = router;

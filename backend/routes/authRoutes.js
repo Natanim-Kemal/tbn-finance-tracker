@@ -4,6 +4,8 @@ const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 const { authenticateAndAuthorize } = require('../middlewares/authMiddleware');
 
+router.use(authenticateAndAuthorize);
+
 router.post('/register', authenticateAndAuthorize, userController.createAccount)
     .post('/login', authenticateAndAuthorize, authController.login)
     .get('/admin-dashboard', authenticateAndAuthorize, (req, res) => {

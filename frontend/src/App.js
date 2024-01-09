@@ -16,5 +16,5 @@ import Budget from "./components/budget.jsx";
 export default function App() {    
   return (
     <Budget/>
- );
+);
 }

@@ -2,10 +2,8 @@ const notificationService = require('../services/notificationService');
 
 const notificationController = {
     sendNotification: async (req, res) => {
-        const { userID } = req.params;
-
         try {
-            const result = await notificationService.sendNotification(userID);
+            const result = await notificationService.sendNotification();
             res.status(200).json({ success: result });
         } catch (error) {
             console.error('Error sending notifications:', error);
@@ -14,10 +12,8 @@ const notificationController = {
     },
 
     scheduleNotification: async (req, res) => {
-        const { userID } = req.params;
-
         try {
-            const result = await notificationService.scheduleNotification(userID);
+            const result = await notificationService.scheduleNotification();
             res.status(200).json({ success: result });
         } catch (error) {
             console.error('Error scheduling notifications:', error);
@@ -26,10 +22,8 @@ const notificationController = {
     },
 
     clearNotification: async (req, res) => {
-        const { userID } = req.params;
-
         try {
-            const result = await notificationService.clearNotification(userID);
+            const result = await notificationService.clearNotification();
             res.status(200).json({ success: result });
         } catch (error) {
             console.error('Error clearing notifications:', error);

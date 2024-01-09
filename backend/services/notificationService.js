@@ -1,5 +1,4 @@
 const Reminder = require('../models/reminder');
-const { Notification } = require('../models/notification');
 
 const notificationService = {
     sendNotification: async (userID, description) => {

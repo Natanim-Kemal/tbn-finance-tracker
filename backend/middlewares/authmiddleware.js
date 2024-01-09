@@ -22,7 +22,11 @@ function authenticateAndAuthorize(req, res, next) {
 
             req.user = user;
 
-            next();
+            if (user.isAdmin) {
+                next();
+            } else {
+                return res.status(403).json({ message: 'Forbidden: Access denied for non-admin users' });
+            }
         } catch (error) {
             console.error(error);
             return res.status(500).json({ message: 'Internal server error' });

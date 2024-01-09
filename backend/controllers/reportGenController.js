@@ -1,4 +1,4 @@
-const reportGeneratorService = require('../services/reportGeneratorService');
+const reportGeneratorService = require('../services/reportGenService');
 
 const reportGeneratorController = {
     generateExpenseReport: async (req, res) => {

@@ -50,6 +50,25 @@ const investmentController = {
             res.status(500).json({ success: false, message: 'Server Error' });
         }
     },
+
+    deleteInvestment: async (userID, investmentID) => {
+        try {
+            const deletedInvestment = await Investment.findOneAndDelete({
+                _id: investmentID,
+                userID: userID,
+            });
+
+            if (!deletedInvestment) {
+                return false; 
+            }
+
+            return true; 
+        } catch (error) {
+            console.error('Error deleting investment:', error);
+            throw error;
+        }
+    },
+
 };
 
 module.exports = investmentController;

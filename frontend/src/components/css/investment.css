@@ -1,14 +1,15 @@
-.wallet{
+.Investment{
     display: flex;
     min-height: 100vh;
     height: auto;
     min-width: 100vw;
-    background-color: #daf3f0;
+    background:url(../assest/dash-back.jpg);
+    background-size: cover;
     margin: 0;
-    padding-bottom: 30%;
+    padding-bottom: 5%;
 }
 
-.wallet-contents{
+.Investment-contents{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -33,7 +34,7 @@
 
 .form-container{
     width: 30%;
-    height: 534px;
+    height: 700px;
     background: transparent;
     backdrop-filter: blur(9px);
     border: 2px solid white;

@@ -33,9 +33,9 @@ export default function Budget(){
     if(New === "OldBudget" ){
         MainField = (
             <div className="budget-accordion">
-                <MyAccordion inputs={inputs}/>
-                <MyAccordion inputs={inputs}/>
-                <MyAccordion inputs={inputs}/>
+                <MyAccordion title="Education" date="2020/12/03" incomeContent="Income Content" expenseContent="Expense Content"/>
+                <MyAccordion title="Education" date="2023/12/05" incomeContent="Income Content" expenseContent="Expense Content"/>
+                <MyAccordion title="Education" date="2024/12/09" incomeContent="Income Content" expenseContent="Expense Content"/>
                 <Buttons content={"Create New Budget"} onClick={()=>{setNew("NewBudget")}}/>
             </div>
         )

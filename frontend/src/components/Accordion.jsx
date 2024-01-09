@@ -2,8 +2,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import { useState } from 'react';
 import AccordionBody from 'react-bootstrap/esm/AccordionBody';
 
-function MyAccordion({ inputs }) {
-  const [activeKey, setActiveKey] = useState('0');
+function MyAccordion({ title, date, incomeContent, expenseContent }) {
   const [isGreenActive, setGreenActive] = useState(false);
   const [isRedActive, setRedActive] = useState(false);
 
@@ -11,22 +10,15 @@ function MyAccordion({ inputs }) {
     <Accordion>
       <Accordion.Item eventKey="0">
         <Accordion.Header>
-          <div className="budget-name">Education</div>
-          <div className="budget-date">{inputs.Date_1}</div>
+          <div className="budget-name">{title}</div>
+          <div className="budget-date">{date}</div>
         </Accordion.Header>
         <Accordion.Body>
           <div className="content-container">
             <div className="container_1">
               <Accordion>
                 <Accordion.Item eventKey='0'>
-                  <Accordion.Header onClick={() => {
-                    if (isGreenActive) {
-                      setGreenActive(false);
-                    }
-                    else {
-                      setGreenActive(true);
-                    }
-                  }}>
+                  <Accordion.Header onClick={() => setGreenActive(!isGreenActive)}>
                     <div className={`green-amount ${isGreenActive ? "active" : ""}`}>
                       <button className='green-amount-button'>
                         +34,789 Birr
@@ -35,7 +27,7 @@ function MyAccordion({ inputs }) {
                   </Accordion.Header>
                   <AccordionBody>
                     <div className='income-content'>
-                      <h6>Income Content</h6>
+                      <h6>{incomeContent}</h6>
                     </div>
                   </AccordionBody>
                 </Accordion.Item>
@@ -45,14 +37,7 @@ function MyAccordion({ inputs }) {
             <div className="container_1">
               <Accordion>
                 <Accordion.Item eventKey='0'>
-                  <Accordion.Header onClick={() => {
-                    if (isRedActive) {
-                      setRedActive(false);
-                    }
-                    else {
-                      setRedActive(true);
-                    }
-                  }}>
+                  <Accordion.Header onClick={() => setRedActive(!isRedActive)}>
                     <div className={`red-amount ${isRedActive ? "active" : ""}`}>
                       <button>
                         -7,389 Birr
@@ -61,7 +46,7 @@ function MyAccordion({ inputs }) {
                   </Accordion.Header>
                   <AccordionBody>
                     <div className='expense-content'>
-                      <h6>Expense Content</h6>
+                      <h6>{expenseContent}</h6>
                     </div>
                   </AccordionBody>
                 </Accordion.Item>

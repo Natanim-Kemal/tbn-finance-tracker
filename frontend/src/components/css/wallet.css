@@ -1,0 +1,242 @@
+.wallet{
+    display: flex;
+    min-height: 100vh;
+    height: auto;
+    min-width: 100vw;
+    background:url(../assest/dash-back.jpg);
+    background-size: cover;
+    margin: 0;
+    padding-bottom: 5%;
+}
+
+.wallet-contents{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    position: relative;
+    left: 15%;
+}
+.wallet-groups{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    margin-left: 50px;
+}
+
+.total-wallets{
+    width: 100%;
+    margin:30px 0px 30px 70px;
+}
+
+.bank-apis{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background:transparent;
+    backdrop-filter: blur(8px);
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 30px 30px 15px;
+    padding: 5%;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    height: auto;
+}
+
+.dashen-image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin-top: 5%;
+    border-radius: 50%;
+    background:transparent;
+    background-color: #263475
+}
+.dashen-image-container:hover{
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: 0 0 20px rgb(255, 255, 255);
+}
+
+.cbe-image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    margin-top: 5%;
+    border-radius: 50%;
+    background:transparent;
+}
+.cbe-image-container:hover{
+    border: 5px solid rgb(227, 182, 126);
+    box-shadow: 0 0 20px rgb(227, 182, 126);
+}
+
+.abyssinia-image-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        width: 100px;
+        height: 100px;
+        margin-top: 5%;
+        border-radius: 50%;
+        background-color: rgb(7, 7, 7);
+}
+.abyssinia-image-container:hover{
+    border: 5px solid #f3ad14;
+    box-shadow: 0 0 20px rgb(243, 173, 20);
+}
+
+
+.cbe-api{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    min-height: 254.45px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 0.2s;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.cbe-api:hover{
+    transform: translateY(-5px) scale(1.1) translateZ(0);
+    box-shadow: 0 0 20px rgba(0, 0, 0);
+    background-color: rgba(56, 10, 63, 0.6);
+    color: white;
+}
+
+.dashen-api{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    min-height: 254.45px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 0.2s;
+    border-radius: 20px;
+}
+.acc-api{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    transition: all 0.2s;
+    border-radius: 20px;
+    margin-right:5%;
+    margin-bottom: 5%;
+    font-weight:500;
+    font-size: larger;
+}
+
+.acc-api:hover{
+    background-color: rgba(134, 138, 159,0.3);
+}
+.acc-image-container{
+    margin: 5px 10px 5px 10px;
+}
+.wegagen{
+    margin: 5px 8px 5px 25px;
+}
+
+.dashen-api:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0);
+    background-color: rgba(7, 19, 72,0.6);
+    color: white;
+    transform: translateY(-5px) scale(1.1) translateZ(0);
+}
+.abyssinia-api{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    min-height: 254.45px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 0.2s;
+    border-radius: 20px;
+}
+
+.abyssinia-api:hover{
+    box-shadow: 0 0 20px rgba(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    transform: translateY(-5px) scale(1.1) translateZ(0)
+}
+
+
+.cbe{
+    width: 100px;
+    height: 100px;
+}
+
+.dashen{
+    width: 65px;
+    height: 65px;
+}
+.abyssinia{
+    width: 125px;
+    height: 125px;
+}
+.acc-img{
+    width: 50px;
+    height: 50px;
+}
+.addWallet{
+    width: 100%;
+    height: 50%;
+}
+
+.Title-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: larger;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.add-more{
+    display: flex;
+    flex-direction: column;
+    margin:3%;
+    width:100%;
+}
+
+.choices{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+.apis-title{
+    width: 100%;
+    margin-bottom:30px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.acc-title{
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}
+
+.wallet-acc-title{
+    width: 100%;
+    text-align: center;
+    color: rgb(15, 107, 15);
+}

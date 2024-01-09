@@ -21,20 +21,20 @@ export default function Investment(){
 
 
         return(
-            <div className="wallet">
+            <div className="Investment">
                 <Menu menus={menus}/>
-                <div className="wallet-contents">
+                <div className="Investment-contents">
                     <div className="total">
                         Total Investment
                     </div>
                     <div className="form-container">
                         <MyForm
                             fields={[
-                                { label: "Company", name: "Company", type: "text", placeholder: "Company"},
-                                { label: "Share", name: "Share", type: "number", placeholder: "Share"},
-                                { label: "Price", name: "Price", type: "number", placeholder: "Price"},
-                                { label: "Yield", name: "Yield", type: "text", placeholder: "Yield %"},
-                                { label: "Annual income", name: "Annualincome", type: "number", placeholder: "Annual income"},
+                                { label: "Company", name: "Company", type: "text", placeholder: "Company", required:true},
+                                { label: "Share", name: "Share", type: "number", placeholder: "Share",required:true},
+                                { label: "Price", name: "Price", type: "number", placeholder: "Price",required:true},
+                                { label: "Yield", name: "Yield", type: "text", placeholder: "Yield %",required:true},
+                                { label: "Annual income", name: "Annualincome", type: "number", placeholder: "Annual income",required:true},
                         ]}/>
                     </div>
                     <div className="Table-container">

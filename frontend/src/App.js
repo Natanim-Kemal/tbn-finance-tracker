@@ -11,10 +11,12 @@ import walletIcon from "./icons/wallet.png";
 import LoginSignup from "./components/LoginSignup.jsx";
 import DashBoard from "./components/DashBoard.jsx";
 import Budget from "./components/budget.jsx";
+import Wallet from "./components/Investment.jsx";
+import Investment from "./components/Investment.jsx";
 
 
 export default function App() {    
   return (
-    <Budget/>
- );
+    <Investment/>
+);
 }

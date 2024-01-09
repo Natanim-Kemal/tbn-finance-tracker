@@ -8,7 +8,7 @@ import walletIcon from "../icons/wallet.png";
 import MyAccordion from "./Accordion";
 import"./css/budget.css"
 import Buttons from "./buttons";
-import MyForm from "./FormBudget";
+import MyForm from "./Form";
 import { useState } from "react";
 
 export default function Budget(){
@@ -42,9 +42,23 @@ export default function Budget(){
     }
 
     if (New === "NewBudget" ){
-        MainField=(
-            <MyForm/>
-        )
+        MainField = (
+            <MyForm
+                fields={[
+                    { label: "Title", name: "title", type: "text", required: true, placeholder: "Enter title"},
+                    { label: "Financial Goals", name: "financialGoals", type: "textarea", required: true, placeholder: "Enter Your Goals" },
+                    { label: "Income Information", name: "incomeInformation", type: "number", required: true, placeholder: "eg: 4532" },
+                    { label: "Fixed Expenses", name: "FixedExpenses", type: "number", required: true, placeholder: "eg: 4532" },
+                    { label: "Variable Expenses", name: "VariableExpenses", type: "number", required: false, placeholder: "eg: 4532" },
+                    { label: "Irregular Expenses", name: "IrregularExpenses", type: "number", required: false, placeholder: "eg: 4532" },
+                    { label: "Emergency Fund", name: "EmergencyFund", type: "number", required: false, placeholder: "eg: 4532" },
+                    { label: "Taxes", name: "Taxes", type: "number", required: false, placeholder: "eg: 4532" },
+                    { label: "More Description", name: "MoreDescription", type:"textarea", required: false, placeholder: " Enter More Description" },
+                    { label: "Start date", name: "StartDate", type:"date", required: true},
+                    { label: "End date", name: "EndDate", type:"date", required: true },
+                ]}
+            />
+        );
     }
     
     

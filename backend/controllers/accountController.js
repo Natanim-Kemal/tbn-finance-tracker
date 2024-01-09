@@ -1,4 +1,3 @@
-// controllers/accountController.js
 const accountService = require('../services/accountService');
 
 const accountController = {

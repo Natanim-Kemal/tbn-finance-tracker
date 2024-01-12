@@ -6,9 +6,9 @@ const { authenticateAndAuthorize } = require('../middlewares/authMiddleware');
 
 router.use(authenticateAndAuthorize);
 
-router.post('/register', authenticateAndAuthorize, userController.createAccount)
-    .post('/login', authenticateAndAuthorize, authController.login)
-    .get('/admin-dashboard', authenticateAndAuthorize, (req, res) => {
+router.post('/register', userController.createAccount)
+    .post('/login', authController.login)
+    .get('/admin-dashboard',  (req, res) => {
         res.status(200).json({ message: 'Welcome to the admin dashboard!' });
     });
 

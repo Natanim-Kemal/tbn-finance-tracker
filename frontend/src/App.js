@@ -17,6 +17,6 @@ import Investment from "./components/Investment.jsx";
 
 export default function App() {
   return (
-    <Wallet/>
+    <LoginSignup/>
 );
 }

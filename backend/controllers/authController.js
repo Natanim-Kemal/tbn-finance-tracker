@@ -1,5 +1,4 @@
 const authService = require('../services/authService');
-const { User } = require('../models/user');
 
 const authController = {
     login: async (req, res) => {
@@ -41,7 +40,7 @@ const authController = {
     },
 
     encryptPassword: async (req, res) => {
-        const { password } = req.body;
+        const { password } = req.body.password;
 
         try {
             const hashedPassword = await authService.encryptPassword(password);
@@ -57,7 +56,7 @@ const authController = {
 
         try {
             const isValid = await authService.validatePassword(password, hashedPassword);
-            res.status(200).json({ isValid });
+                res.status(200).json({isValid});
         } catch (error) {
             console.error('Validation error:', error);
             res.status(500).json({ error: 'Server Error' });

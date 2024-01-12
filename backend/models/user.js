@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
-    userID: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
@@ -26,10 +26,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    jwtSecret: {
-        type: String,
-        required: true
-    },
     financialAccounts: {
         type: Array,
         default: [],
@@ -37,6 +33,10 @@ const userSchema = new mongoose.Schema({
     balance: {
         type: Number,
         default: 0,
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
     },
     createdAt: {
         type: Date,
@@ -55,10 +55,10 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id }, this.jwtSecret);
+    jwtSecret = process.env.JWT_KEY;
+    const token = jwt.sign({userId: this.userId}, process.env.JWT_KEY);
     return token;
 }
-
 userSchema.methods.comparePassword = async function (candidatePassword) {
     try {
         return await bcrypt.compare(candidatePassword, this.password);

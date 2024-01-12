@@ -28,7 +28,7 @@ app.use(xss());
 //routes 
 readdirSync('./routes').map((route) => {
   const currentRoute = require(`./routes/${route}`);
-  app.use('/tbn', currentRoute);
+  app.use('/api', currentRoute);
 });
 
 module.exports = app;

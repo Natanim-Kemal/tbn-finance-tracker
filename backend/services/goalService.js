@@ -1,23 +1,28 @@
-const { User } = require('../models/user');
+const Goal = require('../models/goal');
+const User = require('../models/user');
 
 const goalsService = {
-    createGoal: async ({ userID, goalName, targetAmount, targetDate }) => {
-        const user = await User.findById(userID);
+    createGoal: async ({ goalName, targetAmount, deadline, currentAmount, goalDescription }) => {
+        try {
+            const goal = new Goal({
+                goalName,
+                targetAmount,
+                deadline,
+                goalDescription,
+                currentAmount,
+            });
 
-        if (!user) {
-            throw new Error('User not found');
-        }
+            await goal.save();
+            return { message: 'Goal Added'}
 
-        user.goals.push({
-            name: goalName,
-            targetAmount,
-            targetDate,
-        });
-
-        await user.save();
+        } catch (error) {console.error('Error adding goal:', error.message);
+        throw new Error('Failed to add goal. Please try again.');
+        } 
     },
 
-    getGoals: async (user) => {
+    getGoals: async (userID) => {
+        const user = await User.findById(userID).populate('goals');
+
         if (!user) {
             throw new Error('User not found');
         }
@@ -25,37 +30,45 @@ const goalsService = {
         return user.goals;
     },
 
-    updateGoal: async (user, goalID, { updatedName, updatedAmount, updatedDate }) => {
+    updateGoal: async (userID, goalID, { updatedName, updatedAmount, updatedDate }) => {
+        const user = await User.findById(userID);
+
         if (!user) {
             throw new Error('User not found');
         }
 
-        const goalToUpdate = user.goals.id(goalID);
+        const goalToUpdate = await Goal.findById(goalID);
 
         if (!goalToUpdate) {
             throw new Error('Goal not found');
         }
 
-        goalToUpdate.name = updatedName;
+        goalToUpdate.goalName = updatedName;
         goalToUpdate.targetAmount = updatedAmount;
-        goalToUpdate.targetDate = updatedDate;
+        goalToUpdate.deadline = updatedDate;
 
-        await user.save();
+        await goalToUpdate.save();
+
+        return goalToUpdate;
     },
 
-    deleteGoal: async (user, goalID) => {
+    deleteGoal: async (userID, goalID) => {
+        const user = await User.findById(userID);
+
         if (!user) {
             throw new Error('User not found');
         }
 
-        const goalToDelete = user.goals.id(goalID);
+        const goalToDelete = await Goal.findById(goalID);
 
         if (!goalToDelete) {
             throw new Error('Goal not found');
         }
 
-        goalToDelete.remove();
+        await goalToDelete.remove();
         await user.save();
+
+        return goalToDelete;
     },
 };
 

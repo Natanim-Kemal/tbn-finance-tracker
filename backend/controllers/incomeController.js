@@ -7,7 +7,7 @@ const incomeController = {
             const result = await incomeService.addIncome({ name, amount, category, description, date });
             res.status(200).json(result);
         } catch (error) {
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Error' });
         }
     },
 

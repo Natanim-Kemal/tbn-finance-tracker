@@ -1,0 +1,21 @@
+.sidebarMenu{
+    position:fixed;
+    background: #000;
+    width:300px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 30px 20px;
+}
+.sidebarMenu .top-section .logo{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 50%;
+
+}
+.sidebarMenu .top-section .logo img{
+    max-width: 90%;
+    max-height: 60%;
+ 
+}

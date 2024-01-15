@@ -1,4 +1,5 @@
-const { User } = require('../models/user');
+const User = require('../models/user');
+const bcrypt = require('bcrypt');
 const { Account } = require('../models/account');
 
 const userService = {
@@ -19,20 +20,12 @@ const userService = {
             return { success: false, message: 'Server Error' };
         }
     },
-
-    getUserId: () => {
-        const userId = getCurrentUserId(); // Assuming getCurrentUserId is defined elsewhere
-        return userId;
-    },
-
     getAccountDetails: async (userID) => {
         try {
             const user = await User.findById(userID);
-
             if (!user) {
                 return null;
             }
-
             const accountDetails = await Account.find({ userID });
             return accountDetails;
         } catch (error) {
@@ -64,7 +57,8 @@ const userService = {
 
     changePassword: async (userID, newPassword) => {
         try {
-            // Hash the new password !!!
+            const salt = await bcrypt.genSalt(10);
+            newPassword = await bcrypt.hash(newPassword, salt);
             await User.findByIdAndUpdate(userID, { $set: { password: newPassword } });
             return { success: true, message: 'Password changed successfully.' };
         } catch (error) {
@@ -98,4 +92,3 @@ const userService = {
 };
 
 module.exports = userService;
-

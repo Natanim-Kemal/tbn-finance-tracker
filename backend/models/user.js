@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const {isEmail} = require('validator') 
 
 const userSchema = new mongoose.Schema({
-    userId: {
+    userID: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
+        unique: true,
     },
     firstName: {
         type: String,
@@ -21,10 +21,12 @@ const userSchema = new mongoose.Schema({
         unique: true,
         lowercase: true,
         trim: true,
+        validate: [isEmail, 'Please enter a valid email']
     },
     password: {
         type: String,
         required: true,
+        minLength: [8, 'Your password length should be minimum of 8 characters']
     },
     financialAccounts: {
         type: Array,
@@ -34,7 +36,7 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    isAdmin: {
+    isAdmin: { 
         type: Boolean,
         default: false,
     },
@@ -56,7 +58,7 @@ userSchema.pre('save', async function (next) {
 
 userSchema.methods.generateAuthToken = function () {
     jwtSecret = process.env.JWT_KEY;
-    const token = jwt.sign({userId: this.userId}, process.env.JWT_KEY);
+    const token = jwt.sign({userID: this.userID}, process.env.JWT_KEY);
     return token;
 }
 userSchema.methods.comparePassword = async function (candidatePassword) {
@@ -69,4 +71,4 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = { User };
+module.exports =  User;

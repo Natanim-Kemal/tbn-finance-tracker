@@ -1,37 +1,32 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const goalSchema = new mongoose.Schema({
     goalName: {
         type: String,
-        required: true,
+        required: [true, 'Please enter name for you goal']
     },
     deadline: {
-        type: Date,
-        required: true,
+        type: Date, 
+        required: [true, 'Please enter ending date for your goal']
     },
-    goalDescription: {
+    goalDescription: { 
         type: String,
-        required: true,
     },
     targetAmount: {
         type: Number,
-        required: true,
+        required: [true, 'Please enter target amount you want to hit'] 
     },
     currentAmount: {
         type: Number,
-        required: true,
+        default: 0,
+        required: [true, 'Please enter your current amount of asset']
     },
     status: {
         type: String,
         enum: ['Not Started', 'In Progress', 'Completed'],
         default: 'Not Started',
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-});
+    }
+}, { timestamps: true });
 
 const Goal = mongoose.model('Goal', goalSchema);
-
-module.exports = { Goal };
+module.exports =  Goal;

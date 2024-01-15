@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const investmentController = require('../controllers/investmentController');
-const { authenticateAndAuthorize } = require('../middlewares/authMiddleware');
 
-router.use(authenticateAndAuthorize);
 
 router.post('/invest', investmentController.invest)
     .get('/get-investment-details/:id', investmentController.getInvestmentDetails)

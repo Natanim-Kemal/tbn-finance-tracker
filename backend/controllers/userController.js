@@ -12,17 +12,6 @@ const userController = {
             res.status(500).json({ message: 'Server Error' });
         }
     },
-
-    getUserId: async (req, res) => {
-        try {
-            const userId = await userService.getUserId();
-            res.status(userId ? 200 : 400).json({ userId });
-        } catch (error) {
-            console.error('Error getting user ID:', error);
-            res.status(500).json({ message: 'Server Error' });
-        }
-    },
-
     getAccountDetails: async (req, res) => {
         const { userID } = req.params;
 

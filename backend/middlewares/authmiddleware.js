@@ -3,7 +3,7 @@ const { User } = require('../models/user');
 
 function authenticateAndAuthorize(req, res, next) {
     const token = req.header('Authorization')?.replace('Bearer ', '');
- 
+
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized: Token not provided' });
     }
@@ -14,7 +14,7 @@ function authenticateAndAuthorize(req, res, next) {
         }
 
         try {
-            const user = await User.findById(decoded.userId);
+            const user = await User.findById(decoded.userID);
 
             if (!user) {
                 return res.status(403).json({ message: 'Forbidden: User not found' });

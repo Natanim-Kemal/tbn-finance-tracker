@@ -1,14 +1,25 @@
-const { User } = require('../models/user');
 const goalsService = require('../services/goalService');
+const User = require('../models/user');
 
 const goalsController = {
     createGoal: async (req, res) => {
         try {
-            await goalsService.createGoal(req.body);
-            res.status(201).json({ message: 'Goal created successfully' });
+            const { goalName,
+                targetAmount,
+                deadline,
+                goalDescription,
+                currentAmount
+            } = req.body;
+            const result = await goalsService.createGoal({
+                goalName,
+                targetAmount,
+                deadline,
+                goalDescription, 
+                currentAmount
+            });
+            res.status(200).json({ message: 'Goal created successfully', result });
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Error' });
         }
     },
 
@@ -24,23 +35,32 @@ const goalsController = {
 
     updateGoal: async (req, res) => {
         try {
-            await goalsService.updateGoal(req.user, req.params.goalID, req.body);
-            res.status(200).json({ message: 'Goal updated successfully' });
+            const { goalName,
+                targetAmount,
+                deadline,
+                goalDescription,
+                currentAmount } = req.body;
+            const result = await goalsService.updateGoal(req.user, req.params.goalID, { goalName,
+                targetAmount,
+                deadline,
+                goalDescription,
+                currentAmount});
+            res.status(200).json({ message: 'Goal updated successfully', result });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Goal not updated' });
         }
     },
 
     deleteGoal: async (req, res) => {
         try {
-            await goalsService.deleteGoal(req.user, req.params.goalID);
-            res.status(200).json({ message: 'Goal deleted successfully' });
+            const result = await goalsService.deleteGoal(req.user, req.params.goalID);
+            res.status(200).json({ message: 'Goal deleted successfully', result });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Goal not deleted, try again' });
         }
     },
 };
 
-module.exports = goalsController;
+module.exports = (goalsController);

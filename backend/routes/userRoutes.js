@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const accountController = require('../controllers/userController');
-const { authenticateAndAuthorize } = require('../middlewares/authMiddleware');
-
-router.use(authenticateAndAuthorize);
 
 router.post('/create-account', accountController.createAccount)
     .get('/get-account-details/:userID', accountController.getAccountDetails)

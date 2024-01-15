@@ -13,10 +13,12 @@ import DashBoard from "./components/DashBoard.jsx";
 import Budget from "./components/budget.jsx";
 import Wallet from "./components/Wallet.jsx";
 import Investment from "./components/Investment.jsx";
+import SidebarMenu from "./components/SidebarMenu.jsx";
+import Course from "./components/Course.jsx"
 
 
 export default function App() {
   return (
-    <LoginSignup/>
+    <Course/>
 );
 }

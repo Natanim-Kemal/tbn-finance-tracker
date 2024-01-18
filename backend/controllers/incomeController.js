@@ -16,7 +16,7 @@ const incomeController = {
             const incomes = await incomeService.getIncomes();
             res.status(200).json(incomes);
         } catch (error) {
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Error' });
         }
     },
 
@@ -26,7 +26,7 @@ const incomeController = {
             const result = await incomeService.deleteIncome(id);
             res.status(200).json(result);
         } catch (error) {
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Error' });
         }
     }
 };

@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
+const User = require('./user');
 
 const accountSchema = new mongoose.Schema({
+    userID: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: User
+    },
     userName: {
         type: String,
         required: [true, 'Please enter username']
@@ -17,4 +22,4 @@ const accountSchema = new mongoose.Schema({
 
 const Account = mongoose.model('Account', accountSchema);
 
-module.exports = { Account };
+module.exports = Account;

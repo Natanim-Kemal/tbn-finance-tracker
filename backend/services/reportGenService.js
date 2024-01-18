@@ -57,6 +57,15 @@ const reportGeneratorService = {
             throw error;
         }
     },
+
+    generateFinancialReport: async (userID) => {
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+
 };
 
 module.exports = reportGeneratorService;

@@ -10,7 +10,7 @@ const reminderController = {
             res.status(result.success ? 201 : 500).json(result);
         } catch (error) {
             console.error('Error creating reminder:', error);
-            res.status(500).json({ success: false, message: 'Server Error' });
+            res.status(500).json({ success: false, message: 'Error' });
         }
     },
 
@@ -23,7 +23,7 @@ const reminderController = {
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error updating reminder:', error);
-            res.status(500).json({ success: false, message: 'Server Error' });
+            res.status(500).json({ success: false, message: 'Error' });
         }
     },
 
@@ -35,7 +35,7 @@ const reminderController = {
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error deleting reminder:', error);
-            res.status(500).json({ success: false, message: 'Server Error' });
+            res.status(500).json({ success: false, message: 'Error' });
         }
     },
 
@@ -47,7 +47,7 @@ const reminderController = {
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error getting reminders:', error);
-            res.status(500).json({ success: false, message: 'Server Error' });
+            res.status(500).json({ success: false, message: 'Error' });
         }
     },
 };

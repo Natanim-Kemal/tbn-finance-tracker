@@ -1,20 +1,10 @@
-const { User } = require('../models/user');
+const Budget = require('../models/budget');
 
 const budgetService = {
-    createBudget: async (userID, amount, category) => {
+    createBudget: async (totalAmount, category, startDate, endDate) => {
         try {
-            const user = await User.findById(userID);
-
-            if (!user) {
-                throw new Error('User not found');
-            }
-
-            user.budgets.push({
-                amount,
-                category,
-            });
-
-            await user.save();
+            const newBudget = new Budget({totalAmount, category, startDate, endDate});
+            await newBudget.save();
         } catch (error) {
             console.error(error);
             throw new Error('Unable to create budget');
@@ -23,13 +13,10 @@ const budgetService = {
 
     getBudgets: async (userID) => {
         try {
-            const user = await User.findById(userID);
-
-            if (!user) {
-                throw new Error('User not found');
+            if(!budget) {
+                return {message: 'Budget not found.'}
             }
-
-            return user.budgets;
+            return
         } catch (error) {
             console.error(error);
             throw new Error('Unable to retrieve budgets');
@@ -49,7 +36,7 @@ const budgetService = {
                 throw new Error('Budget not found');
             }
 
-            budgetToUpdate.amount = updatedAmount;
+            budgetToUpdate.totalAmount = updatedAmount;
             budgetToUpdate.category = updatedCategory;
 
             await user.save();

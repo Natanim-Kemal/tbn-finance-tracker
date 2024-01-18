@@ -1,37 +1,42 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/user');
+const User = require('../models/user');
 
-function authenticateAndAuthorize(req, res, next) {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+const requireAuth = (req, res, next) => {
+    const token = req.cookies.jwt;
 
-    if (!token) {
-        return res.status(401).json({ message: 'Unauthorized: Token not provided' });
-    }
-
-    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-        if (err) {
-            return res.status(403).json({ message: 'Forbidden: Invalid token' });
-        }
-
-        try {
-            const user = await User.findById(decoded.userID);
-
-            if (!user) {
-                return res.status(403).json({ message: 'Forbidden: User not found' });
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+            if (err) {
+                console.log(err.message);
+                res.redirect('/login');
+            } else {
+                console.log(decodedToken);
+                next();
             }
+        });
+    } else {
+        res.redirect('/login');
+    }
+};
 
-            req.user = user;
-
-            if (user.isAdmin) {
+const checkUser = (req, res, next) => {
+    const token = req.cookies.jwt;
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+            if (err) {
+                res.locals.user = null;
                 next();
             } else {
-                return res.status(403).json({ message: 'Forbidden: Access denied for non-admin users' });
+                let userId = await User.findById(decodedToken.id);
+                res.locals.user = user;
+                next();
             }
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({ message: 'Internal server error' });
-        }
-    });
-}
+        });
+    } else {
+        res.locals.user = null;
+        next();
+    }
+};
 
-module.exports = { authenticateAndAuthorize };
+
+module.exports = { requireAuth, checkUser };

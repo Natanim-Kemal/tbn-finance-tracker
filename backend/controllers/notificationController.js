@@ -7,7 +7,7 @@ const notificationController = {
             res.status(200).json({ success: result });
         } catch (error) {
             console.error('Error sending notifications:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
@@ -17,7 +17,7 @@ const notificationController = {
             res.status(200).json({ success: result });
         } catch (error) {
             console.error('Error scheduling notifications:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
@@ -27,7 +27,7 @@ const notificationController = {
             res.status(200).json({ success: result });
         } catch (error) {
             console.error('Error clearing notifications:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 };

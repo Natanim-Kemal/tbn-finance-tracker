@@ -13,7 +13,7 @@ const userController = {
         }
     },
     getAccountDetails: async (req, res) => {
-        const { userID } = req.params;
+        const { userID } = req.params; 
 
         try {
             const accountDetails = await userService.getAccountDetails(userID);

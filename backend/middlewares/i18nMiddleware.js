@@ -3,7 +3,6 @@ const i18n = require('i18n');
 i18n.configure({
     locales: ['en', 'am'],
     defaultLocale: 'en',
-    directory: '../../locales',
     queryParameter: 'lang',
     cookie: 'lang',
 });

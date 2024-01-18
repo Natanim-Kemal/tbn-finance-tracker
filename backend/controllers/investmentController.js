@@ -10,7 +10,7 @@ const investmentController = {
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error investing:', error);
-            res.status(500).json({ success: false, message: 'Server Error' });
+            res.status(500).json({ success: false, message: 'Error' });
         }
     },
 
@@ -22,7 +22,7 @@ const investmentController = {
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error getting investment details:', error);
-            res.status(500).json({ success: false, message: 'Server Error' });
+            res.status(500).json({ success: false, message: 'Error' });
         }
     },
 
@@ -35,7 +35,7 @@ const investmentController = {
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error updating investment details:', error);
-            res.status(500).json({ success: false, message: 'Server Error' });
+            res.status(500).json({ success: false, message: 'Error' });
         }
     },
 
@@ -47,7 +47,7 @@ const investmentController = {
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error calculating return:', error);
-            res.status(500).json({ success: false, message: 'Server Error' });
+            res.status(500).json({ success: false, message: 'Error' });
         }
     },
 

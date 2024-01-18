@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const {isEmail} = require('validator') 
+const { isEmail } = require('validator')
 
 const userSchema = new mongoose.Schema({
     userID: {
@@ -32,11 +32,15 @@ const userSchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
+    username: {
+        type: String,
+        required: true
+    },
     balance: {
         type: Number,
         default: 0,
     },
-    isAdmin: { 
+    isAdmin: {
         type: Boolean,
         default: false,
     },
@@ -44,7 +48,7 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-});
+}, { timestamps: true });
 
 userSchema.pre('save', async function (next) {
     try {
@@ -55,20 +59,18 @@ userSchema.pre('save', async function (next) {
         next(error);
     }
 });
-
-userSchema.methods.generateAuthToken = function () {
-    jwtSecret = process.env.JWT_KEY;
-    const token = jwt.sign({userID: this.userID}, process.env.JWT_KEY);
-    return token;
-}
-userSchema.methods.comparePassword = async function (candidatePassword) {
-    try {
-        return await bcrypt.compare(candidatePassword, this.password);
-    } catch (error) {
-        throw error;
+userSchema.statics.login = async function (email, password) {
+    const user = await this.findOne({ email });
+    if (user) {
+        const auth = await bcrypt.compare(password, user.password);
+        if (auth) {
+            return user;
+        }
+        throw Error('incorrect password');
     }
+    throw Error('incorrect email');
 };
 
 const User = mongoose.model('User', userSchema);
 
-module.exports =  User;
+module.exports = User;

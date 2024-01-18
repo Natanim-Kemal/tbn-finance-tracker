@@ -2,26 +2,26 @@ const budgetService = require('../services/budgetService');
 
 const budgetController = {
     createBudget: async (req, res) => {
-        const { userID, amount, category } = req.body;
-
+        const { totalAmount, category, startDate, endDate } = req.body;
+        console.log(req.headers);
         try {
-            await budgetService.createBudget(userID, amount, category);
-            res.status(201).json({ message: 'Budget created successfully' });
+            await budgetService.createBudget( totalAmount, category, startDate, endDate );
+            res.status(201    ).json({ message: 'Budget created successfully' });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Error' });
         }
     },
 
     getBudget: async (req, res) => {
-        const { userID } = req.params;
+        const { budgetID } = req.params;
 
         try {
-            const budgets = await budgetService.getBudgets(userID);
-            res.status(200).json(budgets);
+            const budgets = await budgetService.getBudgets(budgetID);
+            res.status(200).json(budgets); 
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Error' });
         }
     },
 
@@ -33,7 +33,7 @@ const budgetController = {
             res.status(200).json({ message: 'Budget deleted successfully' });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Error' });
         }
     },
 
@@ -46,7 +46,7 @@ const budgetController = {
             res.status(200).json({ message: 'Budget updated successfully', budget: updatedBudget });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Server Error' });
+            res.status(500).json({ message: 'Error' });
         }
     },
 };

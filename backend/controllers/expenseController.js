@@ -15,7 +15,7 @@ const expenseController = {
             res.status(200).json(result);
         } catch (error) {
             console.error('Error adding expense:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
@@ -25,7 +25,7 @@ const expenseController = {
             res.status(200).json(expenses);
         } catch (error) {
             console.error('Error getting expenses:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
@@ -37,7 +37,7 @@ const expenseController = {
             res.status(200).json(result);
         } catch (error) {
             console.error('Error deleting expense:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
@@ -54,7 +54,7 @@ const expenseController = {
             res.status(200).json(result);
         } catch (error) {
             console.error('Error updating expense:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 };

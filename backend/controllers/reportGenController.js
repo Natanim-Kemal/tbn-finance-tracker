@@ -9,7 +9,7 @@ const reportGeneratorController = {
             res.status(200).json(expenseReport);
         } catch (error) {
             console.error('Error generating expense report:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
@@ -21,7 +21,7 @@ const reportGeneratorController = {
             res.status(200).json(incomeReport);
         } catch (error) {
             console.error('Error generating income report:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
@@ -33,7 +33,7 @@ const reportGeneratorController = {
             res.status(200).json(categoryReport);
         } catch (error) {
             console.error('Error generating category report:', error);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 };

@@ -1,4 +1,6 @@
-const { User } = require('../models/user');
+const User = require('../models/user');
+const account = require('../models/account');
+const transaction = require('../models/transaction');
 
 const accountService = {
     updateBalance: async (userID) => {
@@ -10,11 +12,11 @@ const accountService = {
             }
 
             const totalIncome = user.financialAccounts.reduce(
-                (sum, account) => (account.isIncome ? sum + account.amount : sum),
+                (sum, account) => (account.isIncome ? sum + account.balance : sum),
                 0
             );
             const totalExpenses = user.financialAccounts.reduce(
-                (sum, account) => (!account.isIncome ? sum + account.amount : sum),
+                (sum, account) => (!account.isIncome ? sum + account.balance : sum),
                 0
             );
 

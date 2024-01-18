@@ -1,14 +1,15 @@
 
 const mongoose = require('mongoose');
+const User = require('./user');
 
 const budgetSchema = new mongoose.Schema({
-    budgetID: {
+    userID: {
         type: mongoose.Schema.Types.ObjectId,
-        unique: true,
+        ref: User
     },
     startDate: {
-        type: mongoose.Schema.Types.Date,
-        required: true,
+        type: Date,
+        required: [true, 'Please enter starting date for your budget']
     },
     endDate: {
         type: Date,
@@ -21,9 +22,9 @@ const budgetSchema = new mongoose.Schema({
     purpose: {
         type: String,
     },
-}, { timestamps: true });
+});
 
 
 const Budget = mongoose.model('Budget', budgetSchema);
 
-module.exports =  Budget;
+module.exports = Budget;

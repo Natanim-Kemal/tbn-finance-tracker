@@ -1,24 +1,22 @@
 const budgetService = require('../services/budgetService');
+// const Budget = require('../models/budget');
 
 const budgetController = {
     createBudget: async (req, res) => {
         const { totalAmount, category, startDate, endDate } = req.body;
-        console.log(req.headers);
         try {
-            await budgetService.createBudget( totalAmount, category, startDate, endDate );
-            res.status(201    ).json({ message: 'Budget created successfully' });
+            await budgetService.createBudget(totalAmount, category, startDate, endDate);
+            res.status(201).json({ message: 'Budget created successfully' });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Error' });
         }
     },
 
-    getBudget: async (req, res) => {
-        const { budgetID } = req.params;
-
+    getBudgets: async (req, res) => {
         try {
-            const budgets = await budgetService.getBudgets(budgetID);
-            res.status(200).json(budgets); 
+            const budgets = await budgetService.getBudgets();
+            res.status(200).json(budgets);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Error' });
@@ -38,17 +36,39 @@ const budgetController = {
     },
 
     updateBudget: async (req, res) => {
-        const { userID, budgetID } = req.params;
-        const { updatedAmount, updatedCategory } = req.body;
+        const { id } = req.params;
+        const { totalAmount, category, startDate, endDate } = req.body;
 
         try {
-            const updatedBudget = await budgetService.updateBudget(userID, budgetID, updatedAmount, updatedCategory);
-            res.status(200).json({ message: 'Budget updated successfully', budget: updatedBudget });
+            const updatedBudget = await budgetService.updateBudget(id, {
+                totalAmount,
+                category,
+                startDate,
+                endDate
+            });
+
+            res.status(200).json(updatedBudget);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Error' });
+            res.status(500).json({ message: 'Error updating budget' });
         }
     },
+    deleteBudget: async (req, res) => {
+        const { id } = req.params;
+    
+        try {
+            const deletedBudget = await budgetService.deleteBudget(id);
+    
+            if (!deletedBudget) {
+                res.status(404).json({ message: 'Budget not found.' });
+            } else {
+                res.status(200).json(deletedBudget);
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error deleting budget' });
+        }
+    }
 };
 
 module.exports = budgetController;

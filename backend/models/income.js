@@ -2,10 +2,6 @@ const mongoose = require("mongoose")
 const User = require('./user');
 
 const IncomeSchema = new mongoose.Schema({
-    userID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: User
-    },
     name: {
         type: String,
         required: true,
@@ -34,7 +30,15 @@ const IncomeSchema = new mongoose.Schema({
         maxLength: 20,
         trim: true
     },
-}, {timestamps: true})
+}, {
+    timestamps: true,
+    toJSON: {
+        virtuals: true
+    },
+    toObject: {
+        virtuals: true
+    }
+});
 
 const Income = mongoose.model('Income', IncomeSchema);
 module.exports = Income;

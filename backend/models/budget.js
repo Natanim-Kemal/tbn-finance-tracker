@@ -21,9 +21,16 @@ const budgetSchema = new mongoose.Schema({
     },
     purpose: {
         type: String,
+    }
+}, {
+    toJSON: {
+        virtuals: true
     },
-});
-
+    toObject: {
+        virtuals: true
+    }
+}
+);
 
 const Budget = mongoose.model('Budget', budgetSchema);
 

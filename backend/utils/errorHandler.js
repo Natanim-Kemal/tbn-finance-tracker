@@ -2,7 +2,7 @@
 const handleErrors = (err, req, res, next) => {
 
     if (err.name === 'ValidationError' || err.name === 'ValidatorError') {
-        return res.status(400).json({ error: 'Validation error', details: err.errors });
+        return res.status(400).json({ error: 'Validation error'});
     }
     if (err.name === 'UnauthorizedError' && err.code === 'credentials_required') {
         return res.status(401).json({ error: 'Unauthorized', details: 'Proper Credentials required' });

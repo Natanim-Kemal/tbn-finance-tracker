@@ -2,24 +2,29 @@ const mongoose = require("mongoose");
 const User = require('./user');
 
 const goalSchema = new mongoose.Schema({
-    userID: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: User
+        ref: User,
+        required: true
     },
     goalName: {
         type: String,
         required: [true, 'Please enter name for you goal']
     },
     deadline: {
-        type: Date, 
+        type: Date,
         required: [true, 'Please enter ending date for your goal']
     },
-    goalDescription: { 
+    goalDescription: {
         type: String,
+    },
+    type: {
+        type: String,
+        default: 'goal'
     },
     targetAmount: {
         type: Number,
-        required: [true, 'Please enter target amount you want to hit'] 
+        required: [true, 'Please enter target amount you want to hit']
     },
     currentAmount: {
         type: Number,
@@ -34,4 +39,4 @@ const goalSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const Goal = mongoose.model('Goal', goalSchema);
-module.exports =  Goal;
+module.exports = Goal;

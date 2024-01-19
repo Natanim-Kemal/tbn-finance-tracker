@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const User = require('./user');
 
 const reminderSchema = new mongoose.Schema({
-    userID: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: User
+        ref: User,
+        required: true
     },
     description: {
         type: String,
@@ -13,6 +14,10 @@ const reminderSchema = new mongoose.Schema({
     dueDate: {
         type: Date,
         required: true,
+    },
+    type: {
+        type: String,
+        default: 'reminder'
     },
     isRecurring: {
         type: Boolean,

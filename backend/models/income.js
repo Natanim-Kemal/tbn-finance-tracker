@@ -2,6 +2,11 @@ const mongoose = require("mongoose")
 const User = require('./user');
 
 const IncomeSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: User,
+        required: true
+    },
     name: {
         type: String,
         required: true,
@@ -19,6 +24,10 @@ const IncomeSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    type: {
+        type: String,
+        default: 'income'
+    },
     category: {
         type: String,
         required: true,
@@ -27,7 +36,7 @@ const IncomeSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
-        maxLength: 20,
+        maxLength: 120,
         trim: true
     },
 }, {

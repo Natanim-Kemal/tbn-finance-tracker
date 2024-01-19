@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const User = require('./user');
 
 const investmentSchema = new mongoose.Schema({
-    userID: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: User
+        ref: User,
+        required: true
     },
     investmentName: {
         type: String,
@@ -17,6 +18,10 @@ const investmentSchema = new mongoose.Schema({
     amountInvested: {
         type: Number,
         required: true,
+    },
+    type: {
+        type: String,
+        default: 'investment'
     },
     currentValue: {
         type: Number,

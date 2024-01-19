@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const jwt = require('jsonwebtoken');
 
-const maxAge = 3 * 24 * 60 * 60;
+const maxAge = 24 * 60 * 60;
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_KEY, {
         expiresIn: maxAge

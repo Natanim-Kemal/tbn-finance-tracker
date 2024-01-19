@@ -1,9 +1,10 @@
 const Budget = require('../models/budget');
+const User = require('../models/user');
 
 const budgetService = {
-    createBudget: async (totalAmount, category, startDate, endDate) => {
+    createBudget: async (user, totalAmount, category, startDate, endDate) => {
         try {
-            const budget = new Budget({ totalAmount, category, startDate, endDate });
+            const budget = new Budget({ user, totalAmount, category, startDate, endDate });
             await budget.save();
         } catch (error) {
             console.error(error);
@@ -24,7 +25,7 @@ const budgetService = {
         try {
             const budget = await Budget.findByIdAndUpdate(id, data, {
                 new: true
-            });
+            }).populate(User);
             return budget;
         } catch (error) {
             console.error(error);

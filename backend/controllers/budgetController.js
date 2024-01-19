@@ -2,9 +2,11 @@ const budgetService = require('../services/budgetService');
 
 const budgetController = {
     createBudget: async (req, res) => {
+        const user = req.user;
+        console.log(req)
         const { totalAmount, category, startDate, endDate } = req.body;
         try {
-            await budgetService.createBudget(totalAmount, category, startDate, endDate);
+            await budgetService.createBudget(user, totalAmount, category, startDate, endDate);
             res.status(201).json({ message: 'Budget created successfully' });
         } catch (error) {
             console.error(error);

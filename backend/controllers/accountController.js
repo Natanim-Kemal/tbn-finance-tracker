@@ -2,10 +2,10 @@ const accountService = require('../services/accountService');
 
 const accountController = {
     updateBalance: async (req, res) => {
-        const { userID } = req.params;
+        const { id } = req.params;
 
         try {
-            await accountService.updateBalance(userID);
+            await accountService.updateBalance(id);
             res.status(200).json({ message: 'Balance updated successfully' });
         } catch (error) {
             console.error(error);

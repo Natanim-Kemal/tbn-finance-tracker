@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 const User = require('./user');
 
 const accountSchema = new mongoose.Schema({
-    userID: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: User
-    },
-    userName: {
+    userName: { 
         type: String,
         required: [true, 'Please enter username']
     },

@@ -6,6 +6,6 @@ const {createGoal, getGoals, updateGoal, deleteGoal} = require('../controllers/g
 router.post('/create-goal', createGoal)
     .get('/get-goals', getGoals)
     .put('/update-goal', updateGoal)
-    .delete('/delete-goal/:goalID', deleteGoal);
+    .delete('/delete-goal/:id', deleteGoal);
 
 module.exports = router;

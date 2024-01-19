@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 const User = require('./user');
 
 const budgetSchema = new mongoose.Schema({
-    userID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: User
-    },
     startDate: {
         type: Date,
         required: [true, 'Please enter starting date for your budget']

@@ -6,6 +6,7 @@ const { readdirSync } = require('fs');
 const mongoSanitize = require('express-mongo-sanitize');
 const cookieParser = require('cookie-parser');
 const loggingMiddleware = require('./middlewares/loggingMiddleware')
+const { checkUser } = require('./middlewares/authMiddleware');
 const rateLimitMiddleware = require('./middlewares/rateLimitMiddleware')
 const i18nMiddleware = require('./middlewares/i18nMiddleware');
 const errorHandler = require('./utils/errorHandler');
@@ -26,6 +27,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 //routes 
+app.get('*', checkUser);
 readdirSync('./routes').map((route) => {
   const currentRoute = require(`./routes/${route}`);
   app.use('/api', currentRoute);

@@ -1,5 +1,4 @@
 const budgetService = require('../services/budgetService');
-// const Budget = require('../models/budget');
 
 const budgetController = {
     createBudget: async (req, res) => {
@@ -24,7 +23,7 @@ const budgetController = {
     },
 
     deleteBudget: async (req, res) => {
-        const { userID, budgetID } = req.params;
+        const { id } = req.params;
 
         try {
             await budgetService.deleteBudget(userID, budgetID);

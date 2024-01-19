@@ -1,16 +1,12 @@
-const User = require('../models/user');
-const account = require('../models/account');
+const Account = require('../models/account');
 const transaction = require('../models/transaction');
 
 const accountService = {
-    updateBalance: async (userID) => {
+    updateBalance: async (id, data) => {
         try {
-            const user = await User.findById(userID);
-
-            if (!user) {
-                throw new Error('User not found');
-            }
-
+            const account = await Account.findByIdAndUpdate(id, data, {
+                new: true
+            });
             const totalIncome = user.financialAccounts.reduce(
                 (sum, account) => (account.isIncome ? sum + account.balance : sum),
                 0

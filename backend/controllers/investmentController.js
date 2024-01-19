@@ -2,11 +2,10 @@ const investmentService = require('../services/investmentService');
 
 const investmentController = {
     invest: async (req, res) => {
-        const { userID, investmentID } = req.params;
-        const { amount } = req.body;
+        const { id } = req.params;
 
         try {
-            const result = await investmentService.invest(userID, investmentID, amount);
+            const result = await investmentService.invest(investmentID, amount);
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error investing:', error);

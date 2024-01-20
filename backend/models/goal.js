@@ -34,7 +34,7 @@ const goalSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ['Not Started', 'In Progress', 'Completed'],
-        default: 'Not Started',
+        default: 'Not Started'
     }
 }, { timestamps: true });
 

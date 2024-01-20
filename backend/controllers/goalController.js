@@ -10,14 +10,10 @@ const goalsController = {
                 goalDescription,
                 currentAmount
             } = req.body;
-            const result = await goalsService.createGoal({
-                goalName,
-                targetAmount,
-                deadline,
-                goalDescription, 
-                currentAmount
+            const goal = await goalsService.createGoal({
+                req, goalName, targetAmount, deadline, goalDescription, currentAmount
             });
-            res.status(200).json({ message: 'Goal created successfully', result });
+            res.status(200).json(goal);
         } catch (error) {
             res.status(500).json({ message: 'Error' });
         }
@@ -25,7 +21,7 @@ const goalsController = {
 
     getGoals: async (req, res) => {
         try {
-            const goals = await goalsService.getGoals(req.user);
+            const goals = await goalsService.getGoals(req, res);
             res.status(200).json(goals);
         } catch (error) {
             console.error(error);
@@ -34,18 +30,21 @@ const goalsController = {
     },
 
     updateGoal: async (req, res) => {
+        const { id } = req.params;
+        const { goalName,
+            targetAmount,
+            deadline,
+            goalDescription,
+            currentAmount } = req.body;
         try {
-            const { goalName,
+            const goal = await goalsService.updateGoal(id, {
+                goalName,
                 targetAmount,
                 deadline,
                 goalDescription,
-                currentAmount } = req.body;
-            const result = await goalsService.updateGoal(req.user, req.params.goalID, { goalName,
-                targetAmount,
-                deadline,
-                goalDescription,
-                currentAmount});
-            res.status(200).json({ message: 'Goal updated successfully', result });
+                currentAmount
+            });
+            res.status(200).json(goal);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Goal not updated' });
@@ -53,14 +52,20 @@ const goalsController = {
     },
 
     deleteGoal: async (req, res) => {
+        const { id } = req.params;
         try {
-            const result = await goalsService.deleteGoal(req.user, req.params.goalID);
-            res.status(200).json({ message: 'Goal deleted successfully', result });
+            const goal = await goalsService.deleteGoal(id);
+    
+            if (!goal) {
+                res.status(404).json({ message: 'goal not found.' });
+            } else {
+                res.status(200).json(goal);
+            }
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Goal not deleted, try again' });
+            res.status(500).json({ message: 'Error deleting goal' });
         }
-    },
+    }
 };
 
 module.exports = (goalsController);

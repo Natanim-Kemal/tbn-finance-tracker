@@ -1,46 +1,46 @@
     const IncomeSchema = require("../models/income");
 
     const incomeService = {
-        addIncome: async ({ name, amount, category, description, date }) => {
+        addIncome: async ({ req, name, amount, category, description, date }) => {
             try {
-                if (!name || !category || !amount || !description || !date) {
-                    throw new Error('All fields are required!');
-                }
                 if (amount <= 0) {
                     throw new Error('Amount must be a positive number!');
                 }
-
                 const income = new IncomeSchema({
+                    user: req.user,
                     name,
                     amount,
                     category,
                     description, 
                     date
                 });
-
                 await income.save();
-                return { message: 'Income Added' };
+                return income;
             } catch (error) {
-                console.error('Error adding income:', error.message);
+                console.error(error.message);
                 throw new Error('Failed to add income. Please try again.');
             }
             },
 
-        getIncomes: async () => {
+        getIncomes: async (req, res) => {
             try {
-                const incomes = await IncomeSchema.find().sort({ createdAt: -1 });
+                const incomes = await IncomeSchema.find({user: req.user.id});
+                if(!(incomes.length)) {
+                    return ('There is none income for this user.')
+                }
+                console.log(!incomes)
                 return incomes;
             } catch (error) {
                 throw error;
             }
         },
 
-        deleteIncome: async (incomeId) => {
+        deleteIncome: async (id) => {
             try {
-                const deletedIncome = await IncomeSchema.findByIdAndDelete(incomeId);
-                return { message: 'Income Deleted', deletedIncome };
+                const deletedIncome = await IncomeSchema.findByIdAndDelete(id);
+                return deletedIncome;
             } catch (error) {
-                throw error;
+                throw new Error('Unable to delete Income');
             }
         },
     };

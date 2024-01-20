@@ -1,20 +1,20 @@
 const Budget = require('../models/budget');
-const User = require('../models/user');
 
 const budgetService = {
-    createBudget: async (user, totalAmount, category, startDate, endDate) => {
+    createBudget: async (req, totalAmount, category, startDate, endDate) => {
         try {
-            const budget = new Budget({ user, totalAmount, category, startDate, endDate });
+            const budget = new Budget({ user: req.user, totalAmount, category, startDate, endDate });
             await budget.save();
-        } catch (error) {
+            return budget;
+        } catch (error) { 
             console.error(error);
-            throw new Error('Unable to create budget');
+            throw new Error('Unable to create budget'); 
         }
     },
 
-    getBudgets: async () => {
+    getBudgets: async (req, res) => {
         try {
-            const budgets = await Budget.find();
+            const budgets = await Budget.find({user: req.user.id}).select('-password');
             return budgets;
         } catch (error) {
             console.error(error);
@@ -23,9 +23,9 @@ const budgetService = {
     },
     updateBudget: async (id, data) => {
         try {
-            const budget = await Budget.findByIdAndUpdate(id, data, {
+            const budget = await Budget.findOneAndUpdate({_id: id}, data, {
                 new: true
-            }).populate(User);
+            });
             return budget;
         } catch (error) {
             console.error(error);

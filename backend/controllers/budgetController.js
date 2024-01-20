@@ -2,21 +2,19 @@ const budgetService = require('../services/budgetService');
 
 const budgetController = {
     createBudget: async (req, res) => {
-        const user = req.user;
-        console.log(req)
-        const { totalAmount, category, startDate, endDate } = req.body;
-        try {
-            await budgetService.createBudget(user, totalAmount, category, startDate, endDate);
-            res.status(201).json({ message: 'Budget created successfully' });
+        try { 
+            const{ totalAmount, category, startDate, endDate } = req.body;
+            const budget = await budgetService.createBudget( req, totalAmount, category, startDate, endDate );
+            res.status(201).json(budget);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Error' });
         }
     },
-
+    
     getBudgets: async (req, res) => {
         try {
-            const budgets = await budgetService.getBudgets();
+            const budgets = await budgetService.getBudgets(req, res);
             res.status(200).json(budgets);
         } catch (error) {
             console.error(error);
@@ -24,22 +22,9 @@ const budgetController = {
         }
     },
 
-    deleteBudget: async (req, res) => {
-        const { id } = req.params;
-
-        try {
-            await budgetService.deleteBudget(userID, budgetID);
-            res.status(200).json({ message: 'Budget deleted successfully' });
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: 'Error' });
-        }
-    },
-
     updateBudget: async (req, res) => {
-        const { id } = req.params;
+        const {id} = req.params;
         const { totalAmount, category, startDate, endDate } = req.body;
-
         try {
             const updatedBudget = await budgetService.updateBudget(id, {
                 totalAmount,
@@ -56,7 +41,6 @@ const budgetController = {
     },
     deleteBudget: async (req, res) => {
         const { id } = req.params;
-    
         try {
             const deletedBudget = await budgetService.deleteBudget(id);
     

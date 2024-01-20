@@ -1,75 +1,56 @@
 const Goal = require('../models/goal');
-const User = require('../models/user');
 
 const goalsService = {
-    createGoal: async ({ goalName, targetAmount, deadline, currentAmount, goalDescription }) => {
+    createGoal: async ({ req, goalName, targetAmount, deadline, currentAmount, goalDescription }) => {
         try {
             const goal = new Goal({
+                user: req.user,
                 goalName,
                 targetAmount,
                 deadline,
                 goalDescription,
                 currentAmount,
             });
-
             await goal.save();
-            return { message: 'Goal Added'}
-
-        } catch (error) {console.error('Error adding goal:', error.message);
-        throw new Error('Failed to add goal. Please try again.');
-        } 
+            return goal;
+        } catch (error) {
+            console.error('Error adding goal:', error.message);
+            throw new Error('Failed to add goal. Please try again.');
+        }
     },
 
-    getGoals: async (userID) => {
-        const user = await User.findById(userID).populate('goals');
-
-        if (!user) {
-            throw new Error('User not found');
+    getGoals: async (req, res) => {
+        try {
+            const goals = await Goal.find({ user: req.user.id });
+            if (!goals) {
+                throw new Error('Goals not found');
+            }
+            return goals;
+        } catch (error) {
+            console.error(error);
+            throw new Error('Unable to retriee goals')
         }
-
-        return user.goals;
     },
 
-    updateGoal: async (userID, goalID, { updatedName, updatedAmount, updatedDate }) => {
-        const user = await User.findById(userID);
-
-        if (!user) {
-            throw new Error('User not found');
+    updateGoal: async (id, data) => {
+        try {
+            const goal = await Goal.findOneAndUpdate({ _id: id }, data, { new: true });
+            return goal;
+        } catch (error) {
+            console.error(error);
+            throw new Error('Unable to update goal');
         }
-
-        const goalToUpdate = await Goal.findById(goalID);
-
-        if (!goalToUpdate) {
-            throw new Error('Goal not found');
-        }
-
-        goalToUpdate.goalName = updatedName;
-        goalToUpdate.targetAmount = updatedAmount;
-        goalToUpdate.deadline = updatedDate;
-
-        await goalToUpdate.save();
-
-        return goalToUpdate;
     },
 
-    deleteGoal: async (userID, goalID) => {
-        const user = await User.findById(userID);
-
-        if (!user) {
-            throw new Error('User not found');
+    deleteGoal: async (id) => {
+        try {
+            const goal = await Goal.findByIdAndDelete(id);
+            return goal;
+        } catch (error) {
+            console.error(error);
+            throw new Error('Unable to delete goal');
         }
-
-        const goalToDelete = await Goal.findById(goalID);
-
-        if (!goalToDelete) {
-            throw new Error('Goal not found');
-        }
-
-        await goalToDelete.remove();
-        await user.save();
-
-        return goalToDelete;
-    },
+    }
 };
 
 module.exports = goalsService;

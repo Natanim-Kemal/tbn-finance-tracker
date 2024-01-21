@@ -5,9 +5,9 @@ const { requireAuth } = require('../middlewares/authMiddleware');
 
 
 router.post('/invest', requireAuth, investmentController.invest)
-    .get('/get-investment-details/:id', requireAuth, investmentController.getInvestmentDetails)
-    .put('/update-investment-details/:id', requireAuth, investmentController.updateInvestmentDetails)
-    .delete('/delete-investment/:id', requireAuth, investmentController.deleteInvestment)
-    .get('/calculate-return/:id', requireAuth, investmentController.calculateReturn);
+    .get('/get-investment-details', requireAuth, investmentController.getInvestmentDetails)
+    .put('/update-investment/:id', requireAuth, investmentController.updateInvestmentDetails)
+    .get('/calculate-return/:id', requireAuth, investmentController.calculateReturn)
+    .delete('/delete-investment/:id', requireAuth, investmentController.deleteInvestment);
 
 module.exports = router;

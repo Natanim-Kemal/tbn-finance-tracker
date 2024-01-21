@@ -27,6 +27,9 @@ const investmentSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    returnValue : {
+        type: Number
+    },
     investmentType: {
         type: String,
         required: true,
@@ -37,6 +40,14 @@ const investmentSchema = new mongoose.Schema({
     },
 });
 
+investmentSchema.pre('save', async function (next) {
+    try {
+        this.returnValue = (this.amountInvested * this.interestRate) / 100;
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
 const Investment = mongoose.model('Investment', investmentSchema);
 
-module.exports = { Investment };
+module.exports = Investment;

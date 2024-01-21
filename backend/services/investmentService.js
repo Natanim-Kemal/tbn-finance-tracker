@@ -1,43 +1,42 @@
-const { Investment } = require('../models/investment');
+const Investment = require('../models/investment');
 
 const investmentService = {
-    invest: async (userID, investmentID, amount) => {
+    invest: async ({ req, investmentName, interestRate, amountInvested, currentValue, investmentType }) => {
         try {
-            const investment = await Investment.findOne({ _id: investmentID, userID });
+            const investment = new Investment({
+                user: req.user,
+                investmentName,
+                interestRate,
+                amountInvested,
+                currentValue,
+                investmentType
+            });
 
-            if (!investment) {
-                return { success: false, message: 'Investment not found or unauthorized' };
-            }
-
-            investment.amount += amount;
             await investment.save();
-
-            return { success: true, message: 'Investment successful', investment };
+            return investment;
         } catch (error) {
             console.error('Error investing:', error);
             return { success: false, message: 'Server Error' };
         }
     },
 
-    getInvestmentDetails: async (userID, investmentID) => {
+    getInvestmentDetails: async (req) => {
         try {
-            const investment = await Investment.findOne({ _id: investmentID, userID });
+            const investment = await Investment.find({ user: req.user.id });
 
             if (!investment) {
-                return { success: false, message: 'Investment not found or unauthorized' };
+                return { message: 'Investment not found' };
             }
-
-            return { success: true, investment };
+            return investment;
         } catch (error) {
             console.error('Error getting investment details:', error);
-            return { success: false, message: 'Server Error' };
+            return { message: 'Error' };
         }
     },
 
-    updateInvestmentDetails: async (userID, investmentID, updatedData) => {
+    updateInvestmentDetails: async (id, updatedData) => {
         try {
-            const updatedInvestment = await Investment.findOneAndUpdate(
-                { _id: investmentID, userID },
+            const updatedInvestment = await Investment.findByIdAndUpdate(id,
                 { $set: updatedData },
                 { new: true }
             );
@@ -46,24 +45,27 @@ const investmentService = {
                 return { success: false, message: 'Investment not found or unauthorized' };
             }
 
-            return { success: true, message: 'Investment details updated successfully', updatedInvestment };
+            return updatedInvestment;
         } catch (error) {
             console.error('Error updating investment details:', error);
-            return { success: false, message: 'Server Error' };
-        }
+            return { success: false, message: 'Error' };
+        } 
     },
 
-    calculateReturn: async (userID, investmentID) => {
+    deleteInvestment: async (id) => {
         try {
-            // Logic to calculate return goes here ... later 
-            const calculatedReturn = 0; 
+            const deletedInvestment = await Investment.findByIdAndDelete(id);
 
-            return { success: true, calculatedReturn };
+            if (!deletedInvestment) {
+                return { success: false, message: 'Investment not found' };
+            }
+
+            return deletedInvestment;
         } catch (error) {
-            console.error('Error calculating return:', error);
-            return { success: false, message: 'Server Error' };
+            console.error('Error deleting investment:', error);
+            throw new Error('Failed to delete investment');
         }
-    },
+    }
 };
 
 module.exports = investmentService;

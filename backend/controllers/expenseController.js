@@ -6,6 +6,7 @@ const expenseController = {
 
         try {
             const result = await expenseService.addExpense({
+                req,
                 name,
                 amount,
                 category,
@@ -21,7 +22,7 @@ const expenseController = {
 
     getExpenses: async (req, res) => {
         try {
-            const expenses = await expenseService.getExpenses();
+            const expenses = await expenseService.getExpenses(req, res);
             res.status(200).json(expenses);
         } catch (error) {
             console.error('Error getting expenses:', error);
@@ -34,6 +35,9 @@ const expenseController = {
 
         try {
             const result = await expenseService.deleteExpense(id);
+            if (!result) {
+                res.status(404).json({ message: 'Expense not found.' });
+            }
             res.status(200).json(result);
         } catch (error) {
             console.error('Error deleting expense:', error);

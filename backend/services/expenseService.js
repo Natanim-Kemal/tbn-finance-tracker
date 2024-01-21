@@ -1,7 +1,7 @@
 const ExpenseSchema = require('../models/expense');
 
 const expenseService = {
-    addExpense: async ({ name, amount, category, description, date }) => {
+    addExpense: async ({ req, name, amount, category, description, date }) => {
         try {
             if (!name || !category || !description || !date) {
                 throw new Error('All fields are required!');
@@ -11,6 +11,7 @@ const expenseService = {
             }
 
             const expense = new ExpenseSchema({
+                user: req.user,
                 name,
                 amount,
                 category,
@@ -19,15 +20,19 @@ const expenseService = {
             });
 
             await expense.save();
-            return { message: 'Expense Added' };
+            return expense;
         } catch (error) {
-            throw error;
+            console.error(error.message);
+            throw new Error('Failed to add expense. Please try again.');
         }
     },
 
-    getExpenses: async () => {
+    getExpenses: async (req) => {
         try {
-            const expenses = await ExpenseSchema.find().sort({ createdAt: -1 });
+            const expenses = await ExpenseSchema.find({ user: req.user.id });
+            if (!expenses.length) {
+                return 'There is no expense for this user.';
+            }
             return expenses;
         } catch (error) {
             throw error;
@@ -42,9 +47,9 @@ const expenseService = {
                 throw new Error('Expense not found');
             }
 
-            return { message: 'Expense Deleted' };
+            return deletedExpense;
         } catch (error) {
-            throw error;
+            throw new Error('Unable to delete expense');
         }
     },
 
@@ -66,9 +71,10 @@ const expenseService = {
                 throw new Error('Expense not found');
             }
 
-            return { message: 'Expense Updated', expense: updatedExpense };
+            return updatedExpense;
         } catch (error) {
-            throw error;
+            console.error(error.message);
+            throw new Error('Failed to update expense. Please try again.');
         }
     },
 };

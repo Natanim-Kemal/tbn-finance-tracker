@@ -1,73 +1,84 @@
+const Investment = require('../models/investment');
 const investmentService = require('../services/investmentService');
 
 const investmentController = {
     invest: async (req, res) => {
-        const { id } = req.params;
+        const { investmentName,
+            interestRate,
+            amountInvested,
+            currentValue,
+            investmentType } = req.body;
 
         try {
-            const result = await investmentService.invest(investmentID, amount);
-            res.status(result.success ? 200 : 404).json(result);
+            const result = await investmentService.invest({
+                req,
+                investmentName,
+                interestRate,
+                amountInvested,
+                currentValue,
+                investmentType
+            });
+            res.status(200).json(result);
         } catch (error) {
             console.error('Error investing:', error);
-            res.status(500).json({ success: false, message: 'Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
-    getInvestmentDetails: async (req, res) => {
-        const { userID, investmentID } = req.params;
 
+    getInvestmentDetails: async (req, res) => {
         try {
-            const result = await investmentService.getInvestmentDetails(userID, investmentID);
+            const result = await investmentService.getInvestmentDetails(req, res);
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error getting investment details:', error);
-            res.status(500).json({ success: false, message: 'Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
     updateInvestmentDetails: async (req, res) => {
-        const { userID, investmentID } = req.params;
-        const updatedData = req.body;
-
         try {
-            const result = await investmentService.updateInvestmentDetails(userID, investmentID, updatedData);
+            const { id } = req.params;
+            const updatedData = req.body;
+            const result = await investmentService.updateInvestmentDetails(id, updatedData);
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error updating investment details:', error);
-            res.status(500).json({ success: false, message: 'Error' });
+            res.status(500).json({ error: 'Error' });
         }
     },
 
     calculateReturn: async (req, res) => {
-        const { userID, investmentID } = req.params;
-
         try {
-            const result = await investmentService.calculateReturn(userID, investmentID);
-            res.status(result.success ? 200 : 404).json(result);
+            const { id } = req.params;
+            const investment = await Investment.findById(id).exec();
+            if (!investment) {
+                return res.status(404).json({ error: 'Investment not found' });
+            }
+            const returnValue = investment.returnValue;
+            res.status(200).json({ return:  returnValue });
         } catch (error) {
             console.error('Error calculating return:', error);
-            res.status(500).json({ success: false, message: 'Error' });
+            res.status(500).json({ error: 'Internal Server Error' });
         }
     },
 
-    deleteInvestment: async (userID, investmentID) => {
+
+    deleteInvestment: async (req, res) => {
         try {
-            const deletedInvestment = await Investment.findOneAndDelete({
-                _id: investmentID,
-                userID: userID,
-            });
+            const { id } = req.params;
+            const result = await investmentService.deleteInvestment(id);
 
-            if (!deletedInvestment) {
-                return false; 
+            if (!result) {
+                res.status(404).json({ message: 'Investment not found.' });
+            } else {
+                res.status(200).json(result);
             }
-
-            return true; 
         } catch (error) {
             console.error('Error deleting investment:', error);
-            throw error;
+            res.status(500).json({ error: 'Error' });
         }
     },
-
 };
 
 module.exports = investmentController;

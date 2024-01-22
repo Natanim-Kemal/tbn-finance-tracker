@@ -9,7 +9,7 @@ const settingsSchema = new mongoose.Schema({
     },
     currency: {
         type: String,
-        required: true,
+        default: 'ETB'
     },
     type: {
         type: String,
@@ -17,11 +17,11 @@ const settingsSchema = new mongoose.Schema({
     },
     language: {
         type: String,
-        required: true,
+        default: 'Amharic'
     },
     notificationPreferences: {
         type: Boolean,
-        required: true,
+        default: true
     },
 }, { timestamps: true });
 

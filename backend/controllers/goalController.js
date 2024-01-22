@@ -1,5 +1,4 @@
 const goalsService = require('../services/goalService');
-const User = require('../models/user');
 
 const goalsController = {
     createGoal: async (req, res) => {
@@ -55,7 +54,7 @@ const goalsController = {
         const { id } = req.params;
         try {
             const goal = await goalsService.deleteGoal(id);
-    
+
             if (!goal) {
                 res.status(404).json({ message: 'goal not found.' });
             } else {
@@ -68,4 +67,4 @@ const goalsController = {
     }
 };
 
-module.exports = (goalsController);
+module.exports = goalsController;

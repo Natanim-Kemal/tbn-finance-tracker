@@ -37,9 +37,9 @@ const investmentController = {
     },
 
     updateInvestmentDetails: async (req, res) => {
+        const { id } = req.params;
+        const updatedData = req.body;
         try {
-            const { id } = req.params;
-            const updatedData = req.body;
             const result = await investmentService.updateInvestmentDetails(id, updatedData);
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {

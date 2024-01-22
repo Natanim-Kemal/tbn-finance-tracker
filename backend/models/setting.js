@@ -23,12 +23,8 @@ const settingsSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-});
+}, { timestamps: true });
 
 const Settings = mongoose.model('Settings', settingsSchema);
 
-module.exports = { Settings };
+module.exports = Settings;

@@ -1,60 +1,68 @@
 const { Reminder } = require('../models/reminder');
 
 const reminderService = {
-    createReminder: async (userID, reminderData) => {
+    createReminder: async ({ req, description, dueDate, isRecurring }) => {
         try {
-            const reminder = new Reminder({ userID, ...reminderData });
+            const reminder = new Reminder({
+                user: req.user,
+                description,
+                dueDate,
+                isRecurring
+            });
             await reminder.save();
-            return { success: true, reminder };
+            return reminder;
         } catch (error) {
             console.error('Error creating reminder:', error);
-            return { success: false, message: 'Server Error' };
+            return { message: 'Error' };
         }
     },
 
-    updateReminder: async (userID, reminderID, updatedData) => {
+    getReminder: async (req) => {
         try {
-            const updatedReminder = await Reminder.findOneAndUpdate(
-                { _id: reminderID, userID },
+            const reminders = await Reminder.find({ user: req.user.id });
+            if (!reminders) {
+                return { message: 'Reminder not found' };
+            }
+            return reminders;
+        } catch (error) {
+            console.error('Error getting reminders:', error);
+            return { message: 'Error' };
+        }
+    },
+
+    updateReminder: async (id, updatedData) => {
+        try {
+            const updatedReminder = await Reminder.findByIdAndUpdate(
+                id,
                 { $set: updatedData },
                 { new: true }
             );
 
             if (!updatedReminder) {
-                return { success: false, message: 'Reminder not found or unauthorized' };
+                return { message: 'Reminder not found or unauthorized' };
             }
 
-            return { success: true, message: 'Reminder updated successfully', updatedReminder };
+            return updatedReminder;
         } catch (error) {
             console.error('Error updating reminder:', error);
-            return { success: false, message: 'Server Error' };
+            return { message: 'Server Error' };
         }
     },
 
-    deleteReminder: async (userID, reminderID) => {
+    deleteReminder: async (id) => {
         try {
-            const result = await Reminder.findOneAndDelete({ _id: reminderID, userID });
+            const result = await Reminder.findByIdAndDelete(id);
 
             if (!result) {
-                return { success: false, message: 'Reminder not found or unauthorized' };
+                return { message: 'Reminder not found' };
             }
 
-            return { success: true, message: 'Reminder deleted successfully' };
+            return { message: 'Reminder deleted successfully' };
         } catch (error) {
             console.error('Error deleting reminder:', error);
-            return { success: false, message: 'Server Error' };
+            return { message: 'Error' };
         }
-    },
-
-    getReminder: async (userID) => {
-        try {
-            const reminders = await Reminder.find({ userID });
-            return { success: true, reminders };
-        } catch (error) {
-            console.error('Error getting reminders:', error);
-            return { success: false, message: 'Server Error' };
-        }
-    },
+    }
 };
 
 module.exports = reminderService;

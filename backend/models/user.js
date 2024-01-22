@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         minLength: [8, 'Your password length should be minimum of 8 characters']
     },
+    type: {
+        type: String,
+        default: 'user'
+    },
     financialAccounts: {
         type: Array,
         default: [],

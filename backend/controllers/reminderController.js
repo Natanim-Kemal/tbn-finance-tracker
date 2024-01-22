@@ -2,54 +2,60 @@ const reminderService = require('../services/reminderService');
 
 const reminderController = {
     createReminder: async (req, res) => {
-        const { userID } = req.params;
-        const reminderData = req.body;
+        const { description,
+            dueDate,
+            isRecurring
+        } = req.body;
 
         try {
-            const result = await reminderService.createReminder(userID, reminderData);
-            res.status(result.success ? 201 : 500).json(result);
+            const result = await reminderService.createReminder({
+                req,
+                description,
+                dueDate,
+                isRecurring
+
+            });
+            res.status(200).json(result);
         } catch (error) {
-            console.error('Error creating reminder:', error);
-            res.status(500).json({ success: false, message: 'Error' });
-        }
-    },
-
-    updateReminder: async (req, res) => {
-        const { userID, reminderID } = req.params;
-        const updatedData = req.body;
-
-        try {
-            const result = await reminderService.updateReminder(userID, reminderID, updatedData);
-            res.status(result.success ? 200 : 404).json(result);
-        } catch (error) {
-            console.error('Error updating reminder:', error);
-            res.status(500).json({ success: false, message: 'Error' });
-        }
-    },
-
-    deleteReminder: async (req, res) => {
-        const { userID, reminderID } = req.params;
-
-        try {
-            const result = await reminderService.deleteReminder(userID, reminderID);
-            res.status(result.success ? 200 : 404).json(result);
-        } catch (error) {
-            console.error('Error deleting reminder:', error);
-            res.status(500).json({ success: false, message: 'Error' });
+            console.error('Error investing:', error);
+            res.status(500).json({ error: 'Error' });
         }
     },
 
     getReminder: async (req, res) => {
-        const { userID } = req.params;
 
         try {
-            const result = await reminderService.getReminder(userID);
+            const result = await reminderService.getReminder(req, res);
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             console.error('Error getting reminders:', error);
-            res.status(500).json({ success: false, message: 'Error' });
+            res.status(500).json({ message: 'Error' });
         }
     },
+
+    updateReminder: async (req, res) => {
+        const { id } = req.params;
+        const updatedData = req.body;
+        try {
+            const result = await reminderService.updateReminder(id, updatedData);
+            res.status(result.success ? 200 : 404).json(result);
+        } catch (error) {
+            console.error('Error updating reminder:', error);
+            res.status(500).json({ message: 'Error' });
+        }
+    },
+
+    deleteReminder: async (req, res) => {
+        const { id } = req.params;
+
+        try {
+            const result = await reminderService.deleteReminder(id);
+            res.status(result.success ? 200 : 404).json(result);
+        } catch (error) {
+            console.error('Error deleting reminder:', error);
+            res.status(500).json({ message: 'Error' });
+        }
+    }
 };
 
 module.exports = reminderController;

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const reminderController = require('../controllers/reminderController');
+const { requireAuth } = require('../middlewares/authMiddleware')
 
-
-router.post('/create-reminder',  reminderController.createReminder)
-    .put('/update-reminder/:id', reminderController.updateReminder)
-    .delete('/delete-reminder/:id', reminderController.deleteReminder)
-    .get('/get-reminders', reminderController.getReminder);
+router.post('/create-reminder', requireAuth, reminderController.createReminder)
+    .get('/get-reminders', requireAuth, reminderController.getReminder)
+    .put('/update-reminder/:id', requireAuth, reminderController.updateReminder)
+    .delete('/delete-reminder/:id', requireAuth, reminderController.deleteReminder)
 
 module.exports = router;

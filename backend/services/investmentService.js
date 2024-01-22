@@ -16,7 +16,7 @@ const investmentService = {
             return investment;
         } catch (error) {
             console.error('Error investing:', error);
-            return { success: false, message: 'Server Error' };
+            return { message: 'Error' };
         }
     },
 
@@ -42,13 +42,13 @@ const investmentService = {
             );
 
             if (!updatedInvestment) {
-                return { success: false, message: 'Investment not found or unauthorized' };
+                return { message: 'Investment not found' };
             }
 
             return updatedInvestment;
         } catch (error) {
             console.error('Error updating investment details:', error);
-            return { success: false, message: 'Error' };
+            return { message: 'Error' };
         } 
     },
 

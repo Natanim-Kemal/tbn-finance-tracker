@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const loggingMiddleware = require('./middlewares/loggingMiddleware')
 const { checkUser } = require('./middlewares/authMiddleware');
 const rateLimitMiddleware = require('./middlewares/rateLimitMiddleware')
-const i18nMiddleware = require('./middlewares/i18nMiddleware');
 const errorHandler = require('./utils/errorHandler');
 
 const app = express();
@@ -21,7 +20,6 @@ app.use(errorHandler);
 app.use(rateLimitMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(i18nMiddleware);
 app.use(loggingMiddleware);
 app.use(mongoSanitize());
 app.use(xss());

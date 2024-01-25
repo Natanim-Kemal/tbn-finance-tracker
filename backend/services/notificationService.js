@@ -1,33 +1,26 @@
 const Reminder = require('../models/reminder');
 
 const notificationService = {
-    sendNotification: async (userID, description) => {
+    sendNotification: async (id, description) => {
         try {
-            const newReminder = await Reminder.create({
-                userID: userID,
-                description: description,
-                date: new Date(),
-                isRecurring: false,
-            });
-
-            return newReminder;
+            
         } catch (error) {
             console.error('Error sending notification:', error);
             throw error;
         }
     },
 
-    scheduleNotification: async (userID) => {
+    scheduleNotification: async (id) => {
         try {
-            const upcomingReminders = await Reminder.find({ userID, dueDate: { $gte: new Date() } });
+            const upcomingReminders = await Reminder.find({ id, dueDate: { $gte: new Date() } });
             const scheduledNotifications = upcomingReminders.map((reminder) => ({
                 reminderID: reminder._id,
-                userID,
+                id,
                 message: 'Scheduled Notification: ' + reminder.description,
             }));
 
             await Notification.insertMany(scheduledNotifications);
-            console.log(`Scheduled Notifications for User: ${userID}`);
+            console.log(`Scheduled Notifications for User: ${id}`);
             return true;
         } catch (error) {
             console.error(error);
@@ -35,10 +28,10 @@ const notificationService = {
         }
     },
 
-    clearNotification: async (userID) => {
+    clearNotification: async (id) => {
         try {
-            await Notification.deleteMany({ userID });
-            console.log('Notifications cleared for User: ' + userID);
+            await Notification.deleteMany({ id });
+            console.log('Notifications cleared for User: ' + id);
             return true;
         } catch (error) {
             console.error(error);

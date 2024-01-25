@@ -39,6 +39,14 @@ const ExpenseSchema = new mongoose.Schema({
         maxLength: 20,
         trim: true
     },
+    isRecurring: {
+        type: Boolean,
+        default: false,
+    },
+    recurrenceInterval: {
+        type: String, 
+        enum: ['daily', 'weekly', 'monthly'];
+    },
 }, { timestamps: true })
 
 const Expense = mongoose.model('Expense', ExpenseSchema)

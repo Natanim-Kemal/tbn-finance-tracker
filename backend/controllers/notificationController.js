@@ -19,7 +19,7 @@ const notificationController = {
             console.error('Error scheduling notifications:', error);
             res.status(500).json({ error: 'Error' });
         }
-    },
+    }, 
 
     clearNotification: async (req, res) => {
         try {

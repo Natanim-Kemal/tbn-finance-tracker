@@ -5,11 +5,9 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-    height: auto;
-    min-width: 100vw;
+    max-width: 100%;
+    max-width: 100%;
 }
-
 .dashboard{
     display: flex;
     max-width:100%;
@@ -47,6 +45,7 @@ body {
     margin-top: 5px;
     gap: 12px;
 }
+
 
 .summary-continer{
     display: flex;
@@ -178,8 +177,8 @@ body {
 }
   
 .second-circle {
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     background-color: rgb(78, 228, 13);
     border-radius: 50%;
     top: 50px;
@@ -187,12 +186,12 @@ body {
 }
   
 .third-circle {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     background-color: rgb(4, 57, 12);
     border-radius: 50%;
     top: 140px;
-    left: 50px;
+    left: 100px;
 }
 .monthly-comparison{
     margin-top: 5%;
@@ -231,18 +230,15 @@ body {
 
 .item-1{
     display: flex;
-    border: 2px solid rgba(50, 199, 50,0.3);;
     background-color: rgba(255, 255, 255,0.8);
     margin: 1%;
-    border-radius: 10px;
+
 }
 
 .item-2{
     display: flex;
-    border: 2px solid rgba(50, 199, 50,0.3);;
     background-color: rgba(255, 255, 255,0.8);
     margin: 1%;
-    border-radius: 10px;
 }
 
 .item-1:hover{
@@ -251,4 +247,76 @@ body {
 
 .item-2:hover{
     background-color: rgba(200, 200, 200, 0.6);
+}
+
+@media only screen and (max-width: 480px) {
+    .dashboard{
+        width: 100%;
+        flex-direction: column;
+        margin: 0;
+    }
+    
+    .dashboard-contents{
+        position: static;
+        flex-direction: column;
+        min-width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page-title{
+        max-width:100% ;
+        margin-bottom: 40px;
+        font-size: large;
+    }
+    .notification-image{
+        margin-left: auto;
+    }
+    .financial-summary{
+        gap: 4px;
+        width: 100%;
+        margin-right: 2px;
+        margin-left: 2px;
+    }
+    .summary-continer{
+        width: 30%;
+        box-shadow: 0 24px 36px rgba(108, 255, 45, 0.2);
+        background: rgba(108, 166, 83, 0.6);;
+        backdrop-filter: blur(20px);
+        color: white;
+    }
+
+    .summary-continer img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .graphical-overview{
+        width: 90%;
+    }
+
+    .Graph-Container{
+        width: 90%;
+    }
+
+    .budget-review{
+        width: 90%;
+        margin-top: 40px;
+    }
+    
+    .report{
+        width: 90%;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+
+    .item-date{
+        display: none;
+    }
+
+    .item-name{
+        display: none;
+    }
+
+
 }

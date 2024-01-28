@@ -70,3 +70,46 @@
 .info-email {
   font-size: small;
 }
+
+@media only screen and (max-width: 480px) {
+  .menu{
+    position:relative;
+    margin-top: auto;
+    min-width: 100%;
+    min-height: 100%;
+    flex-direction: row;
+    margin-bottom: 20px;
+  }
+
+  .top-logo{
+    display: none;
+  }
+
+  .nav-des{
+    display: none;
+  }
+  
+  .menu ul{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .menu-label{
+    display: none;
+    
+  }
+
+  .icon-label{
+    min-width: 25%;
+  }
+  .info{
+    display: none;
+  }
+
+  .icon-label img{
+    width: 25px;
+    height: 25px;
+  }
+}

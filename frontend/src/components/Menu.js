@@ -16,7 +16,7 @@ export default function Menu({ menus }) {
         {menus.map((item) => (
           <div className="icon-label">
             <img src={item.iconSrc} alt={item.name} />
-            <li key={item.id}>{item.name}</li>
+            <li className="menu-label" key={item.id}>{item.name}</li>
           </div>
         ))}
       </ul>

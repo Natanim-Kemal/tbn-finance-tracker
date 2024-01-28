@@ -73,40 +73,6 @@ const LoginSignup = () => {
                 </div>
             }
             
-            {action==="Forget-Password"? <div></div>:
-                action==="Sign up"?
-                <div className="signup-text-cotainer">
-                    <div className="underline"></div>
-                    
-                    <div className="signUp-text">
-                        <p> Sign Up with</p>
-                    </div>
-                    <div className="underline"></div>
-                </div>:
-
-                <div className="signup-text-cotainer">
-                <div className="underline"></div>
-
-                <div className="signUp-text">
-                    <p> Sign In with</p>
-                </div>
-                <div className="underline"></div>
-                </div>
-                }
-            
-                
-                {action!=="Forget-Password" && (
-                    <div className="google-signup" onClick={redirectToGoogleLogin}>
-                        <div className="google-logo-container">
-                            <img src={google_icon} alt="" />
-                        </div>
-
-                        <div>
-                            <p className="google-text">Google Account</p>
-                        </div>
-                    </div>
-                )}
-            
             {action!=="Sign up" && (
                     <div className="create-account-container">
                     <div className="question-to-create">

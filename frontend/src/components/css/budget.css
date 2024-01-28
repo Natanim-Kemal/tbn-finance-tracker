@@ -92,6 +92,7 @@
     margin: 5%;
 }
 
+
 .green-amount.active {
     transform: translateY(-5px) scale(1.05) translateZ(0);
     box-shadow: 0 24px 36px rgba(108, 255, 45, 0.2);
@@ -106,5 +107,36 @@
     background: rgba(255, 77, 77, 0.6);
     backdrop-filter: blur(20px);
     color: white;
+}
+
+@media only screen and (max-width: 480px) {
+    .budget{
+        flex-direction: column;
+        max-width: 100vw;
+    }
+
+    .menu{
+        margin-top: 0;
+    }
+
+    .budget-contets{
+        width: 100%;
+        position: static;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .budget-accordion{
+        width: 95%;
+        margin: 0%;
+    }
+
+    .content-container{
+        width: 95%;
+    }
+
+    .accordion-body{
+        padding: 8%;
+    }
 }
 

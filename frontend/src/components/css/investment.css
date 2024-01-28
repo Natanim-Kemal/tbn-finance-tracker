@@ -60,3 +60,30 @@
     padding: 10px;
     text-align: center;
 }
+
+@media only screen  and (max-width:480px) {
+    .Investment{
+        flex-direction:column;
+        max-width: 100vw;
+    }
+    .Investment-contents{
+        position: static;
+        max-width: 100%;width: 100%;
+    }
+    .total{
+        width: 80%;
+    }
+
+    .form-container{
+        width: 80%;
+        height: 70%;
+    }
+    
+    .Table-container{
+        width: 80%;
+    }
+
+    .yield{
+        display: none;
+    }
+}

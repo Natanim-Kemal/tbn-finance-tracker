@@ -37,7 +37,7 @@ return (
             <th className="inv-table-head">Company</th>
             <th className="inv-table-head">Share</th>
             <th className="inv-table-head">Price</th>
-            <th className="inv-table-head">Yield</th>
+            <th className="inv-table-head yield">Yield</th>
             <th className="inv-table-head">Annual Income</th>
           </tr>
         </thead>
@@ -47,7 +47,7 @@ return (
               <td>{investment.company}</td>
               <td>{investment.share}</td>
               <td>{investment.price}</td>
-              <td>{investment.yield}</td>
+              <td className="yield">{investment.yield}</td>
               <td>{investment.annualIncome}</td>
             </tr>
           ))}

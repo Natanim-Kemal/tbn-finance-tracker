@@ -19,6 +19,6 @@ import Course from "./components/Course.jsx"
 
 export default function App() {
   return (
-    <DashBoard/>
+    <LoginSignup/>
 );
 }

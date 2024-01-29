@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for services/incomeService.js</title>
+    <title>Code coverage report for services/notificationService.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">services</a> incomeService.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">services</a> notificationService.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">27.08% </span>
+                <span class="strong">30.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/48</span>
+                <span class='fraction'>13/43</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">27.08% </span>
+                <span class="strong">30.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/48</span>
+                <span class='fraction'>13/43</span>
             </div>
         
             
@@ -106,12 +106,16 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -130,9 +134,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -145,68 +146,52 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">    const IncomeSchema = require("../models/income");
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Reminder = require('../models/reminder');
 &nbsp;
-    const incomeService = {
-        addIncome: <span class="fstat-no" title="function not covered" >async ({ req, name, amount, category, description, date }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            try {</span>
-<span class="cstat-no" title="statement not covered" >                if (amount &lt;= 0) {</span>
-<span class="cstat-no" title="statement not covered" >                    throw new Error('Amount must be a positive number!');</span>
-<span class="cstat-no" title="statement not covered" >                }</span>
-<span class="cstat-no" title="statement not covered" >                const income = new IncomeSchema({</span>
-<span class="cstat-no" title="statement not covered" >                    user: req.user,</span>
-<span class="cstat-no" title="statement not covered" >                    name,</span>
-<span class="cstat-no" title="statement not covered" >                    amount,</span>
-<span class="cstat-no" title="statement not covered" >                    category,</span>
-<span class="cstat-no" title="statement not covered" >                    description, </span>
-<span class="cstat-no" title="statement not covered" >                    date</span>
-<span class="cstat-no" title="statement not covered" >                });</span>
-<span class="cstat-no" title="statement not covered" >                await income.save();</span>
-<span class="cstat-no" title="statement not covered" >                return income;</span>
-<span class="cstat-no" title="statement not covered" >            } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >                console.error(error.message);</span>
-<span class="cstat-no" title="statement not covered" >                throw new Error('Failed to add income. Please try again.');</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
-            },
+const notificationService = {
+    sendNotification: <span class="fstat-no" title="function not covered" >async (id, description) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+<span class="cstat-no" title="statement not covered" >            </span>
+<span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >            console.error('Error sending notification:', error);</span>
+<span class="cstat-no" title="statement not covered" >            throw error;</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+    },
 &nbsp;
-        getIncomes: <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            try {</span>
-<span class="cstat-no" title="statement not covered" >                const incomes = await IncomeSchema.find({user: req.user.id});</span>
-<span class="cstat-no" title="statement not covered" >                if(!(incomes.length)) {</span>
-<span class="cstat-no" title="statement not covered" >                    return ('There is none income for this user.')</span>
-<span class="cstat-no" title="statement not covered" >                }</span>
-<span class="cstat-no" title="statement not covered" >                console.log(!incomes)</span>
-<span class="cstat-no" title="statement not covered" >                return incomes;</span>
-<span class="cstat-no" title="statement not covered" >            } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >                throw error;</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
-        },
+    scheduleNotification: <span class="fstat-no" title="function not covered" >async (id) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+<span class="cstat-no" title="statement not covered" >            const upcomingReminders = await Reminder.find({ id, dueDate: { $gte: new Date() } });</span>
+<span class="cstat-no" title="statement not covered" >            const scheduledNotifications = upcomingReminders.map((reminder) =&gt; ({</span>
+<span class="cstat-no" title="statement not covered" >                reminderID: reminder._id,</span>
+<span class="cstat-no" title="statement not covered" >                id,</span>
+<span class="cstat-no" title="statement not covered" >                message: 'Scheduled Notification: ' + reminder.description,</span>
+<span class="cstat-no" title="statement not covered" >            }));</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >            await Notification.insertMany(scheduledNotifications);</span>
+<span class="cstat-no" title="statement not covered" >            console.log(`Scheduled Notifications for User: ${id}`);</span>
+<span class="cstat-no" title="statement not covered" >            return true;</span>
+<span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >            console.error(error);</span>
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+    },
 &nbsp;
-        deleteIncome: <span class="fstat-no" title="function not covered" >async (id) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            try {</span>
-<span class="cstat-no" title="statement not covered" >                const deletedIncome = await IncomeSchema.findByIdAndDelete(id);</span>
-<span class="cstat-no" title="statement not covered" >                return deletedIncome;</span>
-<span class="cstat-no" title="statement not covered" >            } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >                throw new Error('Unable to delete Income');</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
-<span class="cstat-no" title="statement not covered" >        },</span>
-    };
+    clearNotification: <span class="fstat-no" title="function not covered" >async (id) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+<span class="cstat-no" title="statement not covered" >            await Notification.deleteMany({ id });</span>
+<span class="cstat-no" title="statement not covered" >            console.log('Notifications cleared for User: ' + id);</span>
+<span class="cstat-no" title="statement not covered" >            return true;</span>
+<span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >            console.error(error);</span>
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+};
 &nbsp;
-    module.exports = incomeService;
+module.exports = notificationService;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

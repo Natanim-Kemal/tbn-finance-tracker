@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./css/menu.css";
 import logo from "../icons/logo.png";
 
@@ -14,16 +15,17 @@ export default function Menu({ menus }) {
       </div>
       <ul>
         {menus.map((item) => (
-          <div className="icon-label">
-            <img src={item.iconSrc} alt={item.name} />
-            <li className="menu-label" key={item.id}>{item.name}</li>
+          <div className="icon-label" key={item.id}>
+            <Link to={`/${item.name}`} className="menu-link">
+              <img src={item.iconSrc} alt={item.name} />
+              <li className="menu-label">{item.name}</li>
+            </Link>
           </div>
         ))}
       </ul>
       <div className="info">
         <div
           className="info-img"
-          // style={{ backgroundImage: URL(placeholderImg) }}
         ></div>
         <div className="name-email">
           <span className="info-name">Johne Doe</span>
@@ -33,3 +35,6 @@ export default function Menu({ menus }) {
     </div>
   );
 }
+
+
+

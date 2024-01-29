@@ -12,7 +12,7 @@ import course2 from "./assest/course2.jpg";
 import basicCourse from "./assest/basic-course.jpg";
 
 
-export default function Wallet(){
+export default function Course(){
     const menus = [
         {id: 1,name: "Dashboard",active: false, iconSrc: dashboardIcon,},
         { id: 3, name: "Budget", active: false, iconSrc: budgetIcon },
@@ -67,6 +67,5 @@ export default function Wallet(){
                 </div>
             </div>
         </div>
-    </div>
-        
+    </div> 
 )}

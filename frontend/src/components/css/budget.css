@@ -116,7 +116,9 @@
     }
 
     .menu{
-        margin-top: 0;
+        position: static;
+        margin: 0%;
+        margin-bottom: 10%;
     }
 
     .budget-contets{

@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Menu from "./components/Menu.js";
 import Expenses from "./components/Expenses.js";
 import { useState } from "react";
@@ -17,8 +18,19 @@ import SidebarMenu from "./components/SidebarMenu.jsx";
 import Course from "./components/Course.jsx"
 
 
+
 export default function App() {
   return (
-    <LoginSignup/>
+<BrowserRouter>
+  <Routes>
+    <Route path="/" index element={<LoginSignup/>} />
+    <Route path="/dashboard" element={<DashBoard/>} />
+    <Route path="/budget" element={<Budget/>} />
+    <Route path="/wallet" element={<Wallet/>} />
+    <Route path="/investment" element={<Investment/>} />
+    <Route path="/courses" element={<Course/>} />
+    <Route path="/expense" element={<Expenses/>} />
+  </Routes>
+</BrowserRouter>
 );
 }

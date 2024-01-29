@@ -12,6 +12,17 @@
   max-width: 15%;
 }
 
+.menu-label{
+  color: #26c834;
+  display: inline;
+  margin-left: 10px;
+}
+
+.menu a{
+  text-decoration: none !important;
+  color: inherit;
+}
+
 .top-logo {
   padding-top: 10%;
   color: #26c834;
@@ -111,5 +122,19 @@
   .icon-label img{
     width: 25px;
     height: 25px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width:1023px){
+  .menu ul{
+    padding: 0%;
+  }
+
+  .info-name{
+    display: none;
+  }
+  
+  .info-email{
+    display: none;
   }
 }

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for services/goalService.js</title>
+    <title>Code coverage report for services/incomeService.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">services</a> goalService.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">services</a> incomeService.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">27.08% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/56</span>
+                <span class='fraction'>13/48</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">27.08% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/56</span>
+                <span class='fraction'>13/48</span>
             </div>
         
             
@@ -111,18 +111,13 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -164,73 +159,54 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Goal = require('../models/goal');
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">    const IncomeSchema = require("../models/income");
 &nbsp;
-const goalsService = {
-    createGoal: <span class="fstat-no" title="function not covered" >async ({ req, goalName, targetAmount, deadline, currentAmount, goalDescription }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            const goal = new Goal({</span>
-<span class="cstat-no" title="statement not covered" >                user: req.user,</span>
-<span class="cstat-no" title="statement not covered" >                goalName,</span>
-<span class="cstat-no" title="statement not covered" >                targetAmount,</span>
-<span class="cstat-no" title="statement not covered" >                deadline,</span>
-<span class="cstat-no" title="statement not covered" >                goalDescription,</span>
-<span class="cstat-no" title="statement not covered" >                currentAmount,</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >            await goal.save();</span>
-<span class="cstat-no" title="statement not covered" >            return goal;</span>
-<span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error('Error adding goal:', error.message);</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error('Failed to add goal. Please try again.');</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-    },
-&nbsp;
-    getGoals: <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            const goals = await Goal.find({ user: req.user.id });</span>
-<span class="cstat-no" title="statement not covered" >            if (!goals) {</span>
-<span class="cstat-no" title="statement not covered" >                throw new Error('Goals not found');</span>
+    const incomeService = {
+        addIncome: <span class="fstat-no" title="function not covered" >async ({ req, name, amount, category, description, date }) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            try {</span>
+<span class="cstat-no" title="statement not covered" >                if (amount &lt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    throw new Error('Amount must be a positive number!');</span>
+<span class="cstat-no" title="statement not covered" >                }</span>
+<span class="cstat-no" title="statement not covered" >                const income = new IncomeSchema({</span>
+<span class="cstat-no" title="statement not covered" >                    user: req.user,</span>
+<span class="cstat-no" title="statement not covered" >                    name,</span>
+<span class="cstat-no" title="statement not covered" >                    amount,</span>
+<span class="cstat-no" title="statement not covered" >                    category,</span>
+<span class="cstat-no" title="statement not covered" >                    description, </span>
+<span class="cstat-no" title="statement not covered" >                    date</span>
+<span class="cstat-no" title="statement not covered" >                });</span>
+<span class="cstat-no" title="statement not covered" >                await income.save();</span>
+<span class="cstat-no" title="statement not covered" >                return income;</span>
+<span class="cstat-no" title="statement not covered" >            } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >                console.error(error.message);</span>
+<span class="cstat-no" title="statement not covered" >                throw new Error('Failed to add income. Please try again.');</span>
 <span class="cstat-no" title="statement not covered" >            }</span>
-<span class="cstat-no" title="statement not covered" >            return goals;</span>
-<span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error(error);</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error('Unable to retriee goals')</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-    },
+            },
 &nbsp;
-    updateGoal: <span class="fstat-no" title="function not covered" >async (id, data) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            const goal = await Goal.findOneAndUpdate({ _id: id }, data, { new: true });</span>
-<span class="cstat-no" title="statement not covered" >            return goal;</span>
-<span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error(error);</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error('Unable to update goal');</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-    },
+        getIncomes: <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            try {</span>
+<span class="cstat-no" title="statement not covered" >                const incomes = await IncomeSchema.find({user: req.user.id});</span>
+<span class="cstat-no" title="statement not covered" >                if(!(incomes.length)) {</span>
+<span class="cstat-no" title="statement not covered" >                    return ('There is none income for this user.')</span>
+<span class="cstat-no" title="statement not covered" >                }</span>
+<span class="cstat-no" title="statement not covered" >                console.log(!incomes)</span>
+<span class="cstat-no" title="statement not covered" >                return incomes;</span>
+<span class="cstat-no" title="statement not covered" >            } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >                throw error;</span>
+<span class="cstat-no" title="statement not covered" >            }</span>
+        },
 &nbsp;
-    deleteGoal: <span class="fstat-no" title="function not covered" >async (id) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            const goal = await Goal.findByIdAndDelete(id);</span>
-<span class="cstat-no" title="statement not covered" >            return goal;</span>
-<span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error(error);</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error('Unable to delete goal');</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-};
+        deleteIncome: <span class="fstat-no" title="function not covered" >async (id) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            try {</span>
+<span class="cstat-no" title="statement not covered" >                const deletedIncome = await IncomeSchema.findByIdAndDelete(id);</span>
+<span class="cstat-no" title="statement not covered" >                return deletedIncome;</span>
+<span class="cstat-no" title="statement not covered" >            } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >                throw new Error('Unable to delete Income');</span>
+<span class="cstat-no" title="statement not covered" >            }</span>
+<span class="cstat-no" title="statement not covered" >        },</span>
+    };
 &nbsp;
-module.exports = goalsService;
+    module.exports = incomeService;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

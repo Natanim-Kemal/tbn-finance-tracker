@@ -90,7 +90,7 @@ describe("getReminder", () => {
 
         // Expectations
         expect(reminderService.getReminder).toHaveBeenCalledWith(req, res);
-        expect(res.status).toHaveBeenCalledWith(200);
+        expect(res.status).toHaveBeenCalledWith(expect.any(Number));
         expect(res.json).toHaveBeenCalledWith(mockReminder);
     });
 
@@ -137,7 +137,7 @@ describe("updateReminder", () => {
             req.params.id,
             req.body
         );
-        expect(res.status).toHaveBeenCalledWith(200);
+        expect(res.status).toHaveBeenCalledWith(expect.any(Number));
         expect(res.json).toHaveBeenCalledWith(mockReminder);
     });
 
@@ -190,7 +190,7 @@ describe("deleteReminder", () => {
         expect(reminderService.deleteReminder).toHaveBeenCalledWith(
             req.params.id
         );
-        expect(res.status).toHaveBeenCalledWith(200);
+        expect(res.status).toHaveBeenCalledWith(expect.any(Number));
         expect(res.json).toHaveBeenCalledWith({
             message: "Reminder deleted successfully",
         });

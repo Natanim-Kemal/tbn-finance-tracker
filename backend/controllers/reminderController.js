@@ -20,7 +20,7 @@ const reminderController = {
     getReminder: async (req, res) => {
         try {
             const result = await reminderService.getReminder(req, res);
-            res.status(200).json(result);
+            res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             res.status(500).json({ message: "Error" });
         }
@@ -34,7 +34,7 @@ const reminderController = {
                 id,
                 updatedData
             );
-            res.status(200).json(result);
+            res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             res.status(500).json({ message: "Error" });
         }
@@ -45,7 +45,7 @@ const reminderController = {
 
         try {
             const result = await reminderService.deleteReminder(id);
-            res.status(200).json(result);
+            res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
             res.status(500).json({ message: "Error" });
         }

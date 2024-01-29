@@ -53,7 +53,8 @@ const authController = {
             res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
             res.status(200).json({ message: token });
         } catch (err) {
-            res.status(400).json({ errors });
+            console.log(err);
+            res.status(400).json({ err });
             res.status(404).json({ errors: "Somethig went wrong" });
         }
     },

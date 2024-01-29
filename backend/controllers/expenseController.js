@@ -1,4 +1,4 @@
-const expenseService = require('../services/expenseService');
+const expenseService = require("../services/expenseService");
 
 const expenseController = {
     addExpense: async (req, res) => {
@@ -15,8 +15,7 @@ const expenseController = {
             });
             res.status(200).json(result);
         } catch (error) {
-            console.error('Error adding expense:', error);
-            res.status(500).json({ error: 'Error' });
+            res.status(500).json({ error: "Error" });
         }
     },
 
@@ -25,8 +24,7 @@ const expenseController = {
             const expenses = await expenseService.getExpenses(req, res);
             res.status(200).json(expenses);
         } catch (error) {
-            console.error('Error getting expenses:', error);
-            res.status(500).json({ error: 'Error' });
+            res.status(500).json({ error: "Error" });
         }
     },
 
@@ -36,12 +34,12 @@ const expenseController = {
         try {
             const result = await expenseService.deleteExpense(id);
             if (!result) {
-                res.status(404).json({ message: 'Expense not found.' });
+                res.status(404).json({ message: "Expense not found." });
             }
             res.status(200).json(result);
         } catch (error) {
-            console.error('Error deleting expense:', error);
-            res.status(500).json({ error: 'Error' });
+            console.error("Error deleting expense:", error);
+            res.status(500).json({ error: "Error" });
         }
     },
 
@@ -57,8 +55,7 @@ const expenseController = {
             });
             res.status(200).json(result);
         } catch (error) {
-            console.error('Error updating expense:', error);
-            res.status(500).json({ error: 'Error' });
+            res.status(500).json({ error: "Error" });
         }
     },
 };

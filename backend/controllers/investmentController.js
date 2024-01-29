@@ -1,13 +1,15 @@
-const Investment = require('../models/investment');
-const investmentService = require('../services/investmentService');
+const Investment = require("../models/investment");
+const investmentService = require("../services/investmentService");
 
 const investmentController = {
     invest: async (req, res) => {
-        const { investmentName,
+        const {
+            investmentName,
             interestRate,
             amountInvested,
             currentValue,
-            investmentType } = req.body;
+            investmentType,
+        } = req.body;
 
         try {
             const result = await investmentService.invest({
@@ -16,23 +18,23 @@ const investmentController = {
                 interestRate,
                 amountInvested,
                 currentValue,
-                investmentType
+                investmentType,
             });
             res.status(200).json(result);
         } catch (error) {
-            console.error('Error investing:', error);
-            res.status(500).json({ error: 'Error' });
+            res.status(500).json({ error: "Error" });
         }
     },
 
-
     getInvestmentDetails: async (req, res) => {
         try {
-            const result = await investmentService.getInvestmentDetails(req, res);
+            const result = await investmentService.getInvestmentDetails(
+                req,
+                res
+            );
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
-            console.error('Error getting investment details:', error);
-            res.status(500).json({ error: 'Error' });
+            res.status(500).json({ error: "Error" });
         }
     },
 
@@ -40,11 +42,13 @@ const investmentController = {
         const { id } = req.params;
         const updatedData = req.body;
         try {
-            const result = await investmentService.updateInvestmentDetails(id, updatedData);
+            const result = await investmentService.updateInvestmentDetails(
+                id,
+                updatedData
+            );
             res.status(result.success ? 200 : 404).json(result);
         } catch (error) {
-            console.error('Error updating investment details:', error);
-            res.status(500).json({ error: 'Error' });
+            res.status(500).json({ error: "Error" });
         }
     },
 
@@ -53,16 +57,14 @@ const investmentController = {
             const { id } = req.params;
             const investment = await Investment.findById(id).exec();
             if (!investment) {
-                return res.status(404).json({ error: 'Investment not found' });
+                return res.status(404).json({ error: "Investment not found" });
             }
             const returnValue = investment.returnValue;
-            res.status(200).json({ return:  returnValue });
+            res.status(200).json({ return: returnValue });
         } catch (error) {
-            console.error('Error calculating return:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ error: "Internal Server Error" });
         }
     },
-
 
     deleteInvestment: async (req, res) => {
         try {
@@ -70,13 +72,12 @@ const investmentController = {
             const result = await investmentService.deleteInvestment(id);
 
             if (!result) {
-                res.status(404).json({ message: 'Investment not found.' });
+                res.status(404).json({ message: "Investment not found." });
             } else {
                 res.status(200).json(result);
             }
         } catch (error) {
-            console.error('Error deleting investment:', error);
-            res.status(500).json({ error: 'Error' });
+            res.status(500).json({ error: "Error" });
         }
     },
 };

@@ -1,10 +1,12 @@
-const { User } = require('../models/user');
+const { User } = require("../models/user");
 
 const reportGeneratorService = {
     generateExpenseReport: async (userID) => {
         try {
             const user = await User.findById(userID);
-            const expenseTransactions = user.financialAccounts.filter((account) => !account.isIncome);
+            const expenseTransactions = user.financialAccounts.filter(
+                (account) => !account.isIncome
+            );
 
             return expenseTransactions.map((transaction) => ({
                 name: transaction.name,
@@ -12,7 +14,6 @@ const reportGeneratorService = {
                 date: transaction.createdAt,
             }));
         } catch (error) {
-            console.error('Error generating expense report:', error);
             throw error;
         }
     },
@@ -20,7 +21,9 @@ const reportGeneratorService = {
     generateIncomeReport: async (userID) => {
         try {
             const user = await User.findById(userID);
-            const incomeTransactions = user.financialAccounts.filter((account) => account.isIncome);
+            const incomeTransactions = user.financialAccounts.filter(
+                (account) => account.isIncome
+            );
 
             return incomeTransactions.map((transaction) => ({
                 name: transaction.name,
@@ -28,7 +31,6 @@ const reportGeneratorService = {
                 date: transaction.createdAt,
             }));
         } catch (error) {
-            console.error('Error generating income report:', error);
             throw error;
         }
     },
@@ -38,7 +40,7 @@ const reportGeneratorService = {
             const user = await User.findById(userID);
 
             return user.financialAccounts.reduce((report, transaction) => {
-                const category = transaction.category || 'Uncategorized';
+                const category = transaction.category || "Uncategorized";
 
                 if (!report[category]) {
                     report[category] = [];
@@ -53,19 +55,14 @@ const reportGeneratorService = {
                 return report;
             }, {});
         } catch (error) {
-            console.error('Error generating category report:', error);
             throw error;
         }
     },
 
     generateFinancialReport: async (userID) => {
         try {
-            
-        } catch (error) {
-            
-        }
-    }
-
+        } catch (error) {}
+    },
 };
 
 module.exports = reportGeneratorService;

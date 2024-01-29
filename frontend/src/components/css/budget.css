@@ -3,7 +3,8 @@
     min-height: 100vh;
     height: auto;
     min-width: 100vw;
-    background-color: #daf3f0;
+    background:url(../assest/dash-back.jpg);
+    background-size: cover;
     margin: 0;
     padding-bottom: 30%;
 }
@@ -116,7 +117,9 @@
     }
 
     .menu{
-        margin-top: 0;
+        position: static;
+        margin: 0%;
+        margin-bottom: 10%;
     }
 
     .budget-contets{

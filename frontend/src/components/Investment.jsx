@@ -10,14 +10,16 @@ import Buttons from "./buttons";
 import MyForm from "./Form";
 import { useState } from "react";
 import InvestmentTable from "./InvestmentTable";
+import moreIcon from"../icons/moreIcon.jpg"
 
 export default function Investment(){
     const menus = [
         {id: 1,name: "Dashboard",active: false, iconSrc: dashboardIcon,},
         { id: 3, name: "Budget", active: false, iconSrc: budgetIcon },
         { id: 4, name: "Expense", active: false, iconSrc: expenseIcon },
-        { id: 5, name: "Courses", active: false, iconSrc: courseIcon },
-        { id: 6, name: "Wallet", active: false, iconSrc: walletIcon },];
+        { id: 5, name: "Wallet", active: false, iconSrc: walletIcon  },
+        { id: 6, name: "More", active: false, iconSrc:moreIcon },
+    ];
 
 
         return(

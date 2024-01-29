@@ -8,6 +8,7 @@ body {
     max-width: 100%;
     max-width: 100%;
 }
+
 .dashboard{
     display: flex;
     max-width:100%;
@@ -392,4 +393,4 @@ body {
     .Graph-Container{
         width: 90%;
     }
-  }
+}

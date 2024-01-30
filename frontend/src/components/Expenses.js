@@ -1,10 +1,26 @@
 import React from "react";
 import "./css/expenses.css";
 import trash from "../icons/trash.png";
-
+import Menu from "./Menu";
+import budgetIcon from "../icons/budge.png";
+import dashboardIcon from "../icons/dashboard.png";
+import expenseIcon from "../icons/expense.png";
+import walletIcon from "../icons/wallet.png";
+import moreIcon from"../icons/moreIcon.jpg";
+import Buttons from "./buttons";
 const Expenses = () => {
+  const menus = [
+    {id: 1,name: "Dashboard",active: false, iconSrc: dashboardIcon,},
+    { id: 3, name: "Budget", active: false, iconSrc: budgetIcon },
+    { id: 4, name: "Expense", active: false, iconSrc: expenseIcon },
+    { id: 5, name: "Wallet", active: false, iconSrc: walletIcon  },
+    { id: 6, name: "More", active: false, iconSrc:moreIcon },
+];
   return (
+    
     <div className="exp-main col-md-9 col-lg-9 col-sm-12">
+      <Menu menus={menus}/>
+      <div className="expense-contents">
       <div className="header">
         <h3>Expenses</h3>
       </div>
@@ -14,7 +30,7 @@ const Expenses = () => {
         </p>
       </div>
       <div className="row main-under">
-        <div className="form col-md-6 col-lg-6 col-sm-12">
+        <div className="form col-md-6 col-lg-6 col-sm-12 expense-inputs">
           <form>
             <div class="form-group">
               <input
@@ -53,9 +69,7 @@ const Expenses = () => {
                 placeholder="Add a Reference"
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-ref">
-              Add a Reference
-            </button>
+            <Buttons content="Add Reference" onClick="" />
           </form>
         </div>
         <div className="side-list col-md-6 col-lg-6 col-sm-12">
@@ -77,6 +91,7 @@ const Expenses = () => {
         </div>
       </div>
     </div>
+      </div>
   );
 };
 

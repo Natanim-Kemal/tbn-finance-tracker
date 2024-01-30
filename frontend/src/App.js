@@ -10,6 +10,7 @@ import SidebarMenu from "./components/SidebarMenu.jsx";
 import Course from "./components/Course.jsx"
 import More from "./components/more.jsx";
 import Setting from "./components/Setting.jsx";
+import Goal from "./components/Goal.jsx";
 
 
 
@@ -27,6 +28,7 @@ export default function App() {
     <Route path="/expense" element={<Expenses/>} />
     <Route path="/more" element={<More/>} />
     <Route path="/setting" element={<Setting/>} />
+    <Route path="/goal" element={<Goal/>} />
   </Routes>
 </BrowserRouter>
 );

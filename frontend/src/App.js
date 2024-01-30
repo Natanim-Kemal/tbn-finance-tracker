@@ -9,6 +9,7 @@ import Investment from "./components/Investment.jsx";
 import SidebarMenu from "./components/SidebarMenu.jsx";
 import Course from "./components/Course.jsx"
 import More from "./components/more.jsx";
+import Setting from "./components/Setting.jsx";
 
 
 
@@ -25,6 +26,7 @@ export default function App() {
     <Route path="/courses" element={<Course/>} />
     <Route path="/expense" element={<Expenses/>} />
     <Route path="/more" element={<More/>} />
+    <Route path="/setting" element={<Setting/>} />
   </Routes>
 </BrowserRouter>
 );

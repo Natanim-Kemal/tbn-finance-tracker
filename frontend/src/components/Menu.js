@@ -10,9 +10,7 @@ export default function Menu({ menus }) {
         <img src={logo} alt="" className="logo" />
         <span>TBN</span>
       </div>
-      <div className="nav-des">
-        <h3>Menu</h3>
-      </div>
+
       <ul>
         {menus.map((item) => (
           <div className="icon-label" key={item.id}>
@@ -23,15 +21,6 @@ export default function Menu({ menus }) {
           </div>
         ))}
       </ul>
-      <div className="info">
-        <div
-          className="info-img"
-        ></div>
-        <div className="name-email">
-          <span className="info-name">Johne Doe</span>
-          <span className="info-email">John@aau.edu.et</span>
-        </div>
-      </div>
     </div>
   );
 }

@@ -32,9 +32,9 @@
 .search-icon{
     color:rgb(15, 107, 15) ;
     font-size: 30px;
-    position: absolute;
-    top: 25px;
-    right:20px;
+    position: relative;
+    top: 6px;
+    right:30px;
 }
 .allCourses{
     width: 100%;
@@ -89,7 +89,7 @@
     justify-content: center;
     align-items: center;
     overflow: cover;
-    width: 60%;
+    width: 90%;
     height: 100%;
     padding: 10px;
     
@@ -101,3 +101,54 @@
     padding: 20px;
 }
 
+@media only screen and (max-width:768px){
+    .course{
+        flex-direction: column;
+        width: 100vw;
+        margin: 0;
+    }
+    .menu-title{
+        width:100%;
+        height: 50px;
+    }
+    .menu-title h2{
+        font-size: 30px;
+    }
+    .menu-title div input{
+        font-size: 10px;
+        width: 100px;
+        margin-top: 10px;
+        margin-left: 10px;
+        padding: 10px;
+    }
+    .search-icon{
+        margin: 8px;
+        position: relative;
+        font-size: 15px;
+    }
+    .course-groups{
+        width: 100%;
+        flex-direction: column;
+    }
+    .course1,.course2,.course3{
+        margin: 10px;
+        flex-direction: column;
+    }
+    .course-image-container{
+        width: 100%;
+        height: 100%;
+    }
+    .course-contents {
+        margin: 10px;
+        flex-direction: column;
+        left: 0%;
+        
+    }
+
+    .courseTitles {
+        text-align: center;
+        font-size: 17px;
+        font-weight: 300;
+    }
+
+}

@@ -37,7 +37,10 @@ const authController = {
         financialAccounts,
       });
       const token = createToken(user._id);
-      res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+      res.cookie("jwt", token, {
+        maxAge: maxAge * 1000,
+        domain: "localhost",
+      });
       res.status(201).json({ message: "Operation successful!" });
     } catch (err) {
       res.status(400).json({ errors });
@@ -50,8 +53,11 @@ const authController = {
     try {
       const user = await User.login(email, password);
       const token = createToken(user._id);
-      res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-      res.status(200).json({ message: token });
+      res.cookie("jwt", token, {
+        maxAge: maxAge * 1000,
+        domain: "localhost",
+      });
+      res.status(200).json({ message: token, maxAge: maxAge * 1000 });
     } catch (err) {
       res.status(400).json({ err });
     }

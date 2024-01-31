@@ -14,6 +14,7 @@
     width: 80%;
     position: relative;
     left: 15%;
+
 }
 .settingsLogOutBth{
     position: absolute;
@@ -30,7 +31,11 @@
 .settingsWrapper{
     flex: 9;
     padding: 20px;
-
+    background-color: rgba(255, 255, 255,0.4);
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-bottom: 0px;
+    border-radius: 20px;
 }
 .settingsTitle{
     display: flex;
@@ -58,7 +63,28 @@
     height: 70px;
     border-radius: 20px;
     object-fit: cover;
+}
+.avatar-choices{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.accordion-collapse{
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
+}
+.avatar-image-container img{
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+}
 
+.accordion-button{
+    padding: 10px;
+    border-radius: 10px;
 }
 .settingsPPIcon{
     width: 25px;

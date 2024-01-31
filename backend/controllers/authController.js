@@ -43,7 +43,7 @@ const authController = {
       });
       res.status(201).json({ message: "Operation successful!" });
     } catch (err) {
-      res.status(400).json({ errors });
+      res.status(400).json({ err });
     }
   },
 
@@ -55,6 +55,8 @@ const authController = {
       const token = createToken(user._id);
       res.cookie("jwt", token, {
         maxAge: maxAge * 1000,
+        httpOnly: true,
+        secure: true,
         domain: "localhost",
       });
       res.status(200).json({ message: token, maxAge: maxAge * 1000 });

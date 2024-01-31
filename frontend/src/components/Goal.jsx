@@ -72,7 +72,7 @@ export default function Goal() {
   if(page == "new"){
     Main=(
       <div className="Goal-contents">
-                <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="goal-form">
           <label>
             Goal Name:
             <input type="text" name="goalName" onChange={handleChange} />

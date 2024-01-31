@@ -1,8 +1,8 @@
-import Accordion from 'react-bootstrap/Accordion';
-import { useState } from 'react';
-import AccordionBody from 'react-bootstrap/esm/AccordionBody';
+import Accordion from "react-bootstrap/Accordion";
+import { useState } from "react";
+import AccordionBody from "react-bootstrap/esm/AccordionBody";
 
-function MyAccordion({ title, date}) {
+function MyAccordion({ title, date, amount }) {
   return (
     <Accordion>
       <Accordion.Item eventKey="0">
@@ -11,9 +11,7 @@ function MyAccordion({ title, date}) {
           <div className="budget-date">{date}</div>
         </Accordion.Header>
         <Accordion.Body>
-          <div className="content-container">
-            
-          </div>
+          <div className="content-container">{amount}</div>
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>

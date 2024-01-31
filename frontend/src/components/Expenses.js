@@ -112,7 +112,14 @@ const Expenses = () => {
           <h3>Expenses</h3>
         </div>
         <div className="total-exp">
-          <p>Total Expense: {calculateTotal()}</p>
+          <p>
+            Total Expense:{" "}
+            {typeof calculateTotal() === "number"
+              ? isNaN(calculateTotal())
+                ? "0 Birr"
+                : calculateTotal() + " Birr"
+              : "0 Birr"}
+          </p>
         </div>
         <div className="row main-under">
           <div className="form col-md-6 col-lg-6 col-sm-12 expense-inputs">
@@ -179,9 +186,9 @@ const Expenses = () => {
               <Buttons content="Add Reference" onClick={handleSubmission} />
             </form>
           </div>
-          {expenses.length > 0 ? (
-            <div className="side-list col-md-6 col-lg-6 col-sm-12">
-              {expenses
+          <div className="side-list col-md-6 col-lg-6 col-sm-12">
+            {Array.isArray(expenses) && expenses.length > 0 ? (
+              expenses
                 .slice()
                 .reverse()
                 .map((expense) => (
@@ -200,11 +207,11 @@ const Expenses = () => {
                     </div>
                     <img src={trash} alt="Delete" />
                   </div>
-                ))}
-            </div>
-          ) : (
-            <p>You haven't made any expense</p>
-          )}
+                ))
+            ) : (
+              <p>You haven't made any expense</p>
+            )}
+          </div>
         </div>
       </div>
     </div>

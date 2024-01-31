@@ -86,21 +86,8 @@
     padding: 10px;
     border-radius: 10px;
 }
-.settingsPPIcon{
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: rgb(20, 152, 5);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-    cursor: pointer;
-}
-.settingsPP input{
-    display: none;
-}
+
+
 .settingForm > lable{
     font-size: 20px;
     margin-top: 20px;

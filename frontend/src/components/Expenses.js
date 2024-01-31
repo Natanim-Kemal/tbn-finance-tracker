@@ -179,29 +179,27 @@ const Expenses = () => {
               <Buttons content="Add Reference" onClick={handleSubmission} />
             </form>
           </div>
-          {expenses.length > 0 ? (
-            <div className="side-list col-md-6 col-lg-6 col-sm-12">
-              {expenses
-                .slice()
-                .reverse()
-                .map((expense) => (
-                  <div key={expense.id} className="side-cont">
-                    <div className="fir"></div>
-                    <div className="sec">
-                      <div className="sec-top">
-                        <div className="elipse"></div>
-                        <div>{expense.name}</div>
-                      </div>
-                      <div className="sec-bot">
-                        <span className="amount">{`ETB ${expense.amount}`}</span>
-                        <span className="date">{expense.date}</span>
-                        <span className="note">{expense.description}</span>
-                      </div>
+          {Array.isArray(expenses) && expenses.length > 0 ? (
+            expenses
+              .slice()
+              .reverse()
+              .map((expense) => (
+                <div key={expense.id} className="side-cont">
+                  <div className="fir"></div>
+                  <div className="sec">
+                    <div className="sec-top">
+                      <div className="elipse"></div>
+                      <div>{expense.name}</div>
                     </div>
-                    <img src={trash} alt="Delete" />
+                    <div className="sec-bot">
+                      <span className="amount">{`ETB ${expense.amount}`}</span>
+                      <span className="date">{expense.date}</span>
+                      <span className="note">{expense.description}</span>
+                    </div>
                   </div>
-                ))}
-            </div>
+                  <img src={trash} alt="Delete" />
+                </div>
+              ))
           ) : (
             <p>You haven't made any expense</p>
           )}

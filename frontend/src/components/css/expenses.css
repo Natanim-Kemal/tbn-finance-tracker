@@ -24,9 +24,14 @@
 }
 
 .header {
-  width: 100%;
+   width: 100%;
   text-align: left;
   font-weight: bolder;
+  height: 80px;
+  color: rgb(15, 107, 15);
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
 }
 
 .form-group input,

@@ -37,6 +37,26 @@ describe("UserController", () => {
                 message: "Account created successfully",
             });
         });
+
+        it("should return failure with invalid username format", async () => {
+            userService.createAccount.mockResolvedValue({
+                success: false,
+                message: "Invalid username format",
+            });
+
+            const req = { body: { ...mockRequestBody, username: "1234" } };
+            const res = {
+                status: jest.fn().mockReturnThis(),
+                json: jest.fn(),
+            };
+
+            await userController.createAccount(req, res);
+
+            expect(res.status).toHaveBeenCalledWith(400);
+            expect(res.json).toHaveBeenCalledWith({
+                message: "Invalid username format",
+            });
+        });
     });
 
     describe("createAccount", () => {

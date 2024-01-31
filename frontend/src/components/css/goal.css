@@ -1,9 +1,12 @@
-.Goal {
-    display: flex;
-    flex-direction: row;
-    background:url(../assest/dash-back.jpg)!important;
-    height: 100%;
-    width: 100%;
+.Goal { 
+  display: flex;
+  min-height: 100vh;
+  height: auto;
+  min-width: 100vw;
+  background:url(../assest/dash-back.jpg);
+  background-size: cover;
+  margin: 0;
+  padding-bottom: 5%;
     
   }
   

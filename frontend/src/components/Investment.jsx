@@ -11,6 +11,7 @@ import MyForm from "./Form";
 import { useState } from "react";
 import InvestmentTable from "./InvestmentTable";
 import moreIcon from"../icons/moreIcon.jpg"
+import InvestmentForm from "./InvestmentForm";
 
 export default function Investment(){
     const menus = [
@@ -21,7 +22,6 @@ export default function Investment(){
         { id: 6, name: "More", active: false, iconSrc:moreIcon },
     ];
 
-
         return(
             <div className="Investment">
                 <Menu menus={menus}/>
@@ -30,13 +30,13 @@ export default function Investment(){
                         Total Investment
                     </div>
                     <div className="form-container">
-                        <MyForm
+                        <InvestmentForm
                             fields={[
-                                { label: "Company", name: "Company", type: "text", placeholder: "Company", required:true},
-                                { label: "Share", name: "Share", type: "number", placeholder: "Share",required:true},
-                                { label: "Price", name: "Price", type: "number", placeholder: "Price",required:true},
-                                { label: "Yield", name: "Yield", type: "text", placeholder: "Yield %",required:true},
-                                { label: "Annual income", name: "Annualincome", type: "number", placeholder: "Annual income",required:true},
+                                { label: "investmentName", name: "investmentName", type: "text", placeholder: "Car,house", required:true},
+                                { label: "amountInvested", name: "amountInvested", type: "number", placeholder: "23525",required:true},
+                                { label: "investmentType", name: "investmentType", type: "text", placeholder: "This is the future of my sons",required:true},
+                                { label: "interestRate", name: "interestRate", type: "number", placeholder: "0.3 %",required:true},
+                                { label: "currentValue", name: "currentValue", type: "number", placeholder: "20334",required:true},
                         ]}/>
                     </div>
                     <div className="Table-container">

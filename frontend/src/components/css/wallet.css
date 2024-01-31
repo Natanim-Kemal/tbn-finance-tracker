@@ -241,6 +241,38 @@
     color: rgb(15, 107, 15);
 }
 
+.cbe-connect{
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0,0.5);
+    color: white;
+    box-shadow: 1px 1px 2px rgb(255, 255, 255);
+    font-weight: 400;
+}
+
+
+.dashen-connect{
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0,0.5);
+    color: white;
+    box-shadow: 1px 1px 2px rgb(255, 255, 255);
+    font-weight: 400;
+}
+
+.abbs-connect{
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0,0.5);
+    color: white;
+    box-shadow: 1px 1px 2px rgb(255, 255, 255);
+    font-weight: 400;
+    
+}
+
 @media only screen and (max-width:480px){
     .wallet{
         flex-direction: column;

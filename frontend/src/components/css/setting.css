@@ -15,6 +15,18 @@
     position: relative;
     left: 15%;
 }
+.settingsLogOutBth{
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color:lightcoral;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+   
+}
 .settingsWrapper{
     flex: 9;
     padding: 20px;

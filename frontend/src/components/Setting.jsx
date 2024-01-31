@@ -22,6 +22,7 @@ export default function Setting() {
                         <div className="settingsWrapper">
                             <div className="settingsTitle">
                                 <span className="settingsUpdateTitle">Update Your Profile </span>
+                                <span className="settingsLogOutBth">Log Out</span>
                             </div>
                             <form  className="settingForm">
                                 <label >Profile Picture</label>

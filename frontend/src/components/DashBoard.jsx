@@ -84,7 +84,7 @@ export default function DashBoard() {
   if (Graph == "balance") {
     GraphicalOverview = (
       <div className=" graphical-overview">
-        <div className="overview-title">Total Balance Overerview</div>
+        <div className="overview-title">Total Balance Overview</div>
         <div className="Graph-Container">
           <RenderLineChart data={data1} />
         </div>
@@ -95,7 +95,7 @@ export default function DashBoard() {
   if (Graph == "expense") {
     GraphicalOverview = (
       <div className=" graphical-overview">
-        <div className="overview-title">Total Expense Overerview</div>
+        <div className="overview-title">Total Expense Overview</div>
         <div className="Graph-Container">
           <RenderLineChart data={data2} />
         </div>
@@ -106,7 +106,7 @@ export default function DashBoard() {
   if (Graph == "saved") {
     GraphicalOverview = (
       <div className=" graphical-overview">
-        <div className="overview-title">Money Saved Overerview</div>
+        <div className="overview-title">Money Saved Overview</div>
         <div className="Graph-Container">
           <RenderLineChart data={data3} />
         </div>
@@ -206,54 +206,51 @@ export default function DashBoard() {
           </div>
         </div>
         <div className="financial-summary">
-          <div
-            className="summary-continer"
-            onClick={() => {
-              setGraph("balance");
-            }}
-          >
-            <img src={Income} alt="" />
-            <p className="summary-description">Total Balance</p>
-            <div className="amount">
-              {typeof totalBalance === "number"
-                ? isNaN(totalBalance)
-                  ? "0 Birr"
-                  : totalBalance + " Birr"
-                : "0 Birr"}
+          <div className="summary-containers">
+            <div
+              className="summary-continer"
+              onClick={() => {
+                setGraph("balance");
+              }}
+            >
+              <img src={Income} alt="" />
+              <p className="summary-description">Total Balance</p>
+              <div className="amount">
+                {typeof totalBalance === "number"
+                  ? isNaN(totalBalance)
+                    ? "0 Birr"
+                    : totalBalance + " Birr"
+                  : "0 Birr"}
+              </div>
             </div>
-          </div>
 
-          <div
-            className="summary-continer"
-            onClick={() => {
-              setGraph("expense");
-            }}
-          >
-            <img src={Expense} alt="" />
-            <p className="summary-description">Total Expenses</p>
-            <div className="amount">
-              {typeof totalExpense === "number"
-                ? isNaN(totalExpense)
-                  ? "0 Birr"
-                  : totalExpense + " Birr"
-                : "0 Birr"}
+            <div className="summary-continer" onClick={() => {setGraph("expense")}}>
+              <img src={Expense} alt="" />
+              <p className="summary-description">Total Expenses</p>
+              <div className="amount">
+                {typeof totalExpense === "number"
+                  ? isNaN(totalExpense)
+                    ? "0 Birr"
+                    : totalExpense + " Birr"
+                  : "0 Birr"}
+              </div>
             </div>
-          </div>
 
-          <div
-            className="summary-continer"
-            onClick={() => {
-              setGraph("saved");
-            }}
-          >
-            <img src={Saving} alt="" />
-            <p className="summary-description">Money Saved</p>
-            <div className="amount">
-              {typeof totalSaved === "number"
-                ? isNaN(totalSaved)
-                  ? "0 Birr"
-                  : totalSaved + " Birr"
-                : "0 Birr"}
+            <div
+              className="summary-continer"
+              onClick={() => {
+                setGraph("saved");
+              }}
+            >
+              <img src={Saving} alt="" />
+              <p className="summary-description">Money Saved</p>
+              <div className="amount">
+                {typeof totalSaved === "number"
+                  ? isNaN(totalSaved)
+                    ? "0 Birr"
+                    : totalSaved + " Birr"
+                  : "0 Birr"}
+              </div>
             </div>
           </div>
           {GraphicalOverview}

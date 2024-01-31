@@ -193,10 +193,12 @@ export default function Budget() {
   return (
     <div className="budget">
       <Menu menus={menus} />
-      <div className="menu-title">
-          <h2>Budget</h2>
-      </div>
-      <div className="budget-contets">{MainField}</div>
+      <div className="budget-contets">
+        <div className="menu-title">
+            <p>Budget</p>
+        </div>
+        {MainField}
+        </div>
     </div>
   );
 }

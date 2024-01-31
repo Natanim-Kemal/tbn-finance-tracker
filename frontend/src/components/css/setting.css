@@ -1,14 +1,14 @@
-.setting-body{
+.setting-body {
     min-height: 100vh;
     height: auto;
     min-width: 100vw;
-    background:url(../assest/dash-back.jpg);
+    background: url(../assest/dash-back.jpg);
     background-size: cover;
     margin: 0;
     padding-bottom: 5%;
 }
 
-.settings{
+.settings {
     display: flex;
     flex-wrap: wrap;
     width: 80%;
@@ -16,84 +16,108 @@
     left: 15%;
 
 }
-.settingsLogOutBth{
+
+.settingsLogOutBth {
     position: absolute;
     top: 60px;
     right: 20px;
-    background-color:lightcoral;
+    background-color: rgb(255, 75, 75);
     color: white;
     padding: 10px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-   
+
 }
-.settingsWrapper{
+
+.settingsWrapper {
     flex: 9;
     padding: 20px;
-    background-color: rgba(255, 255, 255,0.4);
+    background-color: rgba(255, 255, 255, 0.4);
     margin-left: 20px;
     margin-top: 20px;
     padding-bottom: 0px;
     border-radius: 20px;
 }
-.settingsTitle{
+
+.settingsTitle {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
 }
-.settingsUpdateTitle{
+
+.settingsUpdateTitle {
     font-size: 30px;
-    color: rgb(20, 152, 5) ;
+    color: rgb(20, 152, 5);
     margin-bottom: 20px;
 
 }
-.settingForm{
+
+.settingForm {
     display: flex;
     flex-direction: column;
 }
-.settingsPP{
+
+.settingsPP {
     display: flex;
     align-items: center;
     margin: 10px 0;
 }
-.settingsPP > img{
+
+.settingsPP>img {
     width: 70px;
     height: 70px;
     border-radius: 20px;
     object-fit: cover;
 }
-.avatar-choices{
+
+.together {
+    display: flex;
+    gap: 20px;
+}
+
+.accordion {
+    display: inline-block;
+    width: 80%;
+    position: relative;
+    top: 10px;
+
+}
+
+.avatar-choices {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 12px;
 }
-.accordion-collapse{
+
+.accordion-collapse {
     background-color: white;
     border-radius: 20px;
     width: 100%;
 }
-.avatar-image-container img{
+
+.avatar-image-container img {
     width: 70px;
     height: 70px;
     border-radius: 10px;
 }
 
-.accordion-button{
+.accordion-button {
     padding: 10px;
     border-radius: 10px;
 }
 
 
-.settingForm > lable{
+.settingForm>lable {
     font-size: 20px;
     margin-top: 20px;
 }
-.settingForm  input{
-    color:gray;
+
+.settingForm input {
+    color: gray;
     margin: 10px 0;
     height: 30px;
     border: none;
@@ -101,7 +125,8 @@
     padding-left: 10px;
 
 }
-.settingsSubmit{
+
+.settingsSubmit {
     width: 150px;
     align-self: center;
     border: none;
@@ -113,19 +138,22 @@
     cursor: pointer;
 
 }
-.link{
+
+.link {
     text-decoration: none;
     color: inherit;
-  }
-  @media only screen  and (max-width:480px){
-    .settingsLogOutBth{
+}
+
+@media only screen and (max-width:480px) {
+    .settingsLogOutBth {
         position: absolute;
-        top:15%;
+        top: 15%;
     }
-    .setting-body{
+
+    .setting-body {
         display: flex;
         flex-direction: column;
         width: 100vw;
     }
-    
-  }
+
+}

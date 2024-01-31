@@ -1,19 +1,19 @@
 import React from "react";
 import Menu from "./Menu";
 import budgetIcon from "../icons/budge.png";
+import trash from "../icons/trash.png";
 import courseIcon from "../icons/courses.png";
 import dashboardIcon from "../icons/dashboard.png";
 import expenseIcon from "../icons/expense.png";
+import investmentIcon from "../icons/investmentIcon.png";
+import goalIcon from "../icons/goal.png";
+import settingIcon from "../icons/setting.png";
 import walletIcon from "../icons/wallet.png";
-import MyAccordion from "./Accordion";
-import"../components/css/budget.css"
+import income from "./assest/income.png";
+import moreIcon from "../icons/moreIcon.jpg"
 import Buttons from "./buttons";
-import MyForm from "./Form";
-import { useState } from "react";
-import moreIcon from"../icons/moreIcon.jpg"
-
-export default function Budget(){
-    const [New, setNew] = useState("OldBudget");
+import "./css/expenses.css";
+export default function Income() {
     const menus = [
         {id: 1,name: "Dashboard",active: false, iconSrc: dashboardIcon,},
         { id: 3, name: "Budget", active: false, iconSrc: budgetIcon },
@@ -21,30 +21,21 @@ export default function Budget(){
         { id: 5, name: "Wallet", active: false, iconSrc: walletIcon  },
         { id: 6, name: "More", active: false, iconSrc:moreIcon },
     ];
-
-    const inputs={
-        Date_1 : "2020/12/03",
-        Date_2 : "2020/12/03",
-        content_1: "Content for the first item.",
-        content_2:"Content for the second item."
-    };
-
-    let MainField;
-
-    if(New === "OldBudget" ){
-        MainField = (
-            <div className="budget-accordion">
-                <MyAccordion title="Education" date="2020/12/03" incomeContent="Income Content" expenseContent="Expense Content"/>
-                <MyAccordion title="Education" date="2023/12/05" incomeContent="Income Content" expenseContent="Expense Content"/>
-                <MyAccordion title="Education" date="2024/12/09" incomeContent="Income Content" expenseContent="Expense Content"/>
-                <Buttons content={"Create New Budget"} onClick={()=>{setNew("NewBudget")}}/>
-            </div>
-        )
-    }
-
-    if (New === "NewBudget" ){
-        MainField = (
-            <form>
+    return(
+        <div>
+            <Menu  menus={menus} />
+            <div className="expense-contents">
+      <div className="header">
+        <h3>Expenses</h3>
+      </div>
+      <div className="total-exp">
+        <p>
+          Total Expense: <span>00000</span>
+        </p>
+      </div>
+      <div className="row main-under">
+        <div className="form col-md-6 col-lg-6 col-sm-12 expense-inputs">
+          <form>
             <div class="form-group">
               <input
                 type="text"
@@ -84,17 +75,26 @@ export default function Budget(){
             </div>
             <Buttons content="Add Reference" onClick="" />
           </form>
-        );
-    }
-    
-    
-    return(
-        
-        <div className="budget">
-            <Menu menus={menus}/>
-            <div className="budget-contets">
-                {MainField}
-            </div>
         </div>
-    )
+        <div className="side-list col-md-6 col-lg-6 col-sm-12">
+          <div className="side-cont">
+            <div className="fir"></div>
+            <div className="sec">
+              <div className="sec-top">
+                <div className="elipse"></div>
+                <div>Rent</div>
+              </div>
+              <div className="sec-bot">
+                <span className="amount">ETB 3000</span>
+                <span className="date">23/04/16</span>
+                <span className="note">Rent and Bill</span>
+              </div>
+            </div>
+            <img src={trash} />
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+    );
 }

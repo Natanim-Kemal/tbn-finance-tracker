@@ -18,8 +18,6 @@ import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Cookies } from "react-cookie";
-import { useCookies } from "react-cookie";
 
 export default function DashBoard() {
   const { isAuthenticated } = useAuth();
@@ -38,11 +36,18 @@ export default function DashBoard() {
   ];
 
   const [goals, setGoals] = useState([]);
+  const [accountDetail, setAccountDetail] = useState({});
+  const [incomes, setIncomes] = useState([]);
+  const [expenses, setExpenses] = useState([]);
+
+  let totalBalance = 0;
+  let totalSaved = 0;
+  let totalExpense = 0;
 
   useEffect(() => {
     const fetchGoals = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/getExpenses", {
+        const response = await fetch("http://localhost:5000/api/get-goals", {
           credentials: "include",
         });
 
@@ -58,8 +63,58 @@ export default function DashBoard() {
       }
     };
 
+    const fetchIncomes = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/getIncomes", {
+          credentials: "include",
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setIncomes(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching incomes:", error.message);
+      }
+    };
+
+    const fetchExpenses = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/getExpenses", {
+          credentials: "include",
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setExpenses(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching expenses:", error.message);
+      }
+    };
+
+    fetchExpenses();
+    fetchIncomes();
     fetchGoals();
   }, []);
+
+  for (let income of incomes) {
+    totalBalance += income.amount;
+    console.log(income.amount, "income amount");
+  }
+
+  for (let expense of expenses) {
+    totalExpense += expense.amount;
+    console.log(expense.amount, "expense amount");
+  }
+
+  totalSaved = totalBalance - totalExpense;
 
   return (
     <div className="DashBoard">
@@ -75,30 +130,42 @@ export default function DashBoard() {
           <div className="summary-continer">
             <img src={Income} alt="" />
             <p className="summary-description">Total Balance</p>
-            <div className="amount">14,897.92 birr</div>
+            <div className="amount">
+              {typeof totalBalance === "number"
+                ? totalBalance + " Birr"
+                : "0 Birr"}
+            </div>
           </div>
 
           <div className="summary-continer">
             <img src={Expense} alt="" />
             <p className="summary-description">Total Expenses</p>
-            <div className="amount">6,897.92 birr</div>
+            <div className="amount">
+              {typeof totalExpense === "number"
+                ? totalExpense + " Birr"
+                : "You Don't have any Expense Create One"}
+            </div>
           </div>
 
           <div className="summary-continer">
             <img src={Saving} alt="" />
             <p className="summary-description">Money Saved</p>
-            <div className="amount">8000.00 birr</div>
+            <div className="amount">
+              {typeof totalExpense === "number"
+                ? totalSaved + " Birr"
+                : "You Don't have Saving"}
+            </div>
           </div>
 
-          <div className=" graphical-overview">
+          {/* <div className=" graphical-overview">
             <div className="overview-title">Overview</div>
             <div className="Graph-Container">
               <RenderLineChart />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="budget-review">
-          <div className="overview-title">Budget</div>
+          {/* <div className="overview-title">Budget</div>
 
           <div className="graphical-budget">
             <div className="circle-container">
@@ -124,20 +191,30 @@ export default function DashBoard() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="monthly-comparison">
             <div>
               <div className="comparison-text">
-                <p>Comparison (Month) </p>
+                <p>Goal Progress</p>
               </div>
-              <div className="progressbar-container">
-                <div className="currentmonth">Jan</div>
-                <ProgressBar variant="success" now={45} />
-              </div>
-              <div className="progressbar-container">
-                <div className="Previousmonth">Dec</div>
-                <ProgressBar variant="success" now={60} />
-              </div>
+              {goals && goals.length > 0 ? (
+                goals.map((item) => (
+                  <div key={item.goalId} className="progressbar-container">
+                    <div className="currentmonth">{item.goalName}</div>
+                    <ProgressBar
+                      variant="success"
+                      now={(item.currentAmount * 100) / item.targetAmount}
+                    />
+                    <span>
+                      {Math.round(
+                        (item.currentAmount * 100) / item.targetAmount
+                      ) + " %"}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <div>You haven't set any goal</div>
+              )}
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ import course3 from "./assest/course3.webp";
 import course2 from "./assest/course2.jpg";
 import basicCourse from "./assest/basic-course.jpg";
 import moreIcon from"../icons/moreIcon.jpg"
+import { Link} from "react-router-dom"
 
 export default function Course(){
     const menus = [
@@ -33,10 +34,11 @@ export default function Course(){
                                 <input type="text" placeholder="search courses"/>
                                 <i className="search-icon fa-solid fa-magnifying-glass"></i>
                             </div>
-                    </div>             
+                    </div>            
                     </div>
                     <div className="course-groups">
                         <div className="wrapper">
+                        <Link to = "/courseDetails" className="link">
                             <div className="course3">
                                 <div className="course-image-container">
                                 <img src={course3} alt="course" className="course3"/>
@@ -45,6 +47,7 @@ export default function Course(){
                                     <h3>Financial Goal Setting</h3>
                                     <p>This course guides users in setting realistic financial goals, creating an action plan, and tracking progress towards achieving those goals</p>
                                 </div>
+                        
                             </div>
                             <div className="course2">
                                 <div className="course-image-container">
@@ -65,6 +68,7 @@ export default function Course(){
                                 <p>This course covers fundamental topics such as budgeting, saving, managing debt, and setting financial goals.</p>
                                 </div>
                             </div>
+                        </Link>
                 </div>
             </div>
         </div>

@@ -35,89 +35,83 @@ export default function DashBoard() {
     { id: 6, name: "More", active: false, iconSrc: moreIcon },
   ];
 
-  const [Graph,setGraph]=useState("balance")
-  const data1=[
-  { name: 'Jan', amt: 3000 },
-  { name: 'Feb', amt: 8000 },
-  { name: 'Mar', amt: 10000 },
-  { name: 'Apr', amt: 5780 },
-  { name: 'May', amt: 47600 },
-  { name: 'Jun', amt: 30000 },
-  { name: 'Jul', amt: 3000 },
-  { name: 'Aug', amt: 8000 },
-  { name: 'Sep', amt: 10000 },
-  { name: 'Oct', amt: 5780 },
-  { name: 'Nov', amt: 47600 },
-  { name: 'Dec', amt: 30000 },
-  ]
+  const [Graph, setGraph] = useState("balance");
+  const data1 = [
+    { name: "Jan", amt: 3000 },
+    { name: "Feb", amt: 8000 },
+    { name: "Mar", amt: 10000 },
+    { name: "Apr", amt: 5780 },
+    { name: "May", amt: 47600 },
+    { name: "Jun", amt: 30000 },
+    { name: "Jul", amt: 3000 },
+    { name: "Aug", amt: 8000 },
+    { name: "Sep", amt: 10000 },
+    { name: "Oct", amt: 5780 },
+    { name: "Nov", amt: 47600 },
+    { name: "Dec", amt: 30000 },
+  ];
 
-  const data2=[
-      { name: 'Jan', amt: 1000 },
-      { name: 'Feb', amt: 3000 },
-      { name: 'Mar', amt: 6000 },
-      { name: 'Apr', amt: 580 },
-      { name: 'May', amt: 4600 },
-      { name: 'Jun', amt: 3000 },
-      { name: 'Jul', amt: 3000 },
-      { name: 'Aug', amt: 7000 },
-      { name: 'Sep', amt: 2000 },
-      { name: 'Oct', amt: 5080 },
-      { name: 'Nov', amt: 4760 },
-      { name: 'Dec', amt: 3000 },
-      ]
+  const data2 = [
+    { name: "Jan", amt: 1000 },
+    { name: "Feb", amt: 3000 },
+    { name: "Mar", amt: 6000 },
+    { name: "Apr", amt: 580 },
+    { name: "May", amt: 4600 },
+    { name: "Jun", amt: 3000 },
+    { name: "Jul", amt: 3000 },
+    { name: "Aug", amt: 7000 },
+    { name: "Sep", amt: 2000 },
+    { name: "Oct", amt: 5080 },
+    { name: "Nov", amt: 4760 },
+    { name: "Dec", amt: 3000 },
+  ];
 
-  const data3=[
-      { name: 'Jan', amt: 1000 },
-      { name: 'Feb', amt: 2000 },
-      { name: 'Mar', amt: 3000 },
-      { name: 'Apr', amt: 5080 },
-      { name: 'May', amt: 4760 },
-      { name: 'Jun', amt: 9000 },
-      { name: 'Jul', amt: 4500 },
-      { name: 'Aug', amt: 4900 },
-      { name: 'Sep', amt: 6000 },
-      { name: 'Oct', amt: 7080 },
-      { name: 'Nov', amt: 7600 },
-      { name: 'Dec', amt: 10000 },
-      ]
+  const data3 = [
+    { name: "Jan", amt: 1000 },
+    { name: "Feb", amt: 2000 },
+    { name: "Mar", amt: 3000 },
+    { name: "Apr", amt: 5080 },
+    { name: "May", amt: 4760 },
+    { name: "Jun", amt: 9000 },
+    { name: "Jul", amt: 4500 },
+    { name: "Aug", amt: 4900 },
+    { name: "Sep", amt: 6000 },
+    { name: "Oct", amt: 7080 },
+    { name: "Nov", amt: 7600 },
+    { name: "Dec", amt: 10000 },
+  ];
   let GraphicalOverview;
-  if(Graph== "balance"){
-      GraphicalOverview=(
-          <div className=" graphical-overview">
-          <div className="overview-title">
-              Total Balance Overerview
-          </div>
-          <div className="Graph-Container">
+  if (Graph == "balance") {
+    GraphicalOverview = (
+      <div className=" graphical-overview">
+        <div className="overview-title">Total Balance Overerview</div>
+        <div className="Graph-Container">
           <RenderLineChart data={data1} />
-          </div>
-          </div>
-      )
+        </div>
+      </div>
+    );
   }
 
-  if(Graph== "expense"){
-      GraphicalOverview=(
-          <div className=" graphical-overview">
-          <div className="overview-title">
-              Total Expense Overerview
-          </div>
-          <div className="Graph-Container">
+  if (Graph == "expense") {
+    GraphicalOverview = (
+      <div className=" graphical-overview">
+        <div className="overview-title">Total Expense Overerview</div>
+        <div className="Graph-Container">
           <RenderLineChart data={data2} />
-          </div>
-          </div>
-      )
+        </div>
+      </div>
+    );
   }
 
-  if(Graph== "saved"){
-      GraphicalOverview=(
-          <div className=" graphical-overview">
-          <div className="overview-title">
-              Money Saved Overerview
-          </div>
-          <div className="Graph-Container">
+  if (Graph == "saved") {
+    GraphicalOverview = (
+      <div className=" graphical-overview">
+        <div className="overview-title">Money Saved Overerview</div>
+        <div className="Graph-Container">
           <RenderLineChart data={data3} />
-          </div>
-          </div>
-      )
+        </div>
+      </div>
+    );
   }
 
   const [goals, setGoals] = useState([]);
@@ -212,36 +206,57 @@ export default function DashBoard() {
           </div>
         </div>
         <div className="financial-summary">
-          <div className="summary-continer" onClick={() => {setGraph("balance")}}>
+          <div
+            className="summary-continer"
+            onClick={() => {
+              setGraph("balance");
+            }}
+          >
             <img src={Income} alt="" />
             <p className="summary-description">Total Balance</p>
             <div className="amount">
               {typeof totalBalance === "number"
-                ? totalBalance + " Birr"
+                ? isNaN(totalBalance)
+                  ? "0 Birr"
+                  : totalBalance + " Birr"
                 : "0 Birr"}
             </div>
           </div>
 
-          <div className="summary-continer" onClick={() => {setGraph("expense")}}>
+          <div
+            className="summary-continer"
+            onClick={() => {
+              setGraph("expense");
+            }}
+          >
             <img src={Expense} alt="" />
             <p className="summary-description">Total Expenses</p>
             <div className="amount">
               {typeof totalExpense === "number"
-                ? totalExpense + " Birr"
-                : "You Don't have any Expense Create One"}
+                ? isNaN(totalExpense)
+                  ? "0 Birr"
+                  : totalExpense + " Birr"
+                : "0 Birr"}
             </div>
           </div>
 
-          <div className="summary-continer" onClick={() => {setGraph("saved")}}>
+          <div
+            className="summary-continer"
+            onClick={() => {
+              setGraph("saved");
+            }}
+          >
             <img src={Saving} alt="" />
             <p className="summary-description">Money Saved</p>
             <div className="amount">
-              {typeof totalExpense === "number"
-                ? totalSaved + " Birr"
-                : "You Don't have Saving"}
+              {typeof totalSaved === "number"
+                ? isNaN(totalSaved)
+                  ? "0 Birr"
+                  : totalSaved + " Birr"
+                : "0 Birr"}
             </div>
           </div>
-               {GraphicalOverview}
+          {GraphicalOverview}
         </div>
         <div className="budget-review">
           {/* <div className="overview-title">Budget</div>

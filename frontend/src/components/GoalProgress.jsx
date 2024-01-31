@@ -38,7 +38,7 @@ export default function GoalProgress() {
                     style={{width: `${targetProgress}%`}}
                 ></div>
             </div>
-            <p>Target Amount: {targetProgress.toFixed(2)}%</p>
+            <p>Target Amount: {formData.targetAmount}</p>
 
             <div className="input-container">
                 <label htmlFor="currentAmountInput">Update Current Amount:</label>

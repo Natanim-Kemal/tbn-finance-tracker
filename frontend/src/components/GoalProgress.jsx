@@ -17,6 +17,10 @@ export default function GoalProgress() {
         }
     }, [formData]);
 
+    const handleCurrentAmountChange = (event) => {
+        setFormData({ ...formData, currentAmount: event.target.value });
+    };
+
     return (
         <div className="GoalProgress">
             <h2>Goal Progress</h2>
@@ -34,7 +38,17 @@ export default function GoalProgress() {
                     style={{width: `${targetProgress}%`}}
                 ></div>
             </div>
-            <p>Target Amount: {formData.targetAmount}</p>
+            <p>Target Amount: {targetProgress.toFixed(2)}%</p>
+
+            <div className="input-container">
+                <label htmlFor="currentAmountInput">Update Current Amount:</label>
+                <input
+                    id="currentAmountInput"
+                    type="number"
+                    value={formData.currentAmount}
+                    onChange={handleCurrentAmountChange}
+                />
+            </div>
         </div>
     );
 }

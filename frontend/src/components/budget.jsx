@@ -9,10 +9,33 @@ import MyAccordion from "./Accordion";
 import "../components/css/budget.css";
 import Buttons from "./buttons";
 import MyForm from "./Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moreIcon from "../icons/moreIcon.jpg";
 
 export default function Budget() {
+  const [budgets, setBudgets] = useState([]);
+
+  useEffect(() => {
+    const fetchBudgets = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/get-budgets", {
+          credentials: "include", // Include credentials if needed
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setBudgets(data);
+        console.log("Budgets fetched successfully:", data);
+      } catch (error) {
+        console.error("Error fetching budgets:", error.message);
+      }
+    };
+
+    fetchBudgets();
+  }, []);
   const [New, setNew] = useState("OldBudget");
   const [formData, setFormData] = useState({
     startDate: "",
@@ -52,7 +75,8 @@ export default function Budget() {
         }
 
         const data = await response.json();
-        console.log("Goal created successfully:", data);
+        console.log("Budget created successfully:", data);
+        setNew("OldBudget");
       } catch (error) {
         console.error("Error creating goal:", error.message);
       }
@@ -83,24 +107,19 @@ export default function Budget() {
   if (New === "OldBudget") {
     MainField = (
       <div className="budget-accordion">
-        <MyAccordion
-          title="Education"
-          date="2020/12/03"
-          incomeContent="Income Content"
-          expenseContent="Expense Content"
-        />
-        <MyAccordion
-          title="Education"
-          date="2023/12/05"
-          incomeContent="Income Content"
-          expenseContent="Expense Content"
-        />
-        <MyAccordion
-          title="Education"
-          date="2024/12/09"
-          incomeContent="Income Content"
-          expenseContent="Expense Content"
-        />
+        {Array.isArray(budgets) && budgets.length > 0 ? (
+          budgets.map((budget) => (
+            <MyAccordion
+              key={budget.id} // Add a unique key for each item in the array
+              title={budget.category}
+              date={budget.startDate}
+              amount={budget.totalAmount}
+            />
+          ))
+        ) : (
+          <>There is No Budget</>
+        )}
+
         <Buttons
           content={"Create New Budget"}
           onClick={() => {
@@ -147,7 +166,7 @@ export default function Budget() {
 
         <div class="form-group">
           <input
-            type="text"
+            type="date"
             class="form-control"
             id="input2"
             name="startDate"
@@ -158,7 +177,7 @@ export default function Budget() {
 
         <div class="form-group">
           <input
-            type="text"
+            type="date"
             class="form-control"
             id="input3"
             name="endDate"

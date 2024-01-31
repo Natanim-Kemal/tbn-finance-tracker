@@ -112,7 +112,14 @@ const Expenses = () => {
           <h3>Expenses</h3>
         </div>
         <div className="total-exp">
-          <p>Total Expense: {calculateTotal()}</p>
+          <p>
+            Total Expense:{" "}
+            {typeof calculateTotal() === "number"
+              ? isNaN(calculateTotal())
+                ? "0 Birr"
+                : calculateTotal() + " Birr"
+              : "0 Birr"}
+          </p>
         </div>
         <div className="row main-under">
           <div className="form col-md-6 col-lg-6 col-sm-12 expense-inputs">

@@ -6,15 +6,15 @@ import courseIcon from "../icons/courses.png";
 import dashboardIcon from "../icons/dashboard.png";
 import expenseIcon from "../icons/expense.png";
 import walletIcon from "../icons/wallet.png";
-import moreIcon from "../icons/moreIcon.jpg";
+import { Link } from "react-router-dom";
 
 export default function Setting() {
     const menus = [
         {id: 1,name: "Dashboard",active: false, iconSrc: dashboardIcon,},
         { id: 3, name: "Budget", active: false, iconSrc: budgetIcon },
         { id: 4, name: "Expense", active: false, iconSrc: expenseIcon },
-        { id: 5, name: "Wallet", active: false, iconSrc: walletIcon  },
-        { id: 6, name: "More", active: false, iconSrc:moreIcon },]
+        { id: 5, name: "Courses", active: false, iconSrc: courseIcon },
+        { id: 6, name: "Wallet", active: false, iconSrc: walletIcon },];
         return(
             <div className="setting-body">
                 <Menu menus={menus}/>
@@ -23,6 +23,7 @@ export default function Setting() {
                         <div className="settingsWrapper">
                             <div className="settingsTitle">
                                 <span className="settingsUpdateTitle">Update Your Profile </span>
+                                <span className="settingsLogOutBth"><Link className="link" to="/login" >Log Out</Link></span>
                             </div>
                             <form  className="settingForm">
                                 <label >Profile Picture</label>

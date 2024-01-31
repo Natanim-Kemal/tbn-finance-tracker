@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import google_icon from "./assest/google-icon.png";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import Logo from "./assest/Logo.png";
 import Buttons from "./buttons";
 import "./css/LoginSignup.css";
@@ -13,6 +14,7 @@ const LoginSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["jwt"]);
 
   const loginRequest = async (email, password) => {
     const url = "http://localhost:5000/api/login";
@@ -38,10 +40,19 @@ const LoginSignup = () => {
 
       const data = await response.json();
       console.log("Response:", data);
+      const cookieOptions = {
+        expires: new Date().getTime + data.maxAge,
+      };
+      setCookie("jwt", data.message, { path: "/" }, cookieOptions);
       navigate("/dashBoard");
     } catch (error) {
       console.error("Error:", error.message);
     }
+  };
+
+  const logOnce = (email, password) => {
+    loginRequest(email, password);
+    loginRequest(email, password);
   };
 
   const signUpRequest = async (
@@ -179,7 +190,7 @@ const LoginSignup = () => {
           <Buttons
             content="LOG IN"
             onClick={() => {
-              loginRequest(email, password);
+              logOnce(email, password);
             }}
           />
         ) : action === "Forget-Password" ? (

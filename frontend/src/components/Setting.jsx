@@ -6,6 +6,7 @@ import courseIcon from "../icons/courses.png";
 import dashboardIcon from "../icons/dashboard.png";
 import expenseIcon from "../icons/expense.png";
 import walletIcon from "../icons/wallet.png";
+import { Link } from "react-router-dom";
 
 export default function Setting() {
     const menus = [
@@ -22,7 +23,7 @@ export default function Setting() {
                         <div className="settingsWrapper">
                             <div className="settingsTitle">
                                 <span className="settingsUpdateTitle">Update Your Profile </span>
-                                <span className="settingsLogOutBth">Log Out</span>
+                                <span className="settingsLogOutBth"><Link className="link" to="/login" >Log Out</Link></span>
                             </div>
                             <form  className="settingForm">
                                 <label >Profile Picture</label>

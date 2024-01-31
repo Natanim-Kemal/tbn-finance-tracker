@@ -1,0 +1,156 @@
+.exp-main {
+    display: flex;
+    min-width:100vw;
+    min-height: 100vh;
+    background: url(../assest/dash-back.jpg);
+    background-size: cover;
+  }
+  
+  .expense-contents{
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 83%;
+    position: relative;
+    left: 15%;
+    margin-left:1%
+  }
+  
+  .expense-inputs{
+    width: 40%;
+    margin-left: 5%;
+  }
+  .form-group {
+    margin-bottom: 5%;
+  }
+  
+  .header {
+    width: 100%;
+    text-align: left;
+    font-weight: bolder;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    border: 2px solid white;
+    background-color: #efefef;
+  }
+  .total-exp {
+    font-weight: bolder;
+    width: 100%;
+    font-size: large;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1%;
+    margin: 2%;
+  }
+  
+  .total-exp span {
+    color: red;
+  }
+  
+  .main-under {
+    width: 100%;
+  }
+  
+  /* .side-list {
+    border: 2px solid red;
+  } */
+  .side-cont {
+    display: flex;
+    background-color: white;
+    padding: 50px;
+    border-radius: 19px;
+    justify-content: space-between;
+  }
+  .side-cont img {
+    width: 25%;
+  }
+  .side-cont .sec .sec-top,
+  .side-cont .sec .sec-bot {
+    display: flex;
+  }
+  
+  .side-cont .sec .sec-top,
+  .side-cont .sec .sec-top {
+    display: flex;
+  }
+  .sec {
+    width: 100%;
+  }
+  .sec-top .elipse {
+    width: 15px;
+    height: 15px;
+    background-color: #26c834;
+    border-radius: 50%;
+  }
+  .sec-top {
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    font-weight: bold;
+    column-gap: 5%;
+  }
+  
+  .sec-bot {
+    display: flex;
+    font-size: 10px;
+    column-gap: 2%;
+  }
+  .btn-ref {
+    background-color: #26c834;
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .exp-main {
+        width: 100vw;
+        flex-direction: column;
+        margin: 0;
+    }
+  
+    .date{
+      display: none;
+    }
+  
+    .side-cont{
+      flex-direction: column;
+      width: 50%;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+    .expense-contents{
+      position: static;
+      justify-content: center;
+    }
+    .main-under{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width:1023px){
+    .exp-main {
+      position: static;
+      width: 100vw;
+      margin: 0;
+  }
+    .total-exp{
+      position: fixed;
+      left: 15%;
+      top: 8%;
+      width: 80%;
+      height: 5%;
+      text-align: center;
+    }
+    .expense-contents{
+      position: static;
+      justify-content: center;
+      margin-left: 15%;
+    }
+  
+    .date{
+      display: none;
+    }
+  }

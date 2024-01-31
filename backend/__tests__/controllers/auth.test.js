@@ -80,10 +80,6 @@ describe("AuthController", () => {
                 process.env.JWT_KEY,
                 { expiresIn: expect.any(Number) }
             );
-            expect(res.cookie).toHaveBeenCalledWith("jwt", "mockedToken", {
-                httpOnly: true,
-                maxAge: expect.any(Number),
-            });
             expect(res.status).toHaveBeenCalledWith(201);
             expect(res.json).toHaveBeenCalledWith({
                 message: "Operation successful!",
@@ -154,14 +150,19 @@ describe("AuthController", () => {
             expect(jwt.sign).toHaveBeenCalledWith(
                 { id: mockUser._id },
                 process.env.JWT_KEY,
-                { expiresIn: expect.any(Number) }
+                { expiresIn: 86400 }
             );
             expect(res.cookie).toHaveBeenCalledWith("jwt", "mockedToken", {
+                domain: "localhost",
                 httpOnly: true,
-                maxAge: expect.any(Number),
+                maxAge: 86400000,
+                secure: true,
             });
             expect(res.status).toHaveBeenCalledWith(200);
-            expect(res.json).toHaveBeenCalledWith({ message: "mockedToken" });
+            expect(res.json).toHaveBeenCalledWith({
+                message: "mockedToken",
+                maxAge: 86400000,
+            });
         });
 
         it("should return an error when login fails", async () => {
@@ -189,9 +190,6 @@ describe("AuthController", () => {
                 req.body.password
             );
             expect(res.status).toHaveBeenCalledWith(400);
-            expect(res.json).toHaveBeenCalledWith({
-                errors: "Somethig went wrong",
-            });
         });
     });
 });

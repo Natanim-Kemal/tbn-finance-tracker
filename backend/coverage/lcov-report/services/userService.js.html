@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">29.03% </span>
+                <span class="strong">23.07% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>27/93</span>
+                <span class='fraction'>27/117</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">29.03% </span>
+                <span class="strong">23.07% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>27/93</span>
+                <span class='fraction'>27/117</span>
             </div>
         
             
@@ -156,7 +156,31 @@
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -178,8 +202,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -189,11 +211,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -204,17 +221,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -246,30 +254,87 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const User = require('../models/user');
-const bcrypt = require('bcrypt');
-const Account = require('../models/account');
-const { generateFinancialReport } = require('../services/reportGenService');
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const User = require("../models/user");
+const bcrypt = require("bcrypt");
+const Account = require("../models/account");
+const { generateFinancialReport } = require("../services/reportGenService");
 &nbsp;
 const userService = {
-    createAccount: <span class="fstat-no" title="function not covered" >async (firstName, lastName, email, password, username, financialAccounts) =&gt; {</span>
+    createAccount: <span class="fstat-no" title="function not covered" >async (</span>
+<span class="cstat-no" title="statement not covered" >        firstName,</span>
+<span class="cstat-no" title="statement not covered" >        lastName,</span>
+<span class="cstat-no" title="statement not covered" >        email,</span>
+<span class="cstat-no" title="statement not covered" >        password,</span>
+<span class="cstat-no" title="statement not covered" >        username,</span>
+<span class="cstat-no" title="statement not covered" >        financialAccounts</span>
+<span class="cstat-no" title="statement not covered" >    ) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        try {</span>
 <span class="cstat-no" title="statement not covered" >            const userExists = await User.findOne({ email });</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >            if (userExists) {</span>
-<span class="cstat-no" title="statement not covered" >                return { success: false, message: 'User with this email already exists.' };</span>
+<span class="cstat-no" title="statement not covered" >                return {</span>
+<span class="cstat-no" title="statement not covered" >                    success: false,</span>
+<span class="cstat-no" title="statement not covered" >                    message: "User with this email already exists.",</span>
+<span class="cstat-no" title="statement not covered" >                };</span>
 <span class="cstat-no" title="statement not covered" >            }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            const newUser = new User({ firstName, lastName, email, password, username, financialAccounts });</span>
+<span class="cstat-no" title="statement not covered" >            const newUser = new User({</span>
+<span class="cstat-no" title="statement not covered" >                firstName,</span>
+<span class="cstat-no" title="statement not covered" >                lastName,</span>
+<span class="cstat-no" title="statement not covered" >                email,</span>
+<span class="cstat-no" title="statement not covered" >                password,</span>
+<span class="cstat-no" title="statement not covered" >                username,</span>
+<span class="cstat-no" title="statement not covered" >                financialAccounts,</span>
+<span class="cstat-no" title="statement not covered" >            });</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >            await newUser.save();</span>
-<span class="cstat-no" title="statement not covered" >            return { success: true, message: 'User created successfully.' };</span>
+<span class="cstat-no" title="statement not covered" >            return { success: true, message: "User created successfully." };</span>
 <span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error('Registration error:', error);</span>
-<span class="cstat-no" title="statement not covered" >            return { success: false, message: 'Error' };</span>
+<span class="cstat-no" title="statement not covered" >            console.error("Registration error:", error);</span>
+<span class="cstat-no" title="statement not covered" >            return { success: false, message: "Error" };</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
     },
     getAccountDetails: <span class="fstat-no" title="function not covered" >async (userID) =&gt; {</span>
@@ -278,10 +343,10 @@ const userService = {
 <span class="cstat-no" title="statement not covered" >            if (!user) {</span>
 <span class="cstat-no" title="statement not covered" >                return null;</span>
 <span class="cstat-no" title="statement not covered" >            }</span>
-<span class="cstat-no" title="statement not covered" >            const accountDetails = await user.financialAccounts;</span>
+<span class="cstat-no" title="statement not covered" >            const accountDetails = await user;</span>
 <span class="cstat-no" title="statement not covered" >            return accountDetails;</span>
 <span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error('Error getting account details:', error);</span>
+<span class="cstat-no" title="statement not covered" >            console.error("Error getting account details:", error);</span>
 <span class="cstat-no" title="statement not covered" >            return null;</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
     },
@@ -290,20 +355,22 @@ const userService = {
 <span class="cstat-no" title="statement not covered" >        try {</span>
 <span class="cstat-no" title="statement not covered" >            await User.findByIdAndDelete(userID);</span>
 <span class="cstat-no" title="statement not covered" >            await Account.deleteMany({ userID });</span>
-<span class="cstat-no" title="statement not covered" >            return { success: true, message: 'Account deleted successfully.' };</span>
+<span class="cstat-no" title="statement not covered" >            return { success: true, message: "Account deleted successfully." };</span>
 <span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error('Error deleting account:', error);</span>
-<span class="cstat-no" title="statement not covered" >            return { success: false, message: 'Server Error' };</span>
+<span class="cstat-no" title="statement not covered" >            console.error("Error deleting account:", error);</span>
+<span class="cstat-no" title="statement not covered" >            return { success: false, message: "Server Error" };</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
     },
 &nbsp;
     updateProfile: <span class="fstat-no" title="function not covered" >async (userID, updatedData) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            await User.findByIdAndUpdate(userID, { $set: updatedData });</span>
-<span class="cstat-no" title="statement not covered" >            return { success: true, message: 'Profile updated successfully.' };</span>
+<span class="cstat-no" title="statement not covered" >            const updatedProfile = await User.findByIdAndUpdate(userID, {</span>
+<span class="cstat-no" title="statement not covered" >                $set: updatedData,</span>
+<span class="cstat-no" title="statement not covered" >            });</span>
+<span class="cstat-no" title="statement not covered" >            return updatedProfile;</span>
 <span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error('Error updating profile:', error);</span>
-<span class="cstat-no" title="statement not covered" >            return { success: false, message: 'Error' };</span>
+<span class="cstat-no" title="statement not covered" >            console.error("Error updating profile:", error);</span>
+<span class="cstat-no" title="statement not covered" >            return { success: false, message: "Error" };</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
     },
 &nbsp;
@@ -311,32 +378,37 @@ const userService = {
 <span class="cstat-no" title="statement not covered" >        try {</span>
 <span class="cstat-no" title="statement not covered" >            const salt = await bcrypt.genSalt(10);</span>
 <span class="cstat-no" title="statement not covered" >            newPassword = await bcrypt.hash(newPassword, salt);</span>
-<span class="cstat-no" title="statement not covered" >            await User.findByIdAndUpdate(userID, { $set: { password: newPassword } });</span>
-<span class="cstat-no" title="statement not covered" >            return { success: true, message: 'Password changed successfully.' };</span>
+<span class="cstat-no" title="statement not covered" >            await User.findByIdAndUpdate(userID, {</span>
+<span class="cstat-no" title="statement not covered" >                $set: { password: newPassword },</span>
+<span class="cstat-no" title="statement not covered" >            });</span>
+<span class="cstat-no" title="statement not covered" >            return { success: true, message: "Password changed successfully." };</span>
 <span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error('Error changing password:', error);</span>
-<span class="cstat-no" title="statement not covered" >            return { success: false, message: 'Error' };</span>
+<span class="cstat-no" title="statement not covered" >            console.error("Error changing password:", error);</span>
+<span class="cstat-no" title="statement not covered" >            return { success: false, message: "Error" };</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
     },
 &nbsp;
     linkFinancialAccount: <span class="fstat-no" title="function not covered" >async (userID) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        try {</span>
 <span class="cstat-no" title="statement not covered" >            // logic to link a financial account goes here ... later</span>
-<span class="cstat-no" title="statement not covered" >            const newLink = new Link({ userID});</span>
-<span class="cstat-no" title="statement not covered" >            return { success: true, message: 'Financial account linked successfully.' };</span>
+<span class="cstat-no" title="statement not covered" >            const newLink = new Link({ userID });</span>
+<span class="cstat-no" title="statement not covered" >            return {</span>
+<span class="cstat-no" title="statement not covered" >                success: true,</span>
+<span class="cstat-no" title="statement not covered" >                message: "Financial account linked successfully.",</span>
+<span class="cstat-no" title="statement not covered" >            };</span>
 <span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error('Error linking financial account:', error);</span>
-<span class="cstat-no" title="statement not covered" >            return { success: false, message: 'Error' };</span>
+<span class="cstat-no" title="statement not covered" >            console.error("Error linking financial account:", error);</span>
+<span class="cstat-no" title="statement not covered" >            return { success: false, message: "Error" };</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
     },
 &nbsp;
     getFinancialReport: <span class="fstat-no" title="function not covered" >async (userID) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        try {</span>
-<span class="cstat-no" title="statement not covered" >            const financialReport = generateFinancialReport(userID); </span>
+<span class="cstat-no" title="statement not covered" >            const financialReport = generateFinancialReport(userID);</span>
 <span class="cstat-no" title="statement not covered" >            return financialReport;</span>
 <span class="cstat-no" title="statement not covered" >        } catch (error) {</span>
-<span class="cstat-no" title="statement not covered" >            console.error('Error getting financial report:', error);</span>
-<span class="cstat-no" title="statement not covered" >            return { success: false, message: 'Error' };</span>
+<span class="cstat-no" title="statement not covered" >            console.error("Error getting financial report:", error);</span>
+<span class="cstat-no" title="statement not covered" >            return { success: false, message: "Error" };</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
 <span class="cstat-no" title="statement not covered" >    },</span>
 };
@@ -349,7 +421,7 @@ module.exports = userService;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-29T21:18:57.889Z
+                at 2024-01-31T14:37:49.760Z
             </div>
         <script src="../prettify.js"></script>
         <script>

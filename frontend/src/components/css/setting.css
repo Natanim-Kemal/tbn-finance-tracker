@@ -135,5 +135,10 @@
         position: absolute;
         top:15%;
     }
+    .setting-body{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
     
   }

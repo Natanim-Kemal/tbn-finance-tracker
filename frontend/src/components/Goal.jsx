@@ -8,6 +8,8 @@ import walletIcon from "../icons/wallet.png";
 import Buttons from "./buttons";
 import moreIcon from "../icons/moreIcon.jpg";
 import GoalProgress from "./GoalProgress";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import { useEffect } from "react";
 
 export default function Goal() {
   const [formData, setFormData] = useState({
@@ -18,6 +20,59 @@ export default function Goal() {
     description: "",
   });
 
+  const [goals, setGoals] = useState([]);
+
+  useEffect(() => {
+    const fetchAccountDetails = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/get-account-details/65b8dee258d56e0024df7fa4",
+          {
+            method: "GET",
+            credentials: "include", // Include credentials if needed
+            headers: {
+              // Add headers if needed
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setAccountDetails(data);
+        console.log("Account details fetched successfully:", data);
+      } catch (error) {
+        console.error("Error fetching account details:", error.message);
+      }
+    };
+
+    fetchAccountDetails();
+  }, []);
+
+  useEffect(() => {
+    const fetchGoals = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/get-goals", {
+          credentials: "include",
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setGoals(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching goals:", error.message);
+      }
+    };
+
+    fetchGoals();
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
@@ -48,6 +103,8 @@ export default function Goal() {
 
         const data = await response.json();
         console.log("Goal created successfully:", data);
+        setPage("old");
+        window.location.reload();
       } catch (error) {
         console.error("Error creating goal:", error.message);
       }
@@ -66,13 +123,13 @@ export default function Goal() {
     { id: 6, name: "More", active: false, iconSrc: moreIcon },
   ];
 
-  const [page,setPage] = useState("old");
+  const [page, setPage] = useState("old");
   let Main;
 
-  if(page == "new"){
-    Main=(
+  if (page == "new") {
+    Main = (
       <div className="Goal-contents">
-        <form onSubmit={handleSubmit} className="goal-form">
+        <form className="goal-form">
           <label>
             Goal Name:
             <input type="text" name="goalName" onChange={handleChange} />
@@ -99,20 +156,49 @@ export default function Goal() {
           </label>
 
           <div className="goal-btn">
-            <button type="submit" onClick={() => {setPage("old")}}>Set Goal</button>
+            <button type="submit" onClick={handleSubmit}>
+              Set Goal
+            </button>
           </div>
         </form>
       </div>
     );
-  }
-
-  else{
-    Main=(
+  } else {
+    Main = (
       <div className="progressContianer">
-        <div className="fetched-contents"></div>
-        <Buttons content="New Goal" onClick={() => {setPage("new")}}/>
+        <div className="fetched">
+          <div>
+            <div className="main_title">
+              <p>Goal Progress</p>
+            </div>
+            {goals && goals.length > 0 ? (
+              goals.map((item) => (
+                <div key={item.goalId} className="progressbar-container">
+                  <div className="goalTittle">{item.goalName}</div>
+                  <ProgressBar
+                    variant="success"
+                    now={(item.currentAmount * 100) / item.targetAmount}
+                  />
+                  <span>
+                    {Math.round(
+                      (item.currentAmount * 100) / item.targetAmount
+                    ) + " %"}
+                  </span>
+                </div>
+              ))
+            ) : (
+              <div>You haven't set any goal</div>
+            )}
+          </div>
+        </div>
+        <Buttons
+          content="New Goal"
+          onClick={() => {
+            setPage("new");
+          }}
+        />
       </div>
-    )
+    );
   }
   return (
     <div className="Goal">

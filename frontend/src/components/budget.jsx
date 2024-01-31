@@ -35,13 +35,13 @@ export default function Budget() {
     };
 
     fetchBudgets();
-  }, [budgets]);
+  }, []);
   const [New, setNew] = useState("OldBudget");
   const [formData, setFormData] = useState({
     startDate: "",
     endDate: "",
     totalAmount: "",
-    category: "",
+    purpose: "",
   });
 
   const handleChange = (e) => {
@@ -65,7 +65,7 @@ export default function Budget() {
               startDate: formData.startDate,
               endDate: formData.endDate,
               totalAmount: formData.totalAmount,
-              category: formData.category,
+              purpose: formData.purpose,
             }),
           }
         );
@@ -77,6 +77,7 @@ export default function Budget() {
         const data = await response.json();
         console.log("Budget created successfully:", data);
         setNew("OldBudget");
+        window.location.reload();
       } catch (error) {
         console.error("Error creating goal:", error.message);
       }
@@ -110,8 +111,9 @@ export default function Budget() {
         {Array.isArray(budgets) && budgets.length > 0 ? (
           budgets.map((budget) => (
             <MyAccordion
+              id={budget.id}
               key={budget.id} // Add a unique key for each item in the array
-              title={budget.category}
+              title={budget.purpose}
               date={new Date(budget.startDate).toLocaleDateString()}
               amount={budget.totalAmount}
             />
@@ -137,7 +139,7 @@ export default function Budget() {
           <select
             class="form-control"
             id="selectOption"
-            name="category"
+            name="purpose"
             onChange={handleChange}
           >
             <option value="" disabled>
@@ -195,10 +197,10 @@ export default function Budget() {
       <Menu menus={menus} />
       <div className="budget-contets">
         <div className="menu-title">
-            <p>Budget</p>
+          <p>Budget</p>
         </div>
         {MainField}
-        </div>
+      </div>
     </div>
   );
 }

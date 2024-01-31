@@ -118,10 +118,41 @@ export default function DashBoard() {
   const [accountDetail, setAccountDetail] = useState({});
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
+  const [accountDetails, setAccountDetails] = useState({});
 
   let totalBalance = 0;
   let totalSaved = 0;
   let totalExpense = 0;
+
+  useEffect(() => {
+    const fetchAccountDetails = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/get-account-details/65b8dee258d56e0024df7fa4",
+          {
+            method: "GET",
+            credentials: "include", // Include credentials if needed
+            headers: {
+              // Add headers if needed
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setAccountDetails(data);
+        console.log("Account details fetched successfully:", data);
+      } catch (error) {
+        console.error("Error fetching account details:", error.message);
+      }
+    };
+
+    fetchAccountDetails();
+  }, []);
 
   useEffect(() => {
     const fetchGoals = async () => {
@@ -224,7 +255,12 @@ export default function DashBoard() {
               </div>
             </div>
 
-            <div className="summary-continer" onClick={() => {setGraph("expense")}}>
+            <div
+              className="summary-continer"
+              onClick={() => {
+                setGraph("expense");
+              }}
+            >
               <img src={Expense} alt="" />
               <p className="summary-description">Total Expenses</p>
               <div className="amount">

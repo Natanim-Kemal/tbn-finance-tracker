@@ -8,7 +8,7 @@ import expenseIcon from "../icons/expense.png";
 import walletIcon from "../icons/wallet.png";
 import moreIcon from "../icons/moreIcon.jpg";
 import Buttons from "./buttons";
-import edit from "./assest/edit.png"
+import edit from "./assest/edit.png";
 
 const Expenses = () => {
   const menus = [
@@ -61,12 +61,37 @@ const Expenses = () => {
     for (let exp of expenses) {
       totalExpenses += exp.amount;
     }
-    return <span>{totalExpenses}</span>;
+    return totalExpenses;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleRemoval = (id) => {
+    const handleDeleteExpense = async (expenseId) => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/deleteExpense/${expenseId}`,
+          {
+            method: "DELETE",
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const deletedExpense = await response.json();
+        console.log("Expense deleted successfully:", deletedExpense);
+        window.location.reload();
+      } catch (error) {
+        console.error("Error deleting expense:", error.message);
+      }
+    };
+    handleDeleteExpense(id);
   };
 
   const handleSubmission = async (e) => {
@@ -115,10 +140,8 @@ const Expenses = () => {
         <div className="total-exp">
           <p>
             Total Expense:{" "}
-            {typeof calculateTotal() === "number"
-              ? isNaN(calculateTotal())
-                ? "0 Birr"
-                : calculateTotal() + " Birr"
+            {typeof calculateTotal() === "number" && !isNaN(calculateTotal())
+              ? calculateTotal() + " Birr"
               : "0 Birr"}
           </p>
         </div>
@@ -161,9 +184,7 @@ const Expenses = () => {
                   name="category"
                   onChange={handleChange}
                 >
-                  <option value="" disabled>
-                    Select Option
-                  </option>
+                  <option value="Option">Select Option</option>
                   <option value="education">Education</option>
                   <option value="groceries">Groceries</option>
                   <option value="health">Health</option>
@@ -192,27 +213,31 @@ const Expenses = () => {
               expenses
                 .slice()
                 .reverse()
-                .map((expense) => (
-                  <div key={expense.id} className="side-cont">
-                    <div className="fir"></div>
-                    <div className="sec">
-                      <div className="sec-top">
-                        <div className="elipse"></div>
-                        <div>{expense.name}</div>
+                .map((expense) =>
+                  expense.name !== undefined ? (
+                    <div key={expense._id} className="side-cont">
+                      <div className="fir"></div>
+                      <div className="sec">
+                        <div className="sec-top">
+                          <div className="elipse"></div>
+                          <div>{expense.name}</div>
+                        </div>
+                        <div className="sec-bot">
+                          <span className="amount">{`ETB ${expense.amount}`}</span>
+                          <span className="date">{expense.date}</span>
+                          <span className="note">{expense.description}</span>
+                        </div>
                       </div>
-                      <div className="sec-bot">
-                        <span className="amount">{`ETB ${expense.amount}`}</span>
-                        <span className="date">{expense.date}</span>
-                        <span className="note">{expense.description}</span>
+                      <div className="crud">
+                        <img
+                          src={trash}
+                          alt="Delete"
+                          onClick={() => handleRemoval(expense._id)}
+                        />
                       </div>
                     </div>
-                    <div className="crud">
-                      <img src={trash} alt="Delete" />
-                      <img src={edit} alt="edit" className="edit-but"/>
-                    </div>
-                    
-                  </div>
-                ))
+                  ) : null
+                )
             ) : (
               <p>You haven't made any expense</p>
             )}

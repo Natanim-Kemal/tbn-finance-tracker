@@ -69,7 +69,8 @@ export default function Goal() {
     <div className="Goal">
       <Menu menus={menus} />
       <div className="Goal-contents">
-        <form onSubmit={handleSubmit}>
+      <div className="goalTittle">Goal</div>
+        <form onSubmit={handleSubmit} className="goal-form">
           <label>
             Goal Name:
             <input type="text" name="goalName" onChange={handleChange} />

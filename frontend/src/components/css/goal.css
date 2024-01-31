@@ -20,6 +20,13 @@
     padding-left: 10px;
   }
   
+  .progressContianer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
   form {
     display: flex;
     flex-direction: column;

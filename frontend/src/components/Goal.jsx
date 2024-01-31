@@ -65,11 +65,14 @@ export default function Goal() {
     { id: 5, name: "Wallet", active: false, iconSrc: walletIcon },
     { id: 6, name: "More", active: false, iconSrc: moreIcon },
   ];
-  return (
-    <div className="Goal">
-      <Menu menus={menus} />
+
+  const [page,setPage] = useState("old");
+  let Main;
+
+  if(page == "new"){
+    Main=(
       <div className="Goal-contents">
-        <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
           <label>
             Goal Name:
             <input type="text" name="goalName" onChange={handleChange} />
@@ -96,13 +99,25 @@ export default function Goal() {
           </label>
 
           <div className="goal-btn">
-            <button type="submit">Set Goal</button>
+            <button type="submit" onClick={() => {setPage("old")}}>Set Goal</button>
           </div>
         </form>
       </div>
-      <div className="goal-display">
-        <GoalProgress />
+    );
+  }
+
+  else{
+    Main=(
+      <div className="progressContianer">
+        <div className="fetched-contents"></div>
+        <Buttons content="New Goal" onClick={() => {setPage("new")}}/>
       </div>
+    )
+  }
+  return (
+    <div className="Goal">
+      <Menu menus={menus} />
+      {Main}
     </div>
   );
 }

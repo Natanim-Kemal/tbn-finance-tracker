@@ -35,7 +35,7 @@ export default function Budget() {
     };
 
     fetchBudgets();
-  }, []);
+  }, [budgets]);
   const [New, setNew] = useState("OldBudget");
   const [formData, setFormData] = useState({
     startDate: "",
@@ -112,7 +112,7 @@ export default function Budget() {
             <MyAccordion
               key={budget.id} // Add a unique key for each item in the array
               title={budget.category}
-              date={budget.startDate}
+              date={new Date(budget.startDate).toLocaleDateString()}
               amount={budget.totalAmount}
             />
           ))

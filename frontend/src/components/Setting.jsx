@@ -79,10 +79,10 @@ export default function Setting() {
                         <div className="settingsWrapper">
                             <div className="settingsTitle">
                                 <span className="settingsUpdateTitle">Update Your Profile </span>
-                                <span className="settingsLogOutBth"><Link className="link" to="/login" >Log Out</Link></span>
+                                <span className="settingsLogOutBth"><Link className="link" to="/" >Log Out</Link></span>
                             </div>
                             <form  className="settingForm">
-                                <label >Profile Picture</label>
+                                <div className="together">
                                 {ProfilePicture}
                                 <Accordion>
                                 <Accordion.Header>
@@ -107,13 +107,14 @@ export default function Setting() {
                                     </div>
                                 </AccordionBody>
                                 </Accordion>
+                                </div>
 
-                                <label >Username</label>
                                 <input type="text" placeholder="Abebe" />
-                                <label >Email</label>
+                                <label >Username</label>
                                 <input type="email" placeholder="abe@gmail.com" />
-                                <label >Password</label>
+                                <label >Email</label>
                                 <input type="password"  />
+                                <label >Password</label>
                                 <button className="settingsSubmit">Update</button>
                             </form>
                         </div>

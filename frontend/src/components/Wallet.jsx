@@ -54,6 +54,7 @@ export default function Wallet(){
                                 <div className="Title-container">
                                     Commercial Bank Of Ethiopia
                                 </div>
+                                <button className="cbe-connect">Connect</button>
                             </div>
                             <div className="dashen-api">
                                 <div className="dashen-image-container">
@@ -62,6 +63,7 @@ export default function Wallet(){
                                 <div className="Title-container">
                                     Dashen Bank
                                 </div>
+                                <button className="dashen-connect">Connect</button>
                             </div>
 
                             <div className="abyssinia-api">
@@ -71,47 +73,10 @@ export default function Wallet(){
                                 <div className="Title-container">
                                     Bank Of Abyssinia
                                 </div>
+                                <button className="abbs-connect">Connect</button>
                             </div>
 
-                            <div className="add-more">
-                                <Accordion defaultActiveKey="0">
-                                    <Accordion.Item eventKey="1">
-                                        <Accordion.Header>
-                                            <div className="acc-title">
-                                                More Banks
-                                            </div>
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                            <div className="choices">
-                                                <div className="acc-api">
-                                                    <div className="acc-image-container">
-                                                        <img src={awash}  alt="awash" className="acc-img"/>
-                                                    </div>
-                                                    <div className="acc-but">Awash Bank</div>
-                                                </div>
-                                                <div className="acc-api">
-                                                    <div className="acc-image-container">
-                                                        <img src={birhan}  alt="Berhan" className="acc-img"/>
-                                                    </div>
-                                                    <div className="acc-but">Berhan Bank</div>
-                                                </div>
-                                                <div className="acc-api ">
-                                                    <div className="wegagen">
-                                                        <img src={wegagen}  alt="wegagen" className="acc-img"/>
-                                                    </div>
-                                                    <div className="acc-but">Wegagen Bank</div>
-                                                </div>
-                                                <div className="acc-api ">
-                                                    <div className="acc-image-container">
-                                                        <img src={zemen}  alt="Zemen" className="acc-img"/>
-                                                    </div>
-                                                    <div className="acc-but">Zemen Bank</div>
-                                                </div>
-                                            </div>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
-                            </div>
+                            
 
                         </div>
                     </div>

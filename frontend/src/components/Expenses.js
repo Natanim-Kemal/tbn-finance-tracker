@@ -8,6 +8,7 @@ import expenseIcon from "../icons/expense.png";
 import walletIcon from "../icons/wallet.png";
 import moreIcon from "../icons/moreIcon.jpg";
 import Buttons from "./buttons";
+import edit from "./assest/edit.png"
 
 const Expenses = () => {
   const menus = [
@@ -205,7 +206,11 @@ const Expenses = () => {
                         <span className="note">{expense.description}</span>
                       </div>
                     </div>
-                    <img src={trash} alt="Delete" />
+                    <div className="crud">
+                      <img src={trash} alt="Delete" />
+                      <img src={edit} alt="edit" className="edit-but"/>
+                    </div>
+                    
                   </div>
                 ))
             ) : (

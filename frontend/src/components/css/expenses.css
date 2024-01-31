@@ -9,10 +9,15 @@
 .expense-contents{
   display: flex;
   flex-wrap: wrap;
-  min-width: 83%;
+  max-width: 80%;
   position: relative;
   left: 15%;
-  margin-left:1%
+  background-color: rgba(255, 255, 255,0.6);
+  border-radius: 20px;
+  min-height: 88vh;
+  margin-left: 10%;
+  margin-top: 2%;
+  margin-bottom: 5%;
 }
 
 .expense-inputs{
@@ -49,6 +54,7 @@
   border-radius: 10px;
   padding: 1%;
   margin: 2%;
+  position: static;
 }
 
 .total-exp span {
@@ -65,12 +71,15 @@
 .side-cont {
   display: flex;
   background-color: white;
-  padding: 50px;
+  padding: 15px;
   border-radius: 19px;
   justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 .side-cont img {
-  width: 25%;
+  width: 30px;
+  height: 30px;
 }
 .side-cont .sec .sec-top,
 .side-cont .sec .sec-bot {
@@ -84,6 +93,12 @@
 .sec {
   width: 100%;
 }
+
+.edit-but {
+  width: 35px;
+  height: 35px;
+  margin-top: 10px;
+}
 .sec-top .elipse {
   width: 15px;
   height: 15px;
@@ -93,7 +108,7 @@
 .sec-top {
   display: flex;
   align-items: center;
-  font-size: larger;
+  font-size: large;
   font-weight: bold;
   column-gap: 5%;
 }
@@ -120,18 +135,25 @@
 
   .side-cont{
     flex-direction: column;
-    width: 50%;
-    padding: 20px;
+    width: 75%;
+    padding: 40px;
     flex-wrap: wrap;
   }
   .expense-contents{
     position: static;
     justify-content: center;
+    margin-left: 0%;
+    margin-top: 0%;
+    width: 100vw;
+    background-color: rgba(255, 255, 255,0);
   }
   .main-under{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+  }
+  .total-exp{
+    margin-left: 30%;
   }
 }
 
@@ -142,9 +164,7 @@
     margin: 0;
 }
   .total-exp{
-    position: fixed;
-    left: 15%;
-    top: 8%;
+
     width: 80%;
     height: 5%;
     text-align: center;
@@ -152,7 +172,9 @@
   .expense-contents{
     position: static;
     justify-content: center;
-    margin-left: 15%;
+    margin-left: 18%;
+    margin-top: 3%;
+    border-radius: 20px;
   }
 
   .date{

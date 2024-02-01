@@ -205,7 +205,7 @@ const Expenses = () => {
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <Buttons content="Add Reference" onClick={handleSubmission} />
+              <Buttons content="Add Expense" onClick={handleSubmission} />
             </form>
           </div>
           <div className="side-list col-md-6 col-lg-6 col-sm-12">

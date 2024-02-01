@@ -26,13 +26,13 @@ const Expenses = () => {
     date: "",
   });
 
-  const [expenses, setExpenses] = useState([]);
-  const [fetchExpensesOnMount, setFetchExpensesOnMount] = useState(true);
+  const [incomes, setIncomes] = useState([]);
+  const [fetchIncomesOnMount, setFetchIncomesOnMount] = useState(true);
 
   useEffect(() => {
-    const fetchExpenses = async () => {
+    const fetchIncomes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/getExpenses", {
+        const response = await fetch("http://localhost:5000/api/getIncomes", {
           credentials: "include",
         });
 
@@ -41,26 +41,27 @@ const Expenses = () => {
         }
 
         const data = await response.json();
-        setExpenses(data);
-        console.log("Expenses fetched successfully:", data);
+        setIncomes(data);
+        console.log("Incomes fetched successfully:", data);
       } catch (error) {
-        console.error("Error fetching expenses:", error.message);
+        console.error("Error fetching incomes:", error.message);
       }
     };
 
-    if (fetchExpensesOnMount) {
-      // Call the function to fetch expenses when the component mounts
-      fetchExpenses();
-      setFetchExpensesOnMount(false);
+    if (fetchIncomesOnMount) {
+      // Call the function to fetch incomes when the component mounts
+      fetchIncomes();
+      setFetchIncomesOnMount(false);
     }
-  }, [fetchExpensesOnMount]);
+  }, [fetchIncomesOnMount]);
 
   const calculateTotal = () => {
-    let totalExpenses = 0;
-    for (let exp of expenses) {
-      totalExpenses += exp.amount;
+    let totalIncomes = 0;
+    for (let inc of incomes) {
+      totalIncomes += inc.amount;
+      console.log(inc.amount);
     }
-    return <span>{totalExpenses}</span>;
+    return totalIncomes;
   };
 
   const handleChange = (e) => {
@@ -68,11 +69,36 @@ const Expenses = () => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleRemoval = (id) => {
+    const handleDeleteIncome = async (incomeId) => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/deleteIncome/${incomeId}`,
+          {
+            method: "DELETE",
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const deletedIncome = await response.json();
+        console.log("Income deleted successfully:", deletedIncome);
+        window.location.reload();
+      } catch (error) {
+        console.error("Error deleting income:", error.message);
+      }
+    };
+    handleDeleteIncome(id);
+  };
+
   const handleSubmission = async (e) => {
     e.preventDefault();
-    const addExpense = async () => {
+    const addIncome = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/addExpense", {
+        const response = await fetch("http://localhost:5000/api/addIncome", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -92,15 +118,15 @@ const Expenses = () => {
         }
 
         const data = await response.json();
-        console.log("Expense added successfully:", data);
-        setExpenses((prevExpenses) => [...prevExpenses, data]);
+        console.log("Income added successfully:", data);
+        setIncomes((prevIncomes) => [...prevIncomes, data]);
       } catch (error) {
-        console.error("Error adding expense:", error.message);
+        console.error("Error adding income:", error.message);
       }
     };
 
-    // Call the function to add the expense when the component mounts
-    addExpense();
+    // Call the function to add the income when the component mounts
+    addIncome();
     console.log("Form data submitted", formData);
   };
 
@@ -109,10 +135,15 @@ const Expenses = () => {
       <Menu menus={menus} />
       <div className="expense-contents">
         <div className="header">
-          <h3>Income</h3>
+          <h3>Incomes</h3>
         </div>
         <div className="total-exp">
-          <p>Total Income: {calculateTotal()}</p>
+          <p>
+            Total Income:{" "}
+            {typeof calculateTotal() === "number" && !isNaN(calculateTotal())
+              ? calculateTotal() + " Birr"
+              : "0 Birr"}
+          </p>
         </div>
         <div className="row main-under">
           <div className="form col-md-6 col-lg-6 col-sm-12 expense-inputs">
@@ -153,17 +184,9 @@ const Expenses = () => {
                   name="category"
                   onChange={handleChange}
                 >
-                  <option value="" disabled>
-                    Select Option
-                  </option>
-                  <option value="education">Education</option>
-                  <option value="groceries">Groceries</option>
-                  <option value="health">Health</option>
-                  <option value="subscriptions">Subscriptions</option>
-                  <option value="takeaways">Takeaways</option>
-                  <option value="clothing">Clothing</option>
-                  <option value="travelling">Travelling</option>
-                  <option value="other">Other</option>
+                  <option value="Option">Select Option</option>
+                  <option value="education">Permanent</option>
+                  <option value="groceries">Temporary</option>
                 </select>
               </div>
               <div class="form-group">
@@ -176,35 +199,43 @@ const Expenses = () => {
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <Buttons content="Add Reference" onClick={handleSubmission} />
+              <Buttons content="Add Income" onClick={handleSubmission} />
             </form>
           </div>
-          {expenses.length > 0 ? (
-            <div className="side-list col-md-6 col-lg-6 col-sm-12">
-              {expenses
+          <div className="side-list col-md-6 col-lg-6 col-sm-12">
+            {Array.isArray(incomes) && incomes.length > 0 ? (
+              incomes
                 .slice()
                 .reverse()
-                .map((expense) => (
-                  <div key={expense.id} className="side-cont">
-                    <div className="fir"></div>
-                    <div className="sec">
-                      <div className="sec-top">
-                        <div className="elipse"></div>
-                        <div>{expense.name}</div>
+                .map((income) =>
+                  income.name !== undefined ? (
+                    <div key={income._id} className="side-cont">
+                      <div className="fir"></div>
+                      <div className="sec">
+                        <div className="sec-top">
+                          <div className="elipse"></div>
+                          <div>{income.name}</div>
+                        </div>
+                        <div className="sec-bot">
+                          <span className="amount">{`ETB ${income.amount}`}</span>
+                          <span className="date">{income.date}</span>
+                          <span className="note">{income.description}</span>
+                        </div>
                       </div>
-                      <div className="sec-bot">
-                        <span className="amount">{`ETB ${expense.amount}`}</span>
-                        <span className="date">{expense.date}</span>
-                        <span className="note">{expense.description}</span>
+                      <div className="crud">
+                        <img
+                          src={trash}
+                          alt="Delete"
+                          onClick={() => handleRemoval(income._id)}
+                        />
                       </div>
                     </div>
-                    <img src={trash} alt="Delete" />
-                  </div>
-                ))}
-            </div>
-          ) : (
-            <p>You haven't made any income</p>
-          )}
+                  ) : null
+                )
+            ) : (
+              <p>You haven't made any income</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
